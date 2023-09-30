@@ -25,10 +25,18 @@ namespace Assets.Scripts.Scenes.Space
 
         private void Start()
         {
-            var ship = Instantiate(ShipTemplate);
-            var shipBehaviour = ship.GetComponent<SpaceShipBehaviour>();
-            //var gravBehaviour = ship.GetComponent<GravityBehaviour>();
-            var spaceCraft = Base.Core.Game.State.Spacecraft;
+            var keyBindings = new List<Dictionary<String, KeyCode>>();
+            keyBindings.Add(GetKeybindingsWASD());
+            keyBindings.Add(GetKeybindingsArrows());
+            int length = Base.Core.Game.State.GameMode.Spacecrafts.Count;
+            for (int i = 0; i < length; i++)
+            {
+                SpawnShip(keyBindings[i]);
+            }
+        }
+
+        private Dictionary<String, KeyCode> GetKeybindingsWASD()
+        {
             var keyDict = new Dictionary<String, KeyCode>{
                 { "Accelerate", KeyCode.W },
             { "DeAccelerate", KeyCode.S },
@@ -36,10 +44,35 @@ namespace Assets.Scripts.Scenes.Space
             { "TurnRight", KeyCode.D },
             { "FireProjectile", KeyCode.Space }
             };
-            shipBehaviour.SpawnShip(spaceCraft, keyDict);
-            ship.SetActive(true);
+            return keyDict;
         }
 
+        private Dictionary<String, KeyCode> GetKeybindingsArrows()
+        {
+            var keyDict = new Dictionary<String, KeyCode>{
+                { "Accelerate", KeyCode.UpArrow },
+            { "DeAccelerate", KeyCode.DownArrow },
+            { "TurnLeft", KeyCode.LeftArrow },
+            { "TurnRight", KeyCode.RightArrow },
+            { "FireProjectile", KeyCode.RightControl }
+            };
+            return keyDict;
+        }
+
+        private void SpawnShip(Dictionary<String, KeyCode> keybindings)
+        {
+            var ship = Instantiate(ShipTemplate, ShipTemplate.transform.parent.Find("Instances"));
+
+            var vec = new Vector3(UnityEngine.Random.Range(-100, 100), 0, UnityEngine.Random.Range(-100, 100));
+            vec = vec.normalized * 10;
+            ship.transform.position = vec;
+            var shipBehaviour = ship.GetComponent<SpaceShipBehaviour>();
+            //var gravBehaviour = ship.GetComponent<GravityBehaviour>();
+            var spaceCraft = Base.Core.Game.State.Spacecraft;
+           
+            shipBehaviour.SpawnShip(spaceCraft, keybindings);
+            ship.SetActive(true);
+        }
 
 
         public void Restart()

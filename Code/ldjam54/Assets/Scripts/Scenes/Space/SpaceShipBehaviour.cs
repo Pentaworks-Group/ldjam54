@@ -47,7 +47,9 @@ namespace Assets.Scripts.Scenes.Space
             var gravityBehaviour = gameObject.GetComponent<GravityBehaviour>();
             gravityBehaviour.Init();
             this.rb = gravityBehaviour.Rb;
-            rb.AddForce(new Vector3(0, 0, 100));
+            var dircenter = gravityCenter.transform.position - rb.transform.position;
+            Vector3 left = Vector3.Cross(dircenter, Vector3.down).normalized;
+            rb.velocity = left * 2;
         }
 
         public void SpawnShip(Spacecraft spacecraft, Dictionary<String, KeyCode> keybindinds)
