@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 using TMPro;
@@ -67,50 +66,24 @@ namespace Assets.Scripts.Prefabs.Menues.Book
             var buttonTemplate = indexPage.transform.Find("LeftArea/LeftAreaContent/Button").GetComponent<Button>();
 
             var relativeSize = 0.2f;
-            //var texts = new List<TMP_Text>();
 
-            //CreateLinks(numPages, buttonTemplate, relativeSize, 0, texts);
             CreateLinks(numPages, buttonTemplate, relativeSize, 0);
 
             var remaining = pages.Count - numPages;
+
             if (remaining > 0)
             {
                 buttonTemplate = indexPage.transform.Find("RightArea/RightContentArea/Button").GetComponent<Button>();
                 relativeSize = 1f / 6f;
-                //CreateLinks(remaining, buttonTemplate, relativeSize, numPages, texts);
+
                 CreateLinks(remaining, buttonTemplate, relativeSize, numPages);
             }
 
-            //StartCoroutine(SetUniformTextSize(texts));
-
-            //OpenPage(indexPage.transform.GetSiblingIndex());
             pages.Insert(0, indexPage.GetComponent<PageBehaviour>());
             indexPage.transform.SetSiblingIndex(0);
 
             this.textAutoSizeController.SizeText();
-            //currentPageIndex = 0;
         }
-
-        //private IEnumerator SetUniformTextSize(List<TMP_Text> texts)
-        //{
-        //    yield return new WaitForEndOfFrame();
-
-        //    var minTextSize = Int32.MaxValue;
-
-        //    foreach (var text in texts)
-        //    {
-        //        if (text.cachedTextGenerator.fontSizeUsedForBestFit < minTextSize)
-        //        {
-        //            minTextSize = text.cachedTextGenerator.fontSizeUsedForBestFit;
-        //        }
-        //    }
-
-        //    foreach (var text in texts)
-        //    {
-        //        text.resizeTextForBestFit = false;
-        //        text.fontSize = minTextSize;
-        //    }
-        //}
 
         private void CreateLinks(Int32 numPages, Button buttonTemplate, Single relativeSize, Int32 pageOffset)
         {
