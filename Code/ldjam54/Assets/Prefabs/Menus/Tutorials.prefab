@@ -2886,7 +2886,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6866792273898710445, guid: 4b5008d320e00994c915dfd5855a2913, type: 3}
       propertyPath: m_Name
-      value: Book
+      value: Tutorial
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8814154831011250914, guid: 4b5008d320e00994c915dfd5855a2913, type: 3}

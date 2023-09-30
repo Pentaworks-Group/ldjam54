@@ -29,7 +29,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6787831112013729053}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.1, y: 0.12}
   m_AnchorMax: {x: 0.9, y: 0.89}
@@ -66,7 +65,6 @@ RectTransform:
   m_Children:
   - {fileID: 2467600557489914653}
   m_Father: {fileID: 4501143657251048195}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7, y: 0.05}
   m_AnchorMax: {x: 1, y: 0.95}
@@ -103,7 +101,6 @@ RectTransform:
   m_Children:
   - {fileID: 3368952967117720421}
   m_Father: {fileID: 4501143657251048195}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.05}
   m_AnchorMax: {x: 0.3, y: 0.95}
@@ -123,7 +120,7 @@ GameObject:
   - component: {fileID: 6214674671262613726}
   - component: {fileID: 3576967817924004483}
   - component: {fileID: 5450461502257602367}
-  - component: {fileID: 3483130389033426483}
+  - component: {fileID: 4647464591048405450}
   m_Layer: 5
   m_Name: PageBackButton
   m_TagString: Untagged
@@ -144,7 +141,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 130498616689959867}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
@@ -179,7 +175,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7fd158c7f2120f148bb9397d22d4cb07, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd516831b49268848b60db5e9309fc6d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -260,7 +256,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3483130389033426483
+--- !u!114 &4647464591048405450
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -269,7 +265,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3349263072140344266}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -955767638, guid: 69b659f000632d0428afc5e84d730f71, type: 3}
+  m_Script: {fileID: -955767638, guid: d4f7f6716b9e31d42b57684d0233d53c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4531686909544516104
@@ -303,7 +299,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6787831112013729053}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -338,7 +333,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 19df4f0e649806542b4cf19ecac18640, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e9ab3fedce5365b4d9f7edbb79d7edcd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -380,7 +375,6 @@ RectTransform:
   - {fileID: 130498616689959867}
   - {fileID: 5137084713867897352}
   m_Father: {fileID: 6787831112013729053}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.06}
   m_AnchorMax: {x: 1, y: 0.15}
@@ -400,7 +394,7 @@ GameObject:
   - component: {fileID: 5098630511277551284}
   - component: {fileID: 1843710944086186438}
   - component: {fileID: 128182471858890297}
-  - component: {fileID: 1455037418330126844}
+  - component: {fileID: 4788352754479716850}
   m_Layer: 5
   m_Name: PageForwardButton
   m_TagString: Untagged
@@ -421,7 +415,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5137084713867897352}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -456,7 +449,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6676a7f3fd6c77c41841c42053898e11, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ebfc7664fead8fc47893dcdd87faec3c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -537,7 +530,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1455037418330126844
+--- !u!114 &4788352754479716850
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -546,7 +539,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5325551574146778476}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -955767638, guid: 69b659f000632d0428afc5e84d730f71, type: 3}
+  m_Script: {fileID: -955767638, guid: d4f7f6716b9e31d42b57684d0233d53c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6866792273898710445
@@ -560,7 +553,7 @@ GameObject:
   - component: {fileID: 6787831112013729053}
   - component: {fileID: 968013502718019502}
   m_Layer: 5
-  m_Name: Book
+  m_Name: TutorialContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -583,7 +576,6 @@ RectTransform:
   - {fileID: 8333263228771802546}
   - {fileID: 4501143657251048195}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.1, y: 0.01}
   m_AnchorMax: {x: 0.9, y: 0.8}
@@ -616,7 +608,7 @@ GameObject:
   - component: {fileID: 7357541237174324122}
   - component: {fileID: 8762770470841460906}
   - component: {fileID: 4295789749535502582}
-  - component: {fileID: 8814154831011250914}
+  - component: {fileID: 624774523820129620}
   m_Layer: 5
   m_Name: IndexPageButton
   m_TagString: Untagged
@@ -637,7 +629,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4501143657251048195}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.15}
   m_AnchorMax: {x: 0.5, y: 1.25}
@@ -672,7 +663,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9cae6d95d72a773458e0bfdb051e0735, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 09e562ebd5fb0ea42b077bc03444a4de, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -753,7 +744,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8814154831011250914
+--- !u!114 &624774523820129620
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -762,7 +753,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8375128189220444912}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -955767638, guid: 69b659f000632d0428afc5e84d730f71, type: 3}
+  m_Script: {fileID: -955767638, guid: d4f7f6716b9e31d42b57684d0233d53c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2835289774677741766
