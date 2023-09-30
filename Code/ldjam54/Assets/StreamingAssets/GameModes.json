@@ -9,14 +9,21 @@
       }
     ],
     "Spacecrafts": [
-      {
-        "IsReferenced": true,
-        "Reference": "Spacecraft1",
-        "IsValueOverride": true,
-        "EnergyCapacity": 10000,
-        "EnergyRechargeRage": 1,
-        "Health": 9001
-      }
+        {
+            "IsReferenced": true,
+            "Reference": "Spacecraft1",
+            "IsValueOverride": true,
+            "EnergyCapacity": 200,
+            "EnergyRechargeRage": 20000,
+            "Health": 9001,
+            "Acceleration": 1,
+            "AccelerationEnergyConsumption":  2,
+            "IsWeaponized":  true,
+            "WeaponsRateOfFire" : 2,
+            "WeaponEnergyConsumption":  20,
+            "Mass": 1
+
+        }
     ],
     "PlayerSpacecrafts": [
       {

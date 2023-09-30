@@ -5,8 +5,6 @@ using GameFrame.Core.Extensions;
 
 using UnityEngine;
 
-using Vector3 = UnityEngine.Vector3;
-
 namespace Assets.Scripts.Scenes.Space
 {
 
@@ -39,7 +37,7 @@ namespace Assets.Scripts.Scenes.Space
 
         public void SpawnProjectile(Transform source)
         {
-            var newProjectile = Instantiate(template, instanceParent);  
+            var newProjectile = Instantiate(template, instanceParent);
             newProjectile.transform.SetPositionAndRotation(source.position + source.forward * 0.9f, source.rotation);
             newProjectile.SetActive(true);
 
