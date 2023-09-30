@@ -1,21 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Assets.Scripts.Scenes.Menues;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Scenes.Options
 {
-    public class OptionsBehaviour : MonoBehaviour
+    public class OptionsBehaviour : BaseMenuBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
 
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
     }
 }

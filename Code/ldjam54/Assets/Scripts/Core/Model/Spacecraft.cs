@@ -1,6 +1,6 @@
 using System;
 
-namespace Assets.Scripts.Model
+namespace Assets.Scripts.Core.Model
 {
     public class Spacecraft
     {

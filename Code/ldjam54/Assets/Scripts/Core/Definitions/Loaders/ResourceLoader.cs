@@ -8,7 +8,7 @@ using GameFrame.Core.Extensions;
 
 using UnityEngine;
 
-namespace Assets.Scripts.Definitions.Loaders
+namespace Assets.Scripts.Core.Definitions.Loaders
 {
     public class ResourceLoader<TDefinition> where TDefinition : BaseDefinition
     {

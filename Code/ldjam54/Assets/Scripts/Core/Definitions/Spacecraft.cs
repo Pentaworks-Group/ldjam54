@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.Definitions
+namespace Assets.Scripts.Core.Definitions
 {
     public class Spacecraft : BaseDefinition
     {        

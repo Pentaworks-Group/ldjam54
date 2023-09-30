@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-using Assets.Scripts.Definitions.Loaders;
+using Assets.Scripts.Core.Definitions.Loaders;
 
 using GameFrame.Core.Extensions;
 
@@ -16,6 +16,11 @@ namespace Assets.Scripts.Core
         private readonly Dictionary<String, Definitions.Spacecraft> availableSpacecrafts = new Dictionary<String, Definitions.Spacecraft>();
 
         public static Definitions.GameMode SelectedGameMode { get; set; }
+
+        public void PlayButtonSound()
+        {
+
+        }
 
         protected override GameState InitializeGameState()
         {

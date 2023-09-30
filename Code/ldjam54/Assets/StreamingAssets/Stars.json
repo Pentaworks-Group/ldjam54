@@ -2,7 +2,7 @@
   {
     "Reference": "DaSun",
     "Name": "DaSun",
-    "GravityForce": 1,
+    "Gravity": 1,
     "Models": [
       "DaSun"
     ],

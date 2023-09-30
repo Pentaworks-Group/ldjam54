@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Assets.Scripts.Definitions
+namespace Assets.Scripts.Core.Definitions
 {
     public class BaseDefinition
     {

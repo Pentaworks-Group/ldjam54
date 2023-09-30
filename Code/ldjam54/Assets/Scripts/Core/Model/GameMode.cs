@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.Model
+namespace Assets.Scripts.Core.Model
 {
     public class GameMode
     {
