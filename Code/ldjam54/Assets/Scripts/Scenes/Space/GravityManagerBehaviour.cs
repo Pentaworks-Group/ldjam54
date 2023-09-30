@@ -12,7 +12,7 @@ namespace Assets.Scripts.Scenes.Space
 
 
         const float G = 60f;
-        const float MaxAcceleration = 100;
+        const float MaxAcceleration = 1000;
 
         private void Awake()
         {
@@ -66,7 +66,7 @@ namespace Assets.Scripts.Scenes.Space
                 return;
 
             float forceMagnitude = G * (Rb.mass * rbToAttract.mass) / sqrDistance;
-            forceMagnitude = Mathf.Max(forceMagnitude, MaxAcceleration);
+            forceMagnitude = Mathf.Min(forceMagnitude, MaxAcceleration);
             Vector3 force = direction.normalized * forceMagnitude;
 
             rbToAttract.AddForce(force);

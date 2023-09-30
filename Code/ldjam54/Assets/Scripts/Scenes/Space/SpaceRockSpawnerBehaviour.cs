@@ -14,7 +14,7 @@ namespace Assets.Scripts.Scenes.Space
     {
         private List<GameObject> spaceRockModels = new List<GameObject>();
 
-        private float spawnInterval = 5f;
+        private float spawnInterval = 0.5f;
         private float lastSpawn = 5f;
 
         private Transform instanceParent;
@@ -28,17 +28,18 @@ namespace Assets.Scripts.Scenes.Space
             instanceParent = this.transform.Find("Instances");
         }
 
-        private void Update()
-        {
-            if (lastSpawn > spawnInterval)
-            {
-                SpawnRandomRock();
-                lastSpawn = 0;
-            } else
-            {
-                lastSpawn += Time.deltaTime;
-            }
-        }
+        //private void Update()
+        //{
+        //    if (lastSpawn > spawnInterval)
+        //    {
+        //        SpawnRandomRock();
+        //        lastSpawn = 0;
+        //    }
+        //    else
+        //    {
+        //        lastSpawn += Time.deltaTime;
+        //    }
+        //}
 
         private void SpawnRandomRock()
         {
@@ -49,7 +50,7 @@ namespace Assets.Scripts.Scenes.Space
             newRock.SetActive(true);
 
             var rb = newRock.GetComponent<GravityBehaviour>().Rb;
-            rb.AddForce(CreateRandomVector(-2, 2));
+            rb.AddForce(CreateRandomVector(-50, 50));
             rb.AddTorque(CreateRandomVector(-3, 3));
 
         }

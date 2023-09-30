@@ -12,7 +12,6 @@ namespace Assets.Scripts.Scenes.Space
             Rb = gameObject.AddComponent<Rigidbody>();
             Rb.useGravity = false;
             Rb.constraints = RigidbodyConstraints.FreezePositionY;
-            Rb.AddForce(new Vector3(0, 0, 100));
         }
         void OnEnable()
         {

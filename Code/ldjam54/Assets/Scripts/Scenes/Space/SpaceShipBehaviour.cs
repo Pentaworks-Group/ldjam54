@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Scenes.Space
 {
@@ -11,20 +12,28 @@ namespace Assets.Scripts.Scenes.Space
         [SerializeField]
         private SpaceBehaviour spaceBehaviour;
         [SerializeField]
+        private ProjectileSpawnerBehaviour projectileSpawnerBehaviour;
+        [SerializeField]
         private GravityManagerBehaviour gravityCenter;
         [SerializeField]
         private RectTransform energyBar;
+        [SerializeField]
+        private TMPro.TextMeshProUGUI energyText;
 
         private Dictionary<KeyCode, Action> keyBindings = new Dictionary<KeyCode, Action>();
         private Rigidbody rb;
 
         private float energy = 50;
-        private float maxEnergy = 100;
-        private float accelerateEnergyUsage = 10;
-        private float deAccelerateEnergyUsage = 5;
-        private float turnEnergyUsage = 5;
-        private float energyHarvesting = 200f;
-        private float consumption = 1;
+        private float maxEnergy = 200;
+        private float accelerateEnergyUsage = 2;
+        private float deAccelerateEnergyUsage = 1;
+        private float turnEnergyUsage = 1;
+        private float fireEnergyUsage = 20;
+        private float energyHarvesting = 20000f;
+        private float consumption = 5;
+
+        private float fireCooldown = 0;
+        private float fireRate = 2;
 
 
         private void Awake()
@@ -34,12 +43,13 @@ namespace Assets.Scripts.Scenes.Space
             keyBindings.Add(KeyCode.S, DeAccelerate);
             keyBindings.Add(KeyCode.A, TurnLeft);
             keyBindings.Add(KeyCode.D, TurnRight);
+            keyBindings.Add(KeyCode.Space, FireProjectile);
         }
 
         private void Start()
         {
             rb = gameObject.GetComponent<GravityBehaviour>().Rb;
-
+            rb.AddForce(new Vector3(0, 0, 100));
         }
 
 
@@ -59,6 +69,12 @@ namespace Assets.Scripts.Scenes.Space
                 TriggerGameOver();
             }
             energyBar.anchorMax = new Vector2(energy / maxEnergy, 1);
+            energyText.text = energy.ToString();
+
+            if (fireCooldown > 0)
+            {
+                fireCooldown -= Time.deltaTime;
+            }
         }
 
    
@@ -66,9 +82,12 @@ namespace Assets.Scripts.Scenes.Space
         {
             Vector3 direction = rb.position - gravityCenter.Rb.position;
             float sqrDistance = direction.sqrMagnitude;
-
+            sqrDistance -= 25;
+            sqrDistance = Mathf.Max(sqrDistance, .5f);
+            sqrDistance = Mathf.Pow(sqrDistance, 2);
             var energyGain = energyHarvesting * Time.deltaTime / sqrDistance;
             energy += energyGain;
+            energy = Mathf.Min(energy, maxEnergy);
         }
 
 
@@ -88,7 +107,7 @@ namespace Assets.Scripts.Scenes.Space
         {
             if (energy > accelerateEnergyUsage)
             {
-                rb.AddForce(rb.transform.forward);
+                rb.AddForce(rb.transform.forward * 1);
                 energy -= accelerateEnergyUsage;
             }
         }
@@ -106,7 +125,7 @@ namespace Assets.Scripts.Scenes.Space
         {
             if (energy > turnEnergyUsage)
             {
-                rb.AddRelativeTorque(new Vector3(0, 1, 0));
+                rb.AddRelativeTorque(new Vector3(0, -1, 0));
                 energy -= turnEnergyUsage;
             }
         }
@@ -115,8 +134,18 @@ namespace Assets.Scripts.Scenes.Space
         {
             if (energy > turnEnergyUsage)
             {
-                rb.AddRelativeTorque(new Vector3(0, -1, 0));
+                rb.AddRelativeTorque(new Vector3(0, 1, 0));
                 energy -= turnEnergyUsage;
+            }
+        }
+
+        private void FireProjectile()
+        {
+            if (energy > fireEnergyUsage && fireCooldown <= 0)
+            {
+                projectileSpawnerBehaviour.SpawnProjectile(this.transform);
+                energy -= fireEnergyUsage;
+                fireCooldown = fireRate;
             }
         }
     }
