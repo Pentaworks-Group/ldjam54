@@ -1,4 +1,6 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+
+using TMPro;
 
 using UnityEngine;
 
@@ -6,11 +8,11 @@ namespace Assets.Scripts
 {
     public class TextAutoSizeController : MonoBehaviour
     {
-        public TMP_Text[] TextObjects;
+        public List<TMP_Text> TextObjects;
 
         private void Awake()
         {
-            if (TextObjects == null || TextObjects.Length == 0)
+            if (TextObjects == null || TextObjects.Count == 0)
             {
                 return;
             }
@@ -21,7 +23,7 @@ namespace Assets.Scripts
             int candidateIndex = 0;
             float maxPreferredWidth = 0;
 
-            for (int i = 0; i < TextObjects.Length; i++)
+            for (int i = 0; i < TextObjects.Count; i++)
             {
                 float preferredWidth = TextObjects[i].preferredWidth;
 
@@ -42,7 +44,7 @@ namespace Assets.Scripts
             TextObjects[candidateIndex].enableAutoSizing = false;
 
             // Iterate over all other text objects to set the point size
-            for (int i = 0; i < TextObjects.Length; i++)
+            for (int i = 0; i < TextObjects.Count; i++)
             {
                 TextObjects[i].fontSize = optimumPointSize;
             }

@@ -18,10 +18,10 @@ namespace Assets.Scripts.Scenes.Menues
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                ToMainMenu();
-            }
+            //if (Input.GetKeyDown(KeyCode.Escape))
+            //{
+            //    ToMainMenu();
+            //}
 
             OnUpdate();
         }

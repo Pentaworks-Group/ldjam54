@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+using TMPro;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,21 +18,24 @@ namespace Assets.Scripts.Prefabs.Menues.Book
         private GameObject indexPageButton;
         private GameObject pageForwardButton;
 
-
         private List<PageBehaviour> pages;
         private PageBehaviour currentPage;
-
+        private TextAutoSizeController textAutoSizeController;
 
         public void Awake()
         {
             this.pageBackButton = this.transform.Find("PageButtons/PageBackContainer/PageBackButton").gameObject;
             this.indexPageButton = this.transform.Find("PageButtons/IndexPageButton").gameObject;
             this.pageForwardButton = this.transform.Find("PageButtons/PageForwardContainer/PageForwardButton").gameObject;
+            this.textAutoSizeController = GetComponent<TextAutoSizeController>();
+
             LoadPages();
+
             if (ShouldGenerateIndexPage)
             {
                 GenerateIndexPage();
             }
+
             OpenPage(0);
         }
 
@@ -62,48 +67,59 @@ namespace Assets.Scripts.Prefabs.Menues.Book
             var buttonTemplate = indexPage.transform.Find("LeftArea/LeftAreaContent/Button").GetComponent<Button>();
 
             var relativeSize = 0.2f;
-            var texts = new List<Text>();
-            CreateLinks(numPages, buttonTemplate, relativeSize, 0, texts);
+            //var texts = new List<TMP_Text>();
+
+            //CreateLinks(numPages, buttonTemplate, relativeSize, 0, texts);
+            CreateLinks(numPages, buttonTemplate, relativeSize, 0);
+
             var remaining = pages.Count - numPages;
             if (remaining > 0)
             {
                 buttonTemplate = indexPage.transform.Find("RightArea/RightContentArea/Button").GetComponent<Button>();
                 relativeSize = 1f / 6f;
-                CreateLinks(remaining, buttonTemplate, relativeSize, numPages, texts);
+                //CreateLinks(remaining, buttonTemplate, relativeSize, numPages, texts);
+                CreateLinks(remaining, buttonTemplate, relativeSize, numPages);
             }
-            StartCoroutine(SetUniformTextSize(texts));
+
+            //StartCoroutine(SetUniformTextSize(texts));
+
             //OpenPage(indexPage.transform.GetSiblingIndex());
             pages.Insert(0, indexPage.GetComponent<PageBehaviour>());
             indexPage.transform.SetSiblingIndex(0);
             //currentPageIndex = 0;
         }
 
-        private IEnumerator SetUniformTextSize(List<Text> texts)
-        {
-            yield return new WaitForEndOfFrame();
-            var minTextSize = Int32.MaxValue;
-            foreach (var text in texts)
-            {
-                if (text.cachedTextGenerator.fontSizeUsedForBestFit < minTextSize)
-                {
-                    minTextSize = text.cachedTextGenerator.fontSizeUsedForBestFit;
-                }
-            }
-            foreach (var text in texts)
-            {
-                text.resizeTextForBestFit = false;
-                text.fontSize = minTextSize;
-            }
-        }
+        //private IEnumerator SetUniformTextSize(List<TMP_Text> texts)
+        //{
+        //    yield return new WaitForEndOfFrame();
 
-        private void CreateLinks(Int32 numPages, Button buttonTemplate, Single relativeSize, Int32 pageOffset, List<Text> texts)
+        //    var minTextSize = Int32.MaxValue;
+
+        //    foreach (var text in texts)
+        //    {
+        //        if (text.cachedTextGenerator.fontSizeUsedForBestFit < minTextSize)
+        //        {
+        //            minTextSize = text.cachedTextGenerator.fontSizeUsedForBestFit;
+        //        }
+        //    }
+
+        //    foreach (var text in texts)
+        //    {
+        //        text.resizeTextForBestFit = false;
+        //        text.fontSize = minTextSize;
+        //    }
+        //}
+
+        private void CreateLinks(Int32 numPages, Button buttonTemplate, Single relativeSize, Int32 pageOffset)
         {
             for (int i = 0; i < numPages; i++)
             {
                 var page = pages[pageOffset + i];
                 var pageLink = Instantiate(buttonTemplate, buttonTemplate.transform.parent);
-                var text = pageLink.transform.Find("Text").GetComponent<Text>();
-                texts.Add(text);
+                var text = pageLink.transform.Find("Text").GetComponent<TMP_Text>();
+
+                textAutoSizeController.TextObjects.Add(text);
+
                 text.text = page.indexName;
                 var rect = pageLink.GetComponent<RectTransform>();
                 float top = 1 - (float)i * relativeSize;
@@ -149,5 +165,4 @@ namespace Assets.Scripts.Prefabs.Menues.Book
             OpenPage(--this.currentPageIndex);
         }
     }
-
 }
