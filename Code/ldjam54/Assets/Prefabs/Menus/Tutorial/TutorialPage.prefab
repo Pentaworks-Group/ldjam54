@@ -31,7 +31,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8393813194298036324}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.8}
   m_AnchorMax: {x: 1, y: 1}
@@ -68,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Page Title
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4f6fbe24d6d5bdc469d57f678ab87540, type: 2}
-  m_sharedMaterial: {fileID: 8165107694466938961, guid: 4f6fbe24d6d5bdc469d57f678ab87540, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -166,7 +165,6 @@ RectTransform:
   - {fileID: 2657762787582510591}
   - {fileID: 2432404615371506094}
   m_Father: {fileID: 3792570912684759564}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.49, y: 1}
@@ -204,7 +202,6 @@ RectTransform:
   - {fileID: 3991384494178670423}
   - {fileID: 8660093311796581278}
   m_Father: {fileID: 3792570912684759564}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.525, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -240,7 +237,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7409618643332218274}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.76}
@@ -276,7 +272,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8393813194298036324}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.76}
@@ -294,7 +289,7 @@ GameObject:
   - component: {fileID: 3792570912684759564}
   - component: {fileID: 6473080378066261596}
   m_Layer: 5
-  m_Name: BookPage
+  m_Name: TutorialPage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -315,7 +310,6 @@ RectTransform:
   - {fileID: 8393813194298036324}
   - {fileID: 7409618643332218274}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -366,7 +360,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7409618643332218274}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.8}
   m_AnchorMax: {x: 1, y: 1}
@@ -403,8 +396,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Page Title
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4f6fbe24d6d5bdc469d57f678ab87540, type: 2}
-  m_sharedMaterial: {fileID: 8165107694466938961, guid: 4f6fbe24d6d5bdc469d57f678ab87540, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

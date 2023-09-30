@@ -1,0 +1,47 @@
+Todo:
+----------------------------------
+ Name:
+ ? T.R.A.I.N.S - ??????
+  
+ Bugs: 
+ - 
+ 
+ Exceptions: 
+ - 
+ 
+ Core:
+ - Load assets from JSON
+   
+ GamePlay:
+ - 
+       
+ UI: 
+ - Credits
+ - SavedGames
+ - GameModes
+   
+ Audio:
+ - Background
+ - Ambience
+ - Effects
+  
+Refactoring:
+----------------------------------
+ - 
+
+WIP:
+----------------------------------
+ -  
+
+Nice to have:
+----------------------------------
+ -
+ 
+Ideas:
+----------------------------------
+ -  
+ 
+ 
+ Delivery Items:
+----------------------------------
+ - 
