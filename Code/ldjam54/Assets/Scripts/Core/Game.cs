@@ -37,6 +37,25 @@ namespace Assets.Scripts.Core
 
         protected override GameState InitializeGameState()
         {
+            if (SelectedGameMode == default)
+            {
+                if (this.availableGameModes.Count > 0)
+                {
+                    if (this.availableGameModes.TryGetValue("default", out var defaultGameMode))
+                    {
+                        SelectedGameMode = defaultGameMode;
+                    }
+                    else
+                    {
+                        throw new Exception("No 'default' GameMode defined!");
+                    }
+                }
+                else
+                {
+                    throw new Exception("Failed to load GameModes!");
+                }
+            }
+
             var gameState = new GameState()
             {
                 CreatedOn = DateTime.Now,
@@ -70,25 +89,6 @@ namespace Assets.Scripts.Core
             new ResourceLoader<Definitions.Spacecraft>(this.availableSpacecrafts).LoadDefinition("Spacecrafts.json");
             new ResourceLoader<Definitions.Star>(this.availableStars).LoadDefinition("Stars.json");
             new GameModesLoader(this.availableGameModes, this.availableStars, this.availableSpacecrafts).LoadDefinition("GameModes.json");
-
-            if (SelectedGameMode == default)
-            {
-                if (this.availableGameModes.Count > 0)
-                {
-                    if (this.availableGameModes.TryGetValue("default", out var defaultGameMode))
-                    {
-                        SelectedGameMode = defaultGameMode;
-                    }
-                    else
-                    {
-                        throw new Exception("No 'default' GameMode defined!");
-                    }
-                }
-                else
-                {
-                    throw new Exception("Failed to load GameModes!");
-                }
-            }
         }
 
         private Model.GameMode ConvertGameMode(Definitions.GameMode selectedGameMode)
