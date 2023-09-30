@@ -61,28 +61,23 @@ namespace Assets.Scripts.Scenes.Space
         private void Accelerate()
         {
             //rb.AddRelativeForce(new Vector3(1, 0, 0));
-            rb.AddRelativeForce(rb.transform.forward * -1);
-
-            Debug.Log("Accelerate: " + rb.transform.forward);
+            rb.AddForce(rb.transform.forward);
         }
 
         private void DeAccelerate()
         {
             //rb.AddRelativeForce(new Vector3(-1, 0, 0));
-            rb.AddRelativeForce(rb.transform.forward);
-            Debug.Log("DeAccelerate: " + rb.transform.forward);
+            rb.AddForce(rb.transform.forward * -0.1f);
         }
 
         private void TurnLeft()
         {
-            rb.AddRelativeTorque(new Vector3(0, 0, 1));
-            Debug.Log("TurnLeft");
+            rb.AddRelativeTorque(new Vector3(0, 1, 0));
         }
 
         private void TurnRight()
         {
-            rb.AddRelativeTorque(new Vector3(0, 0, -1));
-            Debug.Log("TurnRight");
+            rb.AddRelativeTorque(new Vector3(0, -1, 0));
         }
     }
 }
