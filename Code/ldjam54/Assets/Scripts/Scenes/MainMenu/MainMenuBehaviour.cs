@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 
 using Assets.Scripts.Constants;
 
@@ -10,24 +9,6 @@ namespace Assets.Scripts.Scenes.MainMenu
 {
     public class MainMenuBehaviour : MonoBehaviour
     {
-        public void ShowSavedGames()
-        {
-            Base.Core.Game.PlayButtonSound();
-            Base.Core.Game.ChangeScene(SceneNames.SavedGames);
-        }
-
-        public void ShowOptions()
-        {
-            Base.Core.Game.PlayButtonSound();
-            Base.Core.Game.ChangeScene(SceneNames.Options);
-        }
-
-        public void ShowCredits()
-        {
-            // No Button sound required as page plays a sound for itself
-            Base.Core.Game.ChangeScene(SceneNames.Credits);
-        }
-
         public void PlayGame()
         {
             //GameFrame.Base.Audio.Background.ReplaceClips(Base.Core.Game.AudioClipListGame);
@@ -36,10 +17,24 @@ namespace Assets.Scripts.Scenes.MainMenu
             Base.Core.Game.Start();
         }
 
-        public void ShowModes()
+        public void ShowGameModes()
         {
-            Base.Core.Game.PlayButtonSound();
-            Base.Core.Game.ChangeScene(SceneNames.GameModes);
+            ShowScene(SceneNames.GameModes);
+        }
+
+        public void ShowSavedGames()
+        {
+            ShowScene(SceneNames.SavedGames);
+        }
+
+        public void ShowOptions()
+        {
+            ShowScene(SceneNames.Options);
+        }
+
+        public void ShowCredits()
+        {
+            ShowScene(SceneNames.Credits);
         }
 
         public void QuitGame()
@@ -53,6 +48,12 @@ namespace Assets.Scripts.Scenes.MainMenu
             UnityEditor.EditorApplication.isPlaying = false;
 #endif
             Debug.Log("dada");
+        }
+
+        private void ShowScene(String sceneName)
+        {
+            Base.Core.Game.PlayButtonSound();
+            Base.Core.Game.ChangeScene(sceneName);
         }
 
         private void Awake()

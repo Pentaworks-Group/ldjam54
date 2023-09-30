@@ -19,7 +19,7 @@ namespace Assets.Scripts.Core
 
         public void PlayButtonSound()
         {
-
+            GameFrame.Base.Audio.Effects.Play("Button");
         }
 
         protected override GameState InitializeGameState()

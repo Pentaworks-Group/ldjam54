@@ -9,10 +9,10 @@
       }
     ],
     "Spacecrafts": [
-        {
-            "IsReferenced": true,
-            "Reference": "Spacecraft1"
-        }
+      {
+        "IsReferenced": true,
+        "Reference": "Spacecraft1"
+      }
     ],
     "PlayerSpacecrafts": [
       {
