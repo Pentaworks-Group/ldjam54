@@ -12,7 +12,7 @@ namespace Assets.Scripts.Scenes.Space
 
 
         const float G = 60f;
-        const float MaxAcceleration = 1000;
+        const float MaxAcceleration = 200;
 
         private void Awake()
         {
