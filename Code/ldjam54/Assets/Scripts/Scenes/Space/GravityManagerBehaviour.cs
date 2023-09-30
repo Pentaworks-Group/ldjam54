@@ -8,17 +8,18 @@ namespace Assets.Scripts.Scenes.Space
     {
         private static List<GravityBehaviour> BodiesToAttract = new List<GravityBehaviour>();
 
-        private Rigidbody rb;
+        public Rigidbody Rb { get; private set; }
 
 
         const float G = 60f;
+        const float MaxAcceleration = 100;
 
         private void Awake()
         {
-            rb = gameObject.AddComponent<Rigidbody>();
-            rb.useGravity = false;
-            rb.isKinematic = true;
-            rb.constraints = RigidbodyConstraints.FreezeAll;
+            Rb = gameObject.AddComponent<Rigidbody>();
+            Rb.useGravity = false;
+            Rb.isKinematic = true;
+            Rb.constraints = RigidbodyConstraints.FreezeAll;
         }
 
         private void FixedUpdate()
@@ -58,13 +59,14 @@ namespace Assets.Scripts.Scenes.Space
         {
             Rigidbody rbToAttract = gravityBehaviour.Rb;
 
-            Vector3 direction = rb.position - rbToAttract.position;
+            Vector3 direction = Rb.position - rbToAttract.position;
             float sqrDistance = direction.sqrMagnitude;
 
-            if (sqrDistance == 0f)
+            if (sqrDistance <= 0f)
                 return;
 
-            float forceMagnitude = G * (rb.mass * rbToAttract.mass) / sqrDistance;
+            float forceMagnitude = G * (Rb.mass * rbToAttract.mass) / sqrDistance;
+            forceMagnitude = Mathf.Max(forceMagnitude, MaxAcceleration);
             Vector3 force = direction.normalized * forceMagnitude;
 
             rbToAttract.AddForce(force);

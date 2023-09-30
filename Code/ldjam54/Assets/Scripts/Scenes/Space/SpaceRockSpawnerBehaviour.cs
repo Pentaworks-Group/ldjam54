@@ -14,7 +14,7 @@ namespace Assets.Scripts.Scenes.Space
     {
         private List<GameObject> spaceRockModels = new List<GameObject>();
 
-        private float spawnInterval = 10f;
+        private float spawnInterval = 0.1f;
         private float lastSpawn = 5f;
 
         private Transform instanceParent;
