@@ -4,17 +4,23 @@ using Assets.Scripts.Constants;
 
 using UnityEngine;
 using UnityEngine.UI;
+using System.Runtime.InteropServices;
 
 namespace Assets.Scripts.Scenes.MainMenu
 {
     public class MainMenuBehaviour : MonoBehaviour
     {
+        [DllImport("__Internal")]
+        private static extern void Quit();
+
         public void PlayGame()
         {
             //GameFrame.Base.Audio.Background.ReplaceClips(Base.Core.Game.AudioClipListGame);
+            Debug.Log("PlayGame");
             Base.Core.Game.PlayButtonSound();
-
+            Debug.Log("sound");
             Base.Core.Game.Start();
+            Debug.Log("Start");
         }
 
         public void ShowGameModes()
@@ -39,15 +45,13 @@ namespace Assets.Scripts.Scenes.MainMenu
 
         public void QuitGame()
         {
-#if UNITY_WEBGL
-            Debug.Log("Quitti");
-            Application.ExternalEval("document.location.reload(true)");
-#elif UNITY_STANDALONE
-            Application.Quit();
-#elif UNITY_EDITOR
+#if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_WEBGL
+            Quit();
+#elif UNITY_STANDALONE
+            Application.Quit();            
 #endif
-            Debug.Log("dada");
         }
 
         private void ShowScene(String sceneName)
@@ -60,10 +64,10 @@ namespace Assets.Scripts.Scenes.MainMenu
         {
             GameObject.Find("UI/Fitter/VersionText").GetComponent<TMPro.TMP_Text>().text = $"Version: {Application.version}";
 
-            if (GameObject.Find("UI/Fitter/QuitButton").TryGetComponent(out Button quitButton))
-            {
-                quitButton.interactable = Base.Core.Game.IsFileAccessPossible;
-            }
+            //if (GameObject.Find("UI/Fitter/QuitButton").TryGetComponent(out Button quitButton))
+            //{
+            //    quitButton.interactable = Base.Core.Game.IsFileAccessPossible;
+            //}
 
             //GameFrame.Base.Audio.Background.ReplaceClips(Base.Core.Game.AudioClipListMenu);
         }
