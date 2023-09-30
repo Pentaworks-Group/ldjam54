@@ -17,8 +17,17 @@ namespace Assets.Scripts.Scenes.Space
 
         private void Awake()
         {
+            if (Base.Core.Game.State == default)
+            {
+                Base.Core.Game.Start();
+            }
+        }
+
+        private void Start()
+        {
             var ship = Instantiate(ShipTemplate);
             var shipBehaviour = ship.GetComponent<SpaceShipBehaviour>();
+            //var gravBehaviour = ship.GetComponent<GravityBehaviour>();
             var spaceCraft = Base.Core.Game.State.Spacecraft;
             var keyDict = new Dictionary<String, KeyCode>{
                 { "Accelerate", KeyCode.W },
@@ -30,6 +39,8 @@ namespace Assets.Scripts.Scenes.Space
             shipBehaviour.SpawnShip(spaceCraft, keyDict);
             ship.SetActive(true);
         }
+
+
 
         public void Restart()
         {

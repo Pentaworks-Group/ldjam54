@@ -41,7 +41,10 @@ namespace Assets.Scripts.Scenes.Space
             newProjectile.transform.SetPositionAndRotation(source.position + source.forward * 0.9f, source.rotation);
             newProjectile.SetActive(true);
 
-            var rb = newProjectile.GetComponent<GravityBehaviour>().Rb;
+            var gravityBehaviour = newProjectile.GetComponent<GravityBehaviour>();
+
+            gravityBehaviour.Init();
+            var rb = gravityBehaviour.Rb;
             rb.mass = 0.01f;
             rb.AddForce(source.transform.forward * speed);
         }

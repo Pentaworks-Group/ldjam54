@@ -25,42 +25,42 @@ namespace Assets.Scripts.Scenes.Space
         private Dictionary<KeyCode, Action> keyBindings = new Dictionary<KeyCode, Action>();
         private Rigidbody rb;
 
-        private double energy;
-        private double energyCapacity;
-        private double accelerateEnergyUsage;
-        private double deAccelerateEnergyUsage;
-        private double turnEnergyUsage = 1;
-        private double fireEnergyUsage;
-        private double energyRechargeRate = 20000f;
-        private double baseEnergyConsumption;
+        private Spacecraft spacecraft;
 
-        private double acceleration;
+        private double energy;
+        //private double energyCapacity;
+        //private double accelerateEnergyUsage;
+        private float deAcceleration;
+        private float deAccelerateEnergyUsage;
+        //private double turnEnergyUsage = 1;
+        //private double fireEnergyUsage;
+        //private double energyRechargeRate = 20000f;
+        //private double baseEnergyConsumption;
+
 
         private double fireCooldown = 0;
-        private double fireRate;
 
 
  
-        private void Start()
+        private void Init()
         {
-            rb = gameObject.GetComponent<GravityBehaviour>().Rb;
+            var gravityBehaviour = gameObject.GetComponent<GravityBehaviour>();
+            gravityBehaviour.Init();
+            this.rb = gravityBehaviour.Rb;
             rb.AddForce(new Vector3(0, 0, 100));
         }
 
         public void SpawnShip(Spacecraft spacecraft, Dictionary<String, KeyCode> keybindinds)
         {
+            Init();
+            this.spacecraft = spacecraft;
             energy = spacecraft.EnergyCapacity;
-            energyCapacity = spacecraft.EnergyCapacity;
-            accelerateEnergyUsage = spacecraft.AccelerationEnergyConsumption;
-            deAccelerateEnergyUsage = spacecraft.AccelerationEnergyConsumption;
-            acceleration = spacecraft.Acceleration;
-            //turnEnergyUsage = spacecraft.tu
-            fireEnergyUsage = spacecraft.WeaponEnergyConsumption;
-            fireRate = spacecraft.WeaponsRateOfFire;
-
-            energyRechargeRate = spacecraft.EnergyRechargeRate;
+            deAccelerateEnergyUsage = (float)spacecraft.AccelerationEnergyConsumption * 0.1f;
+            deAcceleration = (float)spacecraft.Acceleration * -0.1f;
 
             rb.mass = (float)spacecraft.Mass;
+
+            MapKeybindings(keybindinds);
         }
 
         private Dictionary<String, Action> GenerateKeyBindingsMap()
@@ -98,13 +98,13 @@ namespace Assets.Scripts.Scenes.Space
                     keyBinding.Value.Invoke();
                 }
             }
-            //energy -= consumption * Time.deltaTime;
+            energy -= spacecraft.BaseEnergyConsumption * Time.deltaTime;
             HarvestEnergy();
             if (energy < 0)
             {
                 TriggerGameOver();
             }
-            energyBar.anchorMax = new Vector2((float)(energy / energyCapacity), 1);
+            energyBar.anchorMax = new Vector2((float)(energy / spacecraft.EnergyCapacity), 1);
             energyText.text = energy.ToString();
 
             if (fireCooldown > 0)
@@ -121,9 +121,9 @@ namespace Assets.Scripts.Scenes.Space
             sqrDistance -= 25;
             sqrDistance = Mathf.Max(sqrDistance, .5f);
             sqrDistance = Mathf.Pow(sqrDistance, 2);
-            var energyGain = energyRechargeRate * Time.deltaTime / sqrDistance;
+            var energyGain = (float)spacecraft.EnergyRechargeRate * Time.deltaTime / sqrDistance;
             energy += energyGain;
-            energy = Math.Min(energy, energyCapacity);
+            energy = Math.Min(energy, spacecraft.EnergyCapacity);
         }
 
 
@@ -141,10 +141,10 @@ namespace Assets.Scripts.Scenes.Space
 
         private void Accelerate()
         {
-            if (energy > accelerateEnergyUsage)
+            if (energy > spacecraft.AccelerationEnergyConsumption)
             {
-                rb.AddForce(rb.transform.forward * (float)acceleration);
-                energy -= accelerateEnergyUsage;
+                rb.AddForce(rb.transform.forward * (float)spacecraft.Acceleration);
+                energy -= spacecraft.AccelerationEnergyConsumption;
             }
         }
 
@@ -152,36 +152,36 @@ namespace Assets.Scripts.Scenes.Space
         {
             if (energy > deAccelerateEnergyUsage)
             {
-                rb.AddForce(rb.transform.forward * -0.1f * (float)acceleration);
+                rb.AddForce(rb.transform.forward * deAcceleration);
                 energy -= deAccelerateEnergyUsage;
             }
         }
 
         private void TurnLeft()
         {
-            if (energy > turnEnergyUsage)
+            if (energy > spacecraft.TurnRateEnergyConsuption)
             {
-                rb.AddRelativeTorque(new Vector3(0, -1, 0));
-                energy -= turnEnergyUsage;
+                rb.AddRelativeTorque(new Vector3(0, (float)-spacecraft.TurnRate, 0));
+                energy -= spacecraft.TurnRateEnergyConsuption;
             }
         }
 
         private void TurnRight()
         {
-            if (energy > turnEnergyUsage)
+            if (energy > spacecraft.TurnRateEnergyConsuption)
             {
-                rb.AddRelativeTorque(new Vector3(0, 1, 0));
-                energy -= turnEnergyUsage;
+                rb.AddRelativeTorque(new Vector3(0, (float)spacecraft.TurnRate, 0));
+                energy -= spacecraft.TurnRateEnergyConsuption;
             }
         }
 
         private void FireProjectile()
         {
-            if (energy > fireEnergyUsage && fireCooldown <= 0)
+            if (energy > spacecraft.WeaponEnergyConsumption && fireCooldown <= 0)
             {
                 projectileSpawnerBehaviour.SpawnProjectile(this.transform);
-                energy -= fireEnergyUsage;
-                fireCooldown = fireRate;
+                energy -= spacecraft.WeaponEnergyConsumption;
+                fireCooldown = spacecraft.WeaponsRateOfFire;
             }
         }
     }
