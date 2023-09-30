@@ -46,13 +46,13 @@ namespace Assets.Scripts.Definitions.Loaders
                 {
                     if (loadedStar.IsValueOverride)
                     {
-                        if (loadedStar.GravityForce.HasValue)
+                        if (loadedStar.Gravity.HasValue)
                         {
-                            actualStar.GravityForce = loadedStar.GravityForce.Value;
+                            actualStar.Gravity = loadedStar.Gravity.Value;
                         }
                         else
                         {
-                            actualStar.GravityForce = referencedStar.GravityForce.Value;
+                            actualStar.Gravity = referencedStar.Gravity.Value;
                         }
 
                         if (loadedStar.Models != default)
@@ -75,7 +75,7 @@ namespace Assets.Scripts.Definitions.Loaders
                     }
                     else
                     {
-                        actualStar.GravityForce = referencedStar.GravityForce;
+                        actualStar.Gravity = referencedStar.Gravity;
                         actualStar.Models = referencedStar.Models.ToList();
                         actualStar.Materials = referencedStar.Materials.ToList();
                     }
@@ -83,7 +83,7 @@ namespace Assets.Scripts.Definitions.Loaders
             }
             else
             {
-                actualStar.GravityForce = loadedStar.GravityForce;
+                actualStar.Gravity = loadedStar.Gravity;
                 actualStar.Models = loadedStar.Models.ToList();
                 actualStar.Materials = loadedStar.Materials.ToList();
             }

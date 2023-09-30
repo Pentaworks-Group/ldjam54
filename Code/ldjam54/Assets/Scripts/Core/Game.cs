@@ -58,10 +58,24 @@ namespace Assets.Scripts.Core
         {
             var gameMode = new Model.GameMode()
             {
-
+                Name = selectedGameMode.Name,
+                Star = ConvertStar(selectedGameMode.Stars.GetRandomEntry()),
+                Spacecrafts = ConvertSpacecrafts(selectedGameMode.Spacecrafts)
             };
 
             return gameMode;
+        }
+
+        private List<Model.Spacecraft> ConvertSpacecrafts(List<Definitions.Spacecraft> definitions)
+        {
+            var spacecrafts = new List<Model.Spacecraft>();
+
+            foreach (var definition in definitions)
+            {
+                spacecrafts.Add(ConvertSpacecraft(definition));
+            }
+
+            return spacecrafts;
         }
 
         private Model.Spacecraft ConvertSpacecraft(Definitions.Spacecraft definition)
@@ -82,6 +96,18 @@ namespace Assets.Scripts.Core
             };
 
             return spacecraft;
+        }
+
+        private Model.Star ConvertStar(Definitions.Star definition)
+        {
+            var model = new Model.Star()
+            {
+                Gravity = definition.Gravity.GetValueOrDefault(),
+                Model = definition.Models.GetRandomEntry(),
+                Material = definition.Materials.GetRandomEntry()
+            };
+
+            return model;
         }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
