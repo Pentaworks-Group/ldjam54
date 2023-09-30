@@ -12,8 +12,8 @@ namespace Assets.Scripts.Scenes.Space
 
         public void Restart()
         {
-            Base.Core.Game.ChangeScene(Constants.SceneNames.Space);
             Time.timeScale = 1;
+            Base.Core.Game.ChangeScene(Constants.SceneNames.Space);
         }
 
         public void TriggerGameOver()

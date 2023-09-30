@@ -8,12 +8,24 @@ namespace Assets.Scripts.Scenes.Space
 {
     public class SpaceShipBehaviour : MonoBehaviour
     {
-        private Dictionary<KeyCode, Action> keyBindings = new Dictionary<KeyCode, Action>();
-
-        private Rigidbody rb;
-
         [SerializeField]
         private SpaceBehaviour spaceBehaviour;
+        [SerializeField]
+        private GravityManagerBehaviour gravityCenter;
+        [SerializeField]
+        private RectTransform energyBar;
+
+        private Dictionary<KeyCode, Action> keyBindings = new Dictionary<KeyCode, Action>();
+        private Rigidbody rb;
+
+        private float energy = 50;
+        private float maxEnergy = 100;
+        private float accelerateEnergyUsage = 10;
+        private float deAccelerateEnergyUsage = 5;
+        private float turnEnergyUsage = 5;
+        private float energyHarvesting = 200f;
+        private float consumption = 1;
+
 
         private void Awake()
         {
@@ -40,44 +52,72 @@ namespace Assets.Scripts.Scenes.Space
                     keyBinding.Value.Invoke();
                 }
             }
+            energy -= consumption * Time.deltaTime;
+            HarvestEnergy();
+            if (energy < 0)
+            {
+                TriggerGameOver();
+            }
+            energyBar.anchorMax = new Vector2(energy / maxEnergy, 1);
         }
 
-        public void OnCollisionEnter(Collision collision)
+   
+        private void HarvestEnergy()
         {
-            foreach (ContactPoint contact in collision.contacts)
-            {
-                Debug.DrawRay(contact.point, contact.normal, Color.white);
-            }
-            //if (collision.relativeVelocity.magnitude > 2)
-            //    audioSource.Play();
+            Vector3 direction = rb.position - gravityCenter.Rb.position;
+            float sqrDistance = direction.sqrMagnitude;
+
+            var energyGain = energyHarvesting * Time.deltaTime / sqrDistance;
+            energy += energyGain;
         }
+
+
+
 
         private void OnTriggerEnter(Collider other)
+        {
+            TriggerGameOver();
+        }
+
+        private void TriggerGameOver()
         {
             spaceBehaviour.TriggerGameOver();
         }
 
-
         private void Accelerate()
         {
-            //rb.AddRelativeForce(new Vector3(1, 0, 0));
-            rb.AddForce(rb.transform.forward);
+            if (energy > accelerateEnergyUsage)
+            {
+                rb.AddForce(rb.transform.forward);
+                energy -= accelerateEnergyUsage;
+            }
         }
 
         private void DeAccelerate()
         {
-            //rb.AddRelativeForce(new Vector3(-1, 0, 0));
-            rb.AddForce(rb.transform.forward * -0.1f);
+            if (energy > deAccelerateEnergyUsage)
+            {
+                rb.AddForce(rb.transform.forward * -0.1f);
+                energy -= deAccelerateEnergyUsage;
+            }
         }
 
         private void TurnLeft()
         {
-            rb.AddRelativeTorque(new Vector3(0, 1, 0));
+            if (energy > turnEnergyUsage)
+            {
+                rb.AddRelativeTorque(new Vector3(0, 1, 0));
+                energy -= turnEnergyUsage;
+            }
         }
 
         private void TurnRight()
         {
-            rb.AddRelativeTorque(new Vector3(0, -1, 0));
+            if (energy > turnEnergyUsage)
+            {
+                rb.AddRelativeTorque(new Vector3(0, -1, 0));
+                energy -= turnEnergyUsage;
+            }
         }
     }
 }
