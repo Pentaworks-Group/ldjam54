@@ -11,7 +11,7 @@ namespace Assets.Scripts.Scenes.Space
         private Rigidbody rb;
 
 
-        const float G = 66.74f;
+        const float G = 60f;
 
         private void Awake()
         {

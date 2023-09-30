@@ -39,6 +39,16 @@ namespace Assets.Scripts.Scenes.Space
             }
         }
 
+        public void OnCollisionEnter(Collision collision)
+        {
+            foreach (ContactPoint contact in collision.contacts)
+            {
+                Debug.DrawRay(contact.point, contact.normal, Color.white);
+            }
+            //if (collision.relativeVelocity.magnitude > 2)
+            //    audioSource.Play();
+        }
+
         private void Accelerate()
         {
             //rb.AddRelativeForce(new Vector3(1, 0, 0));
