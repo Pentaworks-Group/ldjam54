@@ -1,12 +1,22 @@
 [
   {
+    "Reference": "default",
     "Name": "DefaultGameMode",
-    "Star": {
-      "IsReferenced": true,
-      "Reference": "DaSun"
-    },
+    "Stars": [
+      {
+        "IsReferenced": true,
+        "Reference": "DaSun"
+      }
+    ],
     "Spacecrafts": [
-
+      {
+        "IsReferenced": true,
+        "Reference": "Spacecraft1",
+        "IsValueOverride": true,
+        "EnergyCapacity": 10000,
+        "EnergyRechargeRage": 1,
+        "Health": 9001
+      }
     ]
   }
 ]
