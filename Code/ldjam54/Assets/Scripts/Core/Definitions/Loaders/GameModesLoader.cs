@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+
+using Unity.VisualScripting;
 
 namespace Assets.Scripts.Core.Definitions.Loaders
 {
@@ -27,9 +30,9 @@ namespace Assets.Scripts.Core.Definitions.Loaders
                         Name = loadedGameMode.Name,
                     };
 
-                    CheckItems(loadedGameMode.Stars, newGameMode.Stars, HandleStarOverride);
-                    CheckItems(loadedGameMode.Spacecrafts, newGameMode.Spacecrafts, HandleSpacecraftOverride);
-                    CheckItems(loadedGameMode.PlayerSpacecrafts, newGameMode.PlayerSpacecrafts, HandleSpacecraftOverride);
+                    CheckItems(loadedGameMode.Stars, newGameMode.Stars,this.starCache);
+                    CheckItems(loadedGameMode.Spacecrafts, newGameMode.Spacecrafts,this.spacecraftCache);
+                    CheckItems(loadedGameMode.PlayerSpacecrafts, newGameMode.PlayerSpacecrafts, this.spacecraftCache);
 
                     targetCache[loadedGameMode.Reference] = newGameMode;
                 }
@@ -38,192 +41,86 @@ namespace Assets.Scripts.Core.Definitions.Loaders
             return loadedGameModes;
         }
 
-        private void HandleStarOverride(Star actualStar, Star loadedStar)
-        {
-            if (loadedStar.IsReferenced)
-            {
-                if (this.starCache.TryGetValue(loadedStar.Reference, out var referencedStar))
-                {
-                    if (loadedStar.IsValueOverride)
-                    {
-                        if (loadedStar.Gravity.HasValue)
-                        {
-                            actualStar.Gravity = loadedStar.Gravity.Value;
-                        }
-                        else
-                        {
-                            actualStar.Gravity = referencedStar.Gravity.Value;
-                        }
-
-                        if (loadedStar.Models != default)
-                        {
-                            actualStar.Models = loadedStar.Models.ToList();
-                        }
-                        else
-                        {
-                            actualStar.Models = referencedStar.Models.ToList();
-                        }
-
-                        if (loadedStar.Materials != default)
-                        {
-                            actualStar.Materials = loadedStar.Materials.ToList();
-                        }
-                        else
-                        {
-                            actualStar.Materials = referencedStar.Materials.ToList();
-                        }
-                    }
-                    else
-                    {
-                        actualStar.Gravity = referencedStar.Gravity;
-                        actualStar.Models = referencedStar.Models.ToList();
-                        actualStar.Materials = referencedStar.Materials.ToList();
-                    }
-                }
-            }
-            else
-            {
-                actualStar.Gravity = loadedStar.Gravity;
-                actualStar.Models = loadedStar.Models.ToList();
-                actualStar.Materials = loadedStar.Materials.ToList();
-            }
-        }
-
-        private void HandleSpacecraftOverride(Spacecraft actualSpacecraft, Spacecraft loadedSpacecraft)
-        {
-            if (loadedSpacecraft.IsReferenced)
-            {
-                if (this.spacecraftCache.TryGetValue(loadedSpacecraft.Reference, out var referencedSpacecraft))
-                {
-                    if (loadedSpacecraft.IsValueOverride)
-                    {
-                        if (loadedSpacecraft.EnergyCapacity.HasValue)
-                        {
-                            actualSpacecraft.EnergyCapacity = loadedSpacecraft.EnergyCapacity.Value;
-                        }
-                        else
-                        {
-                            actualSpacecraft.EnergyCapacity = referencedSpacecraft.EnergyCapacity.Value;
-                        }
-
-                        if (loadedSpacecraft.EnergyRechargeRate.HasValue)
-                        {
-                            actualSpacecraft.EnergyRechargeRate = loadedSpacecraft.EnergyRechargeRate.Value;
-                        }
-                        else
-                        {
-                            actualSpacecraft.EnergyRechargeRate = referencedSpacecraft.EnergyRechargeRate;
-                        }
-
-                        if (loadedSpacecraft.Health.HasValue)
-                        {
-                            actualSpacecraft.Health = loadedSpacecraft.Health.Value;
-                        }
-                        else
-                        {
-                            actualSpacecraft.Health = referencedSpacecraft.Health;
-                        }
-
-                        if (loadedSpacecraft.AccelerationEnergyConsumption.HasValue)
-                        {
-                            actualSpacecraft.AccelerationEnergyConsumption = loadedSpacecraft.AccelerationEnergyConsumption.Value;
-                        }
-                        else
-                        {
-                            actualSpacecraft.AccelerationEnergyConsumption = referencedSpacecraft.AccelerationEnergyConsumption;
-                        }
-
-                        if (loadedSpacecraft.IsWeaponized.HasValue)
-                        {
-                            actualSpacecraft.IsWeaponized = loadedSpacecraft.IsWeaponized.Value;
-                        }
-                        else
-                        {
-                            actualSpacecraft.IsWeaponized = referencedSpacecraft.IsWeaponized;
-                        }
-
-                        if (loadedSpacecraft.WeaponsRateOfFire.HasValue)
-                        {
-                            actualSpacecraft.WeaponsRateOfFire = loadedSpacecraft.WeaponsRateOfFire.Value;
-                        }
-                        else
-                        {
-                            actualSpacecraft.WeaponsRateOfFire = referencedSpacecraft.WeaponsRateOfFire;
-                        }
-
-                        if (loadedSpacecraft.WeaponEnergyConsumption.HasValue)
-                        {
-                            actualSpacecraft.WeaponEnergyConsumption = loadedSpacecraft.WeaponEnergyConsumption.Value;
-                        }
-                        else
-                        {
-                            actualSpacecraft.WeaponEnergyConsumption = referencedSpacecraft.WeaponEnergyConsumption;
-                        }
-
-                        if (loadedSpacecraft.Mass.HasValue)
-                        {
-                            actualSpacecraft.Mass = loadedSpacecraft.Mass.Value;
-                        }
-                        else
-                        {
-                            actualSpacecraft.Mass = referencedSpacecraft.Mass;
-                        }
-
-                        if (loadedSpacecraft.Models != default)
-                        {
-                            actualSpacecraft.Models = loadedSpacecraft.Models.ToList();
-                        }
-                        else
-                        {
-                            actualSpacecraft.Models = referencedSpacecraft.Models.ToList();
-                        }
-
-                        if (loadedSpacecraft.Materials != default)
-                        {
-                            actualSpacecraft.Materials = loadedSpacecraft.Materials.ToList();
-                        }
-                        else
-                        {
-                            actualSpacecraft.Materials = referencedSpacecraft.Materials.ToList();
-                        }
-                    }
-                    else
-                    {
-                        actualSpacecraft.EnergyCapacity = referencedSpacecraft.EnergyCapacity;
-                        actualSpacecraft.Health = referencedSpacecraft.Health;
-                        actualSpacecraft.AccelerationEnergyConsumption = referencedSpacecraft.AccelerationEnergyConsumption;
-                        actualSpacecraft.IsWeaponized = referencedSpacecraft.IsWeaponized;
-                        actualSpacecraft.WeaponsRateOfFire = referencedSpacecraft.WeaponsRateOfFire;
-                        actualSpacecraft.WeaponEnergyConsumption = referencedSpacecraft.WeaponEnergyConsumption;
-                        actualSpacecraft.Mass = referencedSpacecraft.Mass;
-                        actualSpacecraft.Models = referencedSpacecraft.Models.ToList();
-                        actualSpacecraft.Materials = referencedSpacecraft.Materials.ToList();
-                    }
-                }
-            }
-            else
-            {
-                actualSpacecraft.EnergyCapacity = loadedSpacecraft.EnergyCapacity;
-                actualSpacecraft.Health = loadedSpacecraft.Health;
-                actualSpacecraft.AccelerationEnergyConsumption = loadedSpacecraft.AccelerationEnergyConsumption;
-                actualSpacecraft.IsWeaponized = loadedSpacecraft.IsWeaponized;
-                actualSpacecraft.WeaponsRateOfFire = loadedSpacecraft.WeaponsRateOfFire;
-                actualSpacecraft.WeaponEnergyConsumption = loadedSpacecraft.WeaponEnergyConsumption;
-                actualSpacecraft.Mass = loadedSpacecraft.Mass;
-                actualSpacecraft.Models = loadedSpacecraft.Models.ToList();
-                actualSpacecraft.Materials = loadedSpacecraft.Materials.ToList();
-            }
-        }
-
-        private void CheckItems<TItem>(List<TItem> loadedItems, List<TItem> targetItems, Action<TItem, TItem> handleOverides) where TItem : BaseDefinition, new()
+        private void CheckItems<TItem>(List<TItem> loadedItems, List<TItem> targetItems, Dictionary<String, TItem> referenceCache) where TItem : BaseDefinition, new()
         {
             if (loadedItems?.Count > 0)
             {
-                foreach (var item in loadedItems)
+                foreach (var loadedItem in loadedItems)
                 {
-                    var targetItem = new TItem();
+                    var targetItem = new TItem()
+                    {
+                        Reference = loadedItem.Reference
+                    };
 
-                    handleOverides(targetItem, item);
+                    if (loadedItem.IsReferenced)
+                    {
+                        if (referenceCache.TryGetValue(loadedItem.Reference, out var referencedItem))
+                        {
+                            foreach (var property in loadedItem.GetType().GetProperties())
+                            {
+                                if (property.PropertyType.IsGenericType && (typeof(IList).IsAssignableFrom(property.PropertyType.GetGenericTypeDefinition())))
+                                {
+                                    var listValue = property.GetValue(loadedItem);
+
+                                    if (listValue == default)
+                                    {
+                                        listValue = property.GetValue(referencedItem);
+                                    }
+
+                                    var newList = (IList)Activator.CreateInstance(property.PropertyType);
+
+                                    if (listValue is IList list)
+                                    {
+                                        foreach (var item in list)
+                                        {
+                                            newList.Add(item);
+                                        }
+                                    }
+
+                                    property.SetValue(targetItem, newList);
+                                }
+                                else if (property.PropertyType.IsNullable())
+                                {
+                                    var actualValue = property.GetValue(loadedItem);
+
+                                    if (actualValue == default)
+                                    {
+                                        actualValue = property.GetValue(referencedItem);
+                                    }
+
+                                    property.SetValue(targetItem, actualValue);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (var property in loadedItem.GetType().GetProperties())
+                        {
+                            if (property.PropertyType.IsGenericType && (typeof(IList).IsAssignableFrom(property.PropertyType.GetGenericTypeDefinition())))
+                            {
+                                var listValue = property.GetValue(loadedItem);
+
+                                var newList = (IList)Activator.CreateInstance(property.PropertyType);
+
+                                if (listValue is IList list)
+                                {
+                                    foreach (var item in list)
+                                    {
+                                        newList.Add(item);
+                                    }
+                                }
+
+                                property.SetValue(targetItem, newList);
+                            }
+                            else if (property.PropertyType.IsNullable())
+                            {
+                                var actualValue = property.GetValue(loadedItem);
+
+                                property.SetValue(targetItem, actualValue);
+                            }
+                        }
+                    }
 
                     targetItems.Add(targetItem);
                 }

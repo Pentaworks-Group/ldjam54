@@ -113,6 +113,8 @@ namespace Assets.Scripts.Core
                 EnergyRechargeRate = definition.EnergyRechargeRate.GetValueOrDefault(),
                 Acceleration = definition.Acceleration.GetValueOrDefault(),
                 AccelerationEnergyConsumption = definition.AccelerationEnergyConsumption.GetValueOrDefault(),
+                TurnRate = definition.TurnRate.GetValueOrDefault(),
+                TurnRateEnergyConsuption = definition.TurnRateEnergyConsuption.GetValueOrDefault(),
                 IsWeaponized = definition.IsWeaponized.GetValueOrDefault(),
                 WeaponsRateOfFire = definition.WeaponsRateOfFire.GetValueOrDefault(),
                 WeaponEnergyConsumption = definition.WeaponEnergyConsumption.GetValueOrDefault(),

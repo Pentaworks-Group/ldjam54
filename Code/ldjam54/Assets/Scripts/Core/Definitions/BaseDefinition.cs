@@ -6,6 +6,5 @@ namespace Assets.Scripts.Core.Definitions
     {
         public String Reference { get; set; }
         public Boolean IsReferenced { get; set; }
-        public Boolean IsValueOverride { get; set; }
     }
 }

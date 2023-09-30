@@ -2,14 +2,17 @@
   {
     "Reference": "Spacecraft1",
     "Name": "Spacecraft 1",
-    "EnergyCapacity": 100,
-    "EnergyRechargeRate": 10,
-    "Health": 100,
+    "Health": 9001,
+    "EnergyCapacity": 200,
+    "EnergyRechargeRate": 20000,
+    "BaseEnergyConsumption": 1,
     "Acceleration": 1,
-    "AccelerationEnergyConsumption": 10,
+    "AccelerationEnergyConsumption": 2,
+    "TurnRate": 1,
+    "TurnRateEnergyConsuption": 1,
     "IsWeaponized": true,
-    "WeaponsRateOfFire": 1,
-    "WeaponsEnegryConsumption": 50,
+    "WeaponsRateOfFire": 2,
+    "WeaponsEnegryConsumption": 20,
     "Mass": 1,
     "Models": [
       "Spacecraft1"
