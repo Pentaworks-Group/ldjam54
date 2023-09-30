@@ -75,7 +75,7 @@ namespace Assets.Scripts.Core
                 {
                     throw new Exception("Failed to load GameModes!");
                 }
-            }            
+            }
         }
 
         private Model.GameMode ConvertGameMode(Definitions.GameMode selectedGameMode)
@@ -111,6 +111,7 @@ namespace Assets.Scripts.Core
                 Health = definition.Health.GetValueOrDefault(),
                 EnergyCapacity = definition.EnergyCapacity.GetValueOrDefault(),
                 EnergyRechargeRate = definition.EnergyRechargeRate.GetValueOrDefault(),
+                BaseEnergyConsumption = definition.BaseEnergyConsumption.GetValueOrDefault(),
                 Acceleration = definition.Acceleration.GetValueOrDefault(),
                 AccelerationEnergyConsumption = definition.AccelerationEnergyConsumption.GetValueOrDefault(),
                 TurnRate = definition.TurnRate.GetValueOrDefault(),
