@@ -41,14 +41,17 @@ namespace Assets.Scripts.Scenes.Space
 
         private void Accelerate()
         {
-            rb.AddRelativeForce(new Vector3(1, 0, 0));
-            Debug.Log("Accelerate");
+            //rb.AddRelativeForce(new Vector3(1, 0, 0));
+            rb.AddRelativeForce(rb.transform.forward * -1);
+
+            Debug.Log("Accelerate: " + rb.transform.forward);
         }
 
         private void DeAccelerate()
         {
-            rb.AddRelativeForce(new Vector3(-1, 0, 0));
-            Debug.Log("DeAccelerate");
+            //rb.AddRelativeForce(new Vector3(-1, 0, 0));
+            rb.AddRelativeForce(rb.transform.forward);
+            Debug.Log("DeAccelerate: " + rb.transform.forward);
         }
 
         private void TurnLeft()
