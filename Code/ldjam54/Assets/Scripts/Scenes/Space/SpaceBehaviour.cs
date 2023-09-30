@@ -6,16 +6,20 @@ namespace Assets.Scripts.Scenes.Space
 {
     public class SpaceBehaviour : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        [SerializeField]
+        private GameObject GameOverText;
+
+
+        public void Restart()
         {
-        
+            Base.Core.Game.ChangeScene(Constants.SceneNames.Space);
+            Time.timeScale = 1;
         }
 
-        // Update is called once per frame
-        void Update()
+        public void TriggerGameOver()
         {
-        
+            Time.timeScale = 0;
+            GameOverText.SetActive(true);
         }
     }
 }

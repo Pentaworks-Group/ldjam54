@@ -12,6 +12,9 @@ namespace Assets.Scripts.Scenes.Space
 
         private Rigidbody rb;
 
+        [SerializeField]
+        private SpaceBehaviour spaceBehaviour;
+
         private void Awake()
         {
 
@@ -48,6 +51,12 @@ namespace Assets.Scripts.Scenes.Space
             //if (collision.relativeVelocity.magnitude > 2)
             //    audioSource.Play();
         }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            spaceBehaviour.TriggerGameOver();
+        }
+
 
         private void Accelerate()
         {
