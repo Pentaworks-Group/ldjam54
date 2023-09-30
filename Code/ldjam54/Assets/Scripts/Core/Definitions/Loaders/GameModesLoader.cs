@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Assets.Scripts.Definitions.Loaders
+namespace Assets.Scripts.Core.Definitions.Loaders
 {
     public class GameModesLoader : ResourceLoader<GameMode>
     {

@@ -8,6 +8,8 @@ namespace Assets.Scripts.Constants
         public const String GameOver = "GameOverScene";
         public const String MainMenu = "MainMenuScene";
         public const String Options = "OptionsScene";
+        public const String SavedGames = "SavedGamesScene";
+        public const String GameModes = "GameModesScene";
         public const String Space = "SpaceScene";
     }
 }

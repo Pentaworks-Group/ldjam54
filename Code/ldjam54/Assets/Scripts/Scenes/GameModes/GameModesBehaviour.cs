@@ -5,9 +5,9 @@ using Assets.Scripts.Scenes.Menues;
 
 using UnityEngine;
 
-namespace Assets.Scripts.Scenes.Credits
+namespace Assets.Scripts.Scenes.GameModes
 {
-    public class CreditsBehaviour : BaseMenuBehaviour
+    public class GameModesBehaviour : BaseMenuBehaviour
     {
     }
 }

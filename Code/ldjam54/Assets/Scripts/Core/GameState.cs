@@ -1,5 +1,4 @@
-
-using Assets.Scripts.Model;
+using Assets.Scripts.Core.Model;
 
 namespace Assets.Scripts.Core
 {
