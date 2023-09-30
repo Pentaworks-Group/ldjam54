@@ -18,7 +18,7 @@ public static class BuildConfigurator
         public string GameVersion = Application.version;
     }
 
-    private static string locationPath = "../../Deployments/web/Deployment";
+    private static string locationPath = "../../Deployments/web";
     private static string prefix = "Assets/Scenes/";
     private static string postfix = ".unity";
 
