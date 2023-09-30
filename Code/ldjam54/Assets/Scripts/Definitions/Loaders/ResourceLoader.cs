@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 
+using Assets.Scripts.Core;
+
 using GameFrame.Core.Extensions;
 
 using UnityEngine;
 
-namespace Assets.Scripts.Core.Definitions.Loaders
+namespace Assets.Scripts.Definitions.Loaders
 {
     public class ResourceLoader<TDefinition> where TDefinition : BaseDefinition
     {

@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
-using UnityEngine;
-
-namespace Assets.Scripts.Core.Definitions.Loaders
+namespace Assets.Scripts.Definitions.Loaders
 {
     public class GameModesLoader : ResourceLoader<GameMode>
     {
@@ -30,8 +27,9 @@ namespace Assets.Scripts.Core.Definitions.Loaders
                         Name = loadedGameMode.Name,
                     };
 
-                    CheckItems(loadedGameMode.Spacecrafts, newGameMode.Spacecrafts, HandleSpacecraftOverride);
                     CheckItems(loadedGameMode.Stars, newGameMode.Stars, HandleStarOverride);
+                    CheckItems(loadedGameMode.Spacecrafts, newGameMode.Spacecrafts, HandleSpacecraftOverride);
+                    CheckItems(loadedGameMode.PlayerSpacecrafts, newGameMode.PlayerSpacecrafts, HandleSpacecraftOverride);
 
                     targetCache[loadedGameMode.Reference] = newGameMode;
                 }
