@@ -1099,6 +1099,14 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1682637802365037447, guid: ea658807be36e2f4791b62353e8271c5, type: 3}
+      propertyPath: ObjectsToHide.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682637802365037447, guid: ea658807be36e2f4791b62353e8271c5, type: 3}
+      propertyPath: ObjectsToHide.Array.data[0]
+      value: 
+      objectReference: {fileID: 1913412565}
     - target: {fileID: 1965006872766026085, guid: ea658807be36e2f4791b62353e8271c5, type: 3}
       propertyPath: m_SizeDelta.y
       value: -37.46662
