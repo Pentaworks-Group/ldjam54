@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 using Unity.VisualScripting;
 
@@ -18,7 +17,7 @@ namespace Assets.Scripts.Core.Definitions.Loaders
             this.spacecraftCache = spacecraftCache;
         }
 
-        protected override List<GameMode> LoadDefinition(List<GameMode> loadedGameModes)
+        protected override List<GameMode> HandleDefinitions(List<GameMode> loadedGameModes)
         {
             if (loadedGameModes?.Count > 0)
             {
@@ -30,8 +29,8 @@ namespace Assets.Scripts.Core.Definitions.Loaders
                         Name = loadedGameMode.Name,
                     };
 
-                    CheckItems(loadedGameMode.Stars, newGameMode.Stars,this.starCache);
-                    CheckItems(loadedGameMode.Spacecrafts, newGameMode.Spacecrafts,this.spacecraftCache);
+                    CheckItems(loadedGameMode.Stars, newGameMode.Stars, this.starCache);
+                    CheckItems(loadedGameMode.Spacecrafts, newGameMode.Spacecrafts, this.spacecraftCache);
                     CheckItems(loadedGameMode.PlayerSpacecrafts, newGameMode.PlayerSpacecrafts, this.spacecraftCache);
 
                     targetCache[loadedGameMode.Reference] = newGameMode;

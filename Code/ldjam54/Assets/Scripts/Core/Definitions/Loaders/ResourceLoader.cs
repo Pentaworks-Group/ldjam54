@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-
-using Assets.Scripts.Core;
 
 using GameFrame.Core.Extensions;
 
@@ -28,10 +25,10 @@ namespace Assets.Scripts.Core.Definitions.Loaders
         {
             var filePath = $"{Application.streamingAssetsPath}/{resourceName}";
 
-            LoadAsset<List<TDefinition>>(filePath, (loadedSpacecrafts) => { return LoadDefinition(loadedSpacecrafts); });
+            LoadAsset(filePath, HandleDefinitions);
         }
 
-        protected virtual void LoadAsset<TItem>(String filePath, Func<TItem, TItem> onLoadedCallback)
+        protected void LoadAsset(String filePath, Func<List<TDefinition>, List<TDefinition>> onLoadedCallback)
         {
             var gameO = new GameObject();
 
@@ -42,7 +39,7 @@ namespace Assets.Scripts.Core.Definitions.Loaders
             GameObject.Destroy(gameO);
         }
 
-        protected virtual List<TDefinition> LoadDefinition(List<TDefinition> sourceList)
+        protected virtual List<TDefinition> HandleDefinitions(List<TDefinition> sourceList)
         {
             if (sourceList == default)
             {
