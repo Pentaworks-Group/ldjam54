@@ -57,16 +57,37 @@ namespace Assets.Scripts.Core
             new ResourceLoader<Definitions.Spacecraft>(this.availableSpacecrafts).LoadDefinition("Spacecrafts.json");
             new ResourceLoader<Definitions.Star>(this.availableStars).LoadDefinition("Stars.json");
             new GameModesLoader(this.availableGameModes, this.availableStars, this.availableSpacecrafts).LoadDefinition("GameModes.json");
+
+            if (SelectedGameMode == default)
+            {
+                if (this.availableGameModes.Count > 0)
+                {
+                    if (this.availableGameModes.TryGetValue("default", out var defaultGameMode))
+                    {
+                        SelectedGameMode = defaultGameMode;
+                    }
+                    else
+                    {
+                        throw new Exception("No 'default' GameMode defined!");
+                    }
+                }
+                else
+                {
+                    throw new Exception("Failed to load GameModes!");
+                }
+            }            
         }
 
         private Model.GameMode ConvertGameMode(Definitions.GameMode selectedGameMode)
         {
             var gameMode = new Model.GameMode()
             {
-                Name = selectedGameMode.Name,
-                Star = ConvertStar(selectedGameMode.Stars.GetRandomEntry()),
-                Spacecrafts = ConvertSpacecrafts(selectedGameMode.Spacecrafts)
+                Name = selectedGameMode.Name
             };
+
+            gameMode.Star = ConvertStar(selectedGameMode.Stars.GetRandomEntry());
+            gameMode.PlayerSpacecraft = ConvertSpacecraft(selectedGameMode.PlayerSpacecrafts.GetRandomEntry());
+            gameMode.Spacecrafts = ConvertSpacecrafts(selectedGameMode.Spacecrafts);
 
             return gameMode;
         }
@@ -94,7 +115,7 @@ namespace Assets.Scripts.Core
                 AccelerationEnergyConsumption = definition.AccelerationEnergyConsumption.GetValueOrDefault(),
                 IsWeaponized = definition.IsWeaponized.GetValueOrDefault(),
                 WeaponsRateOfFire = definition.WeaponsRateOfFire.GetValueOrDefault(),
-                WeaponEnegryConsumption = definition.WeaponEnegryConsumption.GetValueOrDefault(),
+                WeaponEnergyConsumption = definition.WeaponEnergyConsumption.GetValueOrDefault(),
                 Mass = definition.Mass.GetValueOrDefault(),
                 Model = definition.Models.GetRandomEntry(),
                 Material = definition.Materials.GetRandomEntry(),

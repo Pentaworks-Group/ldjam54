@@ -11,7 +11,7 @@ namespace Assets.Scripts.Core.Model
         public Double AccelerationEnergyConsumption { get; set; }
         public Boolean IsWeaponized { get; set; }
         public Double WeaponsRateOfFire { get; set; }
-        public Double WeaponEnegryConsumption { get; set; }
+        public Double WeaponEnergyConsumption { get; set; }
         public Double Mass { get; set; }
 
         public String Material { get; set; }

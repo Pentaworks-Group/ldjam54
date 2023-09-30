@@ -2,7 +2,7 @@
   {
     "Reference": "default",
     "Name": "DefaultGameMode",
-    "Star": [
+    "Stars": [
       {
         "IsReferenced": true,
         "Reference": "DaSun"

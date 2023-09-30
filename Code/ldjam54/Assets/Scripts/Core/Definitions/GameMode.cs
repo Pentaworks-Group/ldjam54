@@ -6,7 +6,7 @@ namespace Assets.Scripts.Core.Definitions
     public class GameMode : BaseDefinition
     {
         public String Name { get; set; }
-        public List<Star> Stars { get; set; }
+        public List<Star> Stars { get; set; } = new List<Star>();
         public List<Spacecraft> PlayerSpacecrafts { get; set; } = new List<Spacecraft>();
         public List<Spacecraft> Spacecrafts { get; set; } = new List<Spacecraft>();
     }

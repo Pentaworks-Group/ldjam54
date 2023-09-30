@@ -7,6 +7,7 @@ namespace Assets.Scripts.Core.Model
     {
         public String Name { get; set; }
         public Star Star { get; set; }
+        public Spacecraft PlayerSpacecraft { get; set; }
         public List<Spacecraft> Spacecrafts { get; set; }
     }
 }

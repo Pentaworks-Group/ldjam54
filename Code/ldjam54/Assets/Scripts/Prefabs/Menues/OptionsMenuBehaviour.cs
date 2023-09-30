@@ -8,16 +8,9 @@ public class OptionsMenuBehaviour : MonoBehaviour
     public Slider EffectsVolumeSlider;
     public Slider AmbienceVolumeSlider;
     public Slider BackgroundVolumeSlider;
-    private Slider moveSensivitySlider;
-    private Slider zoomSensivitySlider;
-    private Toggle sideScrollingEnabledToggle;
 
     private void Awake()
     {
-        moveSensivitySlider = transform.Find("OptionContainer/MoveSensivity/Right/Slider").GetComponent<Slider>();
-        zoomSensivitySlider = transform.Find("OptionContainer/ZoomSensivity/Right/Slider").GetComponent<Slider>();
-
-        sideScrollingEnabledToggle = transform.Find("OptionContainer/EnableSideScroll/Right/Toggle").GetComponent<Toggle>();
     }
 
     private void Start()

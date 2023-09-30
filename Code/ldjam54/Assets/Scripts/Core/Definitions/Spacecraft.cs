@@ -10,9 +10,11 @@ namespace Assets.Scripts.Core.Definitions
         public Double? Health { get; set; }
         public Double? Acceleration { get; set; }
         public Double? AccelerationEnergyConsumption { get; set; }
+        public Double? TurnRate { get; set; }
+        public Double? TurnEnergyConsumption { get; set; }
         public Boolean? IsWeaponized { get; set; }
         public Double? WeaponsRateOfFire { get; set; }
-        public Double? WeaponEnegryConsumption { get; set; }
+        public Double? WeaponEnergyConsumption { get; set; }
         public Double? Mass { get; set; }
 
         public List<String> Models { get; set; }

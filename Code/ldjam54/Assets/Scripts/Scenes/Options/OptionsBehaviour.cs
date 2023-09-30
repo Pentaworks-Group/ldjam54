@@ -4,6 +4,5 @@ namespace Assets.Scripts.Scenes.Options
 {
     public class OptionsBehaviour : BaseMenuBehaviour
     {
-
     }
 }

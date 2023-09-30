@@ -151,13 +151,13 @@ namespace Assets.Scripts.Core.Definitions.Loaders
                             actualSpacecraft.WeaponsRateOfFire = referencedSpacecraft.WeaponsRateOfFire;
                         }
 
-                        if (loadedSpacecraft.WeaponEnegryConsumption.HasValue)
+                        if (loadedSpacecraft.WeaponEnergyConsumption.HasValue)
                         {
-                            actualSpacecraft.WeaponEnegryConsumption = loadedSpacecraft.WeaponEnegryConsumption.Value;
+                            actualSpacecraft.WeaponEnergyConsumption = loadedSpacecraft.WeaponEnergyConsumption.Value;
                         }
                         else
                         {
-                            actualSpacecraft.WeaponEnegryConsumption = referencedSpacecraft.WeaponEnegryConsumption;
+                            actualSpacecraft.WeaponEnergyConsumption = referencedSpacecraft.WeaponEnergyConsumption;
                         }
 
                         if (loadedSpacecraft.Mass.HasValue)
@@ -194,7 +194,7 @@ namespace Assets.Scripts.Core.Definitions.Loaders
                         actualSpacecraft.AccelerationEnergyConsumption = referencedSpacecraft.AccelerationEnergyConsumption;
                         actualSpacecraft.IsWeaponized = referencedSpacecraft.IsWeaponized;
                         actualSpacecraft.WeaponsRateOfFire = referencedSpacecraft.WeaponsRateOfFire;
-                        actualSpacecraft.WeaponEnegryConsumption = referencedSpacecraft.WeaponEnegryConsumption;
+                        actualSpacecraft.WeaponEnergyConsumption = referencedSpacecraft.WeaponEnergyConsumption;
                         actualSpacecraft.Mass = referencedSpacecraft.Mass;
                         actualSpacecraft.Models = referencedSpacecraft.Models.ToList();
                         actualSpacecraft.Materials = referencedSpacecraft.Materials.ToList();
@@ -208,7 +208,7 @@ namespace Assets.Scripts.Core.Definitions.Loaders
                 actualSpacecraft.AccelerationEnergyConsumption = loadedSpacecraft.AccelerationEnergyConsumption;
                 actualSpacecraft.IsWeaponized = loadedSpacecraft.IsWeaponized;
                 actualSpacecraft.WeaponsRateOfFire = loadedSpacecraft.WeaponsRateOfFire;
-                actualSpacecraft.WeaponEnegryConsumption = loadedSpacecraft.WeaponEnegryConsumption;
+                actualSpacecraft.WeaponEnergyConsumption = loadedSpacecraft.WeaponEnergyConsumption;
                 actualSpacecraft.Mass = loadedSpacecraft.Mass;
                 actualSpacecraft.Models = loadedSpacecraft.Models.ToList();
                 actualSpacecraft.Materials = loadedSpacecraft.Materials.ToList();

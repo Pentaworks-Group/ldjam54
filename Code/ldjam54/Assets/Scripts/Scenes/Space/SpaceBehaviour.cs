@@ -9,7 +9,6 @@ namespace Assets.Scripts.Scenes.Space
         [SerializeField]
         private GameObject GameOverText;
 
-
         public void Restart()
         {
             Time.timeScale = 1;
