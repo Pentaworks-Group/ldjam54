@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using TMPro;
 
@@ -8,7 +9,7 @@ namespace Assets.Scripts
 {
     public class TextAutoSizeController : MonoBehaviour
     {
-        public List<TMP_Text> TextObjects;
+        public List<TMP_Text> TextObjects = new List<TMP_Text>();
 
         private void Awake()
         {
@@ -17,6 +18,11 @@ namespace Assets.Scripts
                 return;
             }
 
+            SizeText();
+        }
+
+        internal void SizeText()
+        {
             // Iterate over each of the text objects in the array to find a good test candidate
             // There are different ways to figure out the best candidate
             // Preferred width works fine for single line text objects

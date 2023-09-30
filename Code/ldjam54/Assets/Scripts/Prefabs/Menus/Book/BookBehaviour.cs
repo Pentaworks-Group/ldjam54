@@ -86,6 +86,8 @@ namespace Assets.Scripts.Prefabs.Menues.Book
             //OpenPage(indexPage.transform.GetSiblingIndex());
             pages.Insert(0, indexPage.GetComponent<PageBehaviour>());
             indexPage.transform.SetSiblingIndex(0);
+
+            this.textAutoSizeController.SizeText();
             //currentPageIndex = 0;
         }
 
