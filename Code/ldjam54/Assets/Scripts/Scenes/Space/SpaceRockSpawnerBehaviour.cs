@@ -44,7 +44,7 @@ namespace Assets.Scripts.Scenes.Space
         {
             var template = spaceRockModels.GetRandomEntry();
             var newRock = Instantiate(template, instanceParent);
-            var randPosition = CreateRandomVector(-10, 10);
+            var randPosition = CreateRandomVector(-7, 7);
             newRock.transform.position = randPosition;
             newRock.SetActive(true);
 
