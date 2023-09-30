@@ -141,7 +141,7 @@ namespace Assets.Scripts.Scenes.Space
             spaceBehaviour.TriggerGameOver();
         }
 
-        private void Accelerate()
+        public void Accelerate()
         {
             if (energy > spacecraft.AccelerationEnergyConsumption)
             {
@@ -150,7 +150,7 @@ namespace Assets.Scripts.Scenes.Space
             }
         }
 
-        private void DeAccelerate()
+        public void DeAccelerate()
         {
             if (energy > deAccelerateEnergyUsage)
             {
@@ -159,7 +159,7 @@ namespace Assets.Scripts.Scenes.Space
             }
         }
 
-        private void TurnLeft()
+        public void TurnLeft()
         {
             if (energy > spacecraft.TurnRateEnergyConsuption)
             {
@@ -168,7 +168,7 @@ namespace Assets.Scripts.Scenes.Space
             }
         }
 
-        private void TurnRight()
+        public void TurnRight()
         {
             if (energy > spacecraft.TurnRateEnergyConsuption)
             {
@@ -177,7 +177,7 @@ namespace Assets.Scripts.Scenes.Space
             }
         }
 
-        private void FireProjectile()
+        public void FireProjectile()
         {
             if (energy > spacecraft.WeaponEnergyConsumption && fireCooldown <= 0)
             {

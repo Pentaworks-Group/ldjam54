@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+using Assets.Scripts.Scenes.Space.InputHandling;
+
 using UnityEngine;
 
 namespace Assets.Scripts.Scenes.Space
@@ -14,6 +16,8 @@ namespace Assets.Scripts.Scenes.Space
         [SerializeField]
         private GameObject ShipTemplate;
 
+        [SerializeField]
+        private List<InputPadBehaviour> InputPadBehaviours;
 
         private void Awake()
         {
@@ -31,7 +35,7 @@ namespace Assets.Scripts.Scenes.Space
             int length = Base.Core.Game.State.GameMode.Spacecrafts.Count;
             for (int i = 0; i < length; i++)
             {
-                SpawnShip(keyBindings[i]);
+                SpawnShip(keyBindings[i], InputPadBehaviours[i]);
             }
         }
 
@@ -59,7 +63,7 @@ namespace Assets.Scripts.Scenes.Space
             return keyDict;
         }
 
-        private void SpawnShip(Dictionary<String, KeyCode> keybindings)
+        private void SpawnShip(Dictionary<String, KeyCode> keybindings, InputPadBehaviour padBehaviour)
         {
             var ship = Instantiate(ShipTemplate, ShipTemplate.transform.parent.Find("Instances"));
 
@@ -67,6 +71,7 @@ namespace Assets.Scripts.Scenes.Space
             vec = vec.normalized * 10;
             ship.transform.position = vec;
             var shipBehaviour = ship.GetComponent<SpaceShipBehaviour>();
+            padBehaviour.Init(shipBehaviour);   
             //var gravBehaviour = ship.GetComponent<GravityBehaviour>();
             var spaceCraft = Base.Core.Game.State.Spacecraft;
            

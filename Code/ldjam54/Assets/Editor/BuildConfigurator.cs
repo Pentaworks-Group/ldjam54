@@ -12,7 +12,6 @@ using UnityEngine;
 
 public static class BuildConfigurator
 {
-    //static string[] sceneList = SceneNames.;
     class BuildInfo
     {
         public string GameVersion = Application.version;
