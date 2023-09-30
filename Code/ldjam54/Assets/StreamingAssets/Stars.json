@@ -1,0 +1,13 @@
+[
+  {
+    "Reference": "DaSun",
+    "Name": "DaSun",
+    "GravityForce": 1,
+    "Models": [
+      "DaSun"
+    ],
+    "Materials": [
+      "DaSun"
+    ]
+  }
+]

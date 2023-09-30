@@ -1,0 +1,12 @@
+[
+  {
+    "Name": "DefaultGameMode",
+    "Star": {
+      "IsReferenced": true,
+      "Reference": "DaSun"
+    },
+    "Spacecrafts": [
+
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "Reference": "Spacecraft1",
+    "Name": "Spacecraft 1",
+    "EnergyCapacity": 100,
+    "EnergyRechargeRage": 10,
+    "Health": 100,
+    "Acceleration": 1,
+    "AccelerationEnergyConsumption": 10,
+    "IsWeaponized": true,
+    "WeaponsRateOfFire": 1,
+    "WeaponsEnegryConsumption": 50,
+    "Mass": 1,
+    "Models": [
+      "Spacecraft1"
+    ],
+    "Materials": [
+      "Spacecraft1"
+    ]
+  }
+]

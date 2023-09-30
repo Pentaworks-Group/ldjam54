@@ -1,19 +1,14 @@
-using UnityEngine;
+using System;
+using System.Collections.Generic;
+
+using Assets.Scripts.Core.Definitions;
 
 namespace Assets.Scripts.Core
 {
-    public class GameMode : MonoBehaviour
+    public class GameMode
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        public String Name { get; set; }
+        public List<Star> Stars { get; set; } = new List<Star>();
+        public List<Spacecraft> Spacecrafts { get; set; } = new List<Spacecraft>();
     }
 }
