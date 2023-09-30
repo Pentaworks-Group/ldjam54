@@ -26,7 +26,7 @@ namespace Assets.Scripts.Core.Definitions.Loaders
 
         public virtual void LoadDefinition(String resourceName)
         {
-            var filePath = Path.Combine(Application.streamingAssetsPath, resourceName);
+            var filePath = $"{Application.streamingAssetsPath}/{resourceName}";
 
             LoadAsset<List<TDefinition>>(filePath, (loadedSpacecrafts) => { return LoadDefinition(loadedSpacecrafts); });
         }

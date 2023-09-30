@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Assets.Scripts.Core.Definitions.Loaders;
 
@@ -17,6 +18,18 @@ namespace Assets.Scripts.Core
 
         public static Definitions.GameMode SelectedGameMode { get; set; }
 
+        public IList<Definitions.GameMode> AvailableGameModes
+        {
+            get
+            {
+                if (this.availableGameModes.Count == 0)
+                {
+                    LoadGameSettings();
+                }
+
+                return this.availableGameModes.Values.ToList();
+            }
+        }
         public void PlayButtonSound()
         {
             GameFrame.Base.Audio.Effects.Play("Button");
