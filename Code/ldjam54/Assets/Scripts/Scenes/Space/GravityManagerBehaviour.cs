@@ -17,6 +17,8 @@ namespace Assets.Scripts.Scenes.Space
         {
             rb = gameObject.AddComponent<Rigidbody>();
             rb.useGravity = false;
+            rb.isKinematic = true;
+            rb.constraints = RigidbodyConstraints.FreezeAll;
         }
 
         private void FixedUpdate()
@@ -26,6 +28,21 @@ namespace Assets.Scripts.Scenes.Space
                 AttractBody(body);
             }
         }
+
+        //public void OnCollisionEnter(Collision collision)
+        //{
+        //    foreach (ContactPoint contact in collision.contacts)
+        //    {
+        //        Debug.DrawRay(contact.point, contact.normal, Color.white);
+        //    }
+        //    //if (collision.relativeVelocity.magnitude > 2)
+        //    //    audioSource.Play();
+        //}
+
+        //private void OnTriggerEnter(Collider other)
+        //{
+        //    Debug.Log("dada");
+        //}
 
         public static void RegisterBody(GravityBehaviour gravityBehaviour)
         {

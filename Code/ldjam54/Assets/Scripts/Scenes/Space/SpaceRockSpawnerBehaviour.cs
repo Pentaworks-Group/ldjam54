@@ -14,7 +14,7 @@ namespace Assets.Scripts.Scenes.Space
     {
         private List<GameObject> spaceRockModels = new List<GameObject>();
 
-        private float spawnInterval = 5f;
+        private float spawnInterval = 0.1f;
         private float lastSpawn = 5f;
 
         private Transform instanceParent;
@@ -56,7 +56,8 @@ namespace Assets.Scripts.Scenes.Space
 
         private Vector3 CreateRandomVector(float min, float max)
         {
-            return new Vector3(Random.Range(min, max), Random.Range(min, max), Random.Range(min, max));
+            //return new Vector3(Random.Range(min, max), Random.Range(min, max), Random.Range(min, max));
+            return new Vector3(Random.Range(min, max), 0, Random.Range(min, max));
         }
     }
 }

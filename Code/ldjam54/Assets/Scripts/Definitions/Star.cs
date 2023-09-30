@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-using Assets.Scripts.Core.Definitions;
-
-namespace Assets.Scripts.Core.Definitions
+namespace Assets.Scripts.Definitions
 {
     public class Star : BaseDefinition
     {
