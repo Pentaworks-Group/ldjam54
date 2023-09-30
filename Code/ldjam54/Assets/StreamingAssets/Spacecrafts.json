@@ -3,7 +3,7 @@
     "Reference": "Spacecraft1",
     "Name": "Spacecraft 1",
     "EnergyCapacity": 100,
-    "EnergyRechargeRage": 10,
+    "EnergyRechargeRate": 10,
     "Health": 100,
     "Acceleration": 1,
     "AccelerationEnergyConsumption": 10,

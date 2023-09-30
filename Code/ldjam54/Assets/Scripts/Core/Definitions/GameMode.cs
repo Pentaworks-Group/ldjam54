@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-using Assets.Scripts.Core.Definitions;
-
-namespace Assets.Scripts.Core
+namespace Assets.Scripts.Core.Definitions
 {
-    public class GameMode
+    public class GameMode : BaseDefinition
     {
         public String Name { get; set; }
         public List<Star> Stars { get; set; } = new List<Star>();
