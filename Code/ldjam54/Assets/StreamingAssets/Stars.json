@@ -1,13 +1,26 @@
 [
-  {
-    "Reference": "DaSun",
-    "Name": "DaSun",
-    "Gravity": 1,
-    "Models": [
-      "DaSun"
-    ],
-    "Materials": [
-      "DaSun"
-    ]
-  }
+    {
+        "Reference": "DaSun",
+        "Name": "DaSun",
+        "Gravity": 0.06,
+        "Mass": 1000,
+        "Models": [
+            "DaSun"
+        ],
+        "Materials": [
+            "DaSun"
+        ]
+    },
+    {
+        "Reference": "MegaDeth",
+        "Name": "MegaDeth",
+        "Gravity": 0.6,
+        "Mass": 1000,
+        "Models": [
+            "DaSun"
+        ],
+        "Materials": [
+            "DaSun"
+        ]
+    }
 ]

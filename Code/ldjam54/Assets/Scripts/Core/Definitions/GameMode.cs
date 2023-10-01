@@ -7,6 +7,7 @@ namespace Assets.Scripts.Core.Definitions
     {
         public String Name { get; set; }
         public String Description { get; set; }
+        public Double? ShipSpawnDistance { get; set; }
         public Double? JunkSpawnInterval { get; set; }
         public Double? JunkSpawnInitialDistance { get; set; }
         public GameFrame.Core.Math.Range JunkSpawnPosition { get; set; }

@@ -11,15 +11,18 @@ namespace Assets.Scripts.Scenes.Space
         public Rigidbody Rb { get; private set; }
 
 
-        const float G = 60f;
+        float G = 60f;
         const float MaxAcceleration = 200;
 
         private void Awake()
         {
             Rb = gameObject.AddComponent<Rigidbody>();
             Rb.useGravity = false;
-            Rb.isKinematic = true;
             Rb.constraints = RigidbodyConstraints.FreezeAll;
+
+            var star = Core.Game.SelectedGameMode.Stars[0];
+            this.Rb.mass = (float)star.Mass;
+            G = (float)star.Gravity;
         }
 
         private void FixedUpdate()

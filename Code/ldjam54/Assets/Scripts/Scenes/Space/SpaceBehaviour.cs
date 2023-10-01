@@ -66,10 +66,10 @@ namespace Assets.Scripts.Scenes.Space
 
         private void SpawnShip(Dictionary<String, KeyCode> keybindings, InputPadBehaviour padBehaviour)
         {
-            var ship = Instantiate(ShipTemplate, ShipTemplate.transform.parent.Find("Instances"));
+            var ship = Instantiate(ShipTemplate, ShipTemplate.transform.parent.parent.Find("Instances"));
 
             var vec = new Vector3(UnityEngine.Random.Range(-100, 100), 0, UnityEngine.Random.Range(-100, 100));
-            vec = vec.normalized * 10;
+            vec = vec.normalized * (float)Core.Game.SelectedGameMode.ShipSpawnDistance;
             ship.transform.position = vec;
             var shipBehaviour = ship.GetComponent<SpaceShipBehaviour>();
             padBehaviour.Init(shipBehaviour);   
