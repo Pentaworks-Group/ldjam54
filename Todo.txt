@@ -44,6 +44,8 @@ WIP:
 Nice to have:
 ----------------------------------
  - Force Landscape on phones
+ - Win Conditions
+ - counter time & killed junk
  
 Ideas:
 ----------------------------------
