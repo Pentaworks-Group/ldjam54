@@ -48,7 +48,7 @@ namespace Assets.Scripts.Scenes.Space
                     keyBinding.Value.KeyDown();
                 }
                 else if (Input.GetKeyUp(keyBinding.Key))
-                { 
+                {
                     keyBinding.Value.KeyUp();
                 }
             }

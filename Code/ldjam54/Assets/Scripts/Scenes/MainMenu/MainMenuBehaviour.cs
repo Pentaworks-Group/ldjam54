@@ -15,12 +15,8 @@ namespace Assets.Scripts.Scenes.MainMenu
 
         public void PlayGame()
         {
-            //GameFrame.Base.Audio.Background.ReplaceClips(Base.Core.Game.AudioClipListGame);
-            Debug.Log("PlayGame");
             Base.Core.Game.PlayButtonSound();
-            Debug.Log("sound");
             Base.Core.Game.Start();
-            Debug.Log("Start");
         }
 
         public void ShowGameModes()
@@ -65,13 +61,6 @@ namespace Assets.Scripts.Scenes.MainMenu
             GameObject.Find("UI/Fitter/VersionText").GetComponent<TMPro.TMP_Text>().text = $"Version: {Application.version}";
 
 
-
-            //if (GameObject.Find("UI/Fitter/QuitButton").TryGetComponent(out Button quitButton))
-            //{
-            //    quitButton.interactable = Base.Core.Game.IsFileAccessPossible;
-            //}
-
-            //GameFrame.Base.Audio.Background.ReplaceClips(Base.Core.Game.AudioClipListMenu);
         }
     }
 }
