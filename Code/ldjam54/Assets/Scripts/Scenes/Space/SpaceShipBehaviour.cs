@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Core.Model;
 
 using UnityEngine;
+using UnityEngine.Video;
 
 namespace Assets.Scripts.Scenes.Space
 {

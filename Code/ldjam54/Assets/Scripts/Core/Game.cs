@@ -74,8 +74,8 @@ namespace Assets.Scripts.Core
             return new PlayerOptions()
             {
                 EffectsVolume = 0.7f,
-                AmbienceVolume = 0.3f,
-                BackgroundVolume = 0.25f,
+                AmbienceVolume = 0.15f,
+                BackgroundVolume = 0.1f,
             };
         }
 
@@ -91,6 +91,27 @@ namespace Assets.Scripts.Core
             new ResourceLoader<Definitions.Spacecraft>(this.availableSpacecrafts).LoadDefinition("Spacecrafts.json");
             new ResourceLoader<Definitions.Star>(this.availableStars).LoadDefinition("Stars.json");
             new GameModesLoader(this.availableGameModes, this.availableStars, this.availableSpacecrafts).LoadDefinition("GameModes.json");
+
+            InitializeAudioClips();
+        }
+
+        private void InitializeAudioClips()
+        {
+            InitializeBackgroundAudio();
+        }
+
+        private void InitializeBackgroundAudio()
+        {
+            GameFrame.Base.Audio.Background.Volume = 25f;
+
+            var backgroundAudioClips = new List<AudioClip>()
+            {
+                GameFrame.Base.Resources.Manager.Audio.Get("Background1"),
+                GameFrame.Base.Resources.Manager.Audio.Get("Background2"),
+                GameFrame.Base.Resources.Manager.Audio.Get("Background3"),
+            };
+
+            GameFrame.Base.Audio.Background.Play(backgroundAudioClips);
         }
 
         private Model.GameMode ConvertGameMode(Definitions.GameMode selectedGameMode)

@@ -3,6 +3,10 @@ Color codes:
  - Text: #E2E2E2
  - Button (or Background): 1D56E5 with Aplha 153 (Hex:99)
 
+ Credits:
+ ----------------------------------
+ - Audio credits to Pixabay (not all!)
+
 Todo:
 ----------------------------------
  Name:
@@ -30,7 +34,7 @@ Todo:
  - Overhaul SpaceScene (Background, Buttons, ....)
    
  Audio:
- - Background
+ - Background => Default volumne seems to high...
  - Ambience
  - Effects
   
