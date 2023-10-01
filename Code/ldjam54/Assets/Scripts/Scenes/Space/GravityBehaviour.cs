@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 namespace Assets.Scripts.Scenes.Space
@@ -10,16 +11,20 @@ namespace Assets.Scripts.Scenes.Space
 
         private void Awake()
         {
-            Init();
+            InitGravity();
         }
 
-        public void Init()
+        public void InitGravity()
         {
             if (Rb == default)
             {
-                Rb = gameObject.AddComponent<Rigidbody>();
-                Rb.useGravity = false;
-                Rb.constraints = RigidbodyConstraints.FreezePositionY;
+                Rb = this.gameObject.GetComponent<Rigidbody>();
+                if (Rb == default)
+                {
+                    Rb = this.gameObject.AddComponent<Rigidbody>();
+                    Rb.useGravity = false;
+                    Rb.constraints = RigidbodyConstraints.FreezePositionY;
+                }
             }
         }
 

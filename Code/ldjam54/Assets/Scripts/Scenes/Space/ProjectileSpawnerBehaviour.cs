@@ -43,7 +43,7 @@ namespace Assets.Scripts.Scenes.Space
 
             var gravityBehaviour = newProjectile.GetComponent<GravityBehaviour>();
 
-            gravityBehaviour.Init();
+            //gravityBehaviour.Init();
             var rb = gravityBehaviour.Rb;
             rb.mass = 0.01f;
             rb.AddForce(source.transform.forward * speed);

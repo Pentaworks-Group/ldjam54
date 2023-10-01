@@ -53,7 +53,7 @@ namespace Assets.Scripts.Scenes.Space
         public static void DeRegisterBody(GravityBehaviour gravityBehaviour)
         {
             BodiesToAttract.Remove(gravityBehaviour);
-        }
+        } 
 
         private void AttractBody(GravityBehaviour gravityBehaviour)
         {
