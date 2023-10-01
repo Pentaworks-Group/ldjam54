@@ -25,6 +25,9 @@ namespace Assets.Scripts.Scenes.Space
             {
                 Base.Core.Game.Start();
             }
+
+            Screen.autorotateToLandscapeLeft = true;
+            Debug.Log(Screen.autorotateToLandscapeLeft);
         }
 
         private void Start()

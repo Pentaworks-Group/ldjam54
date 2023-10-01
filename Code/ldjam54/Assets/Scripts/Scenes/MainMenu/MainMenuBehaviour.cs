@@ -64,6 +64,8 @@ namespace Assets.Scripts.Scenes.MainMenu
         {
             GameObject.Find("UI/Fitter/VersionText").GetComponent<TMPro.TMP_Text>().text = $"Version: {Application.version}";
 
+
+
             //if (GameObject.Find("UI/Fitter/QuitButton").TryGetComponent(out Button quitButton))
             //{
             //    quitButton.interactable = Base.Core.Game.IsFileAccessPossible;

@@ -1,28 +1,52 @@
 [
-  {
-    "Reference": "default",
-    "Name": "DefaultGameMode",
-    "Stars": [
-      {
-        "IsReferenced": true,
-        "Reference": "DaSun"
-      }
-    ],
-    "Spacecrafts": [
-        {
-            "IsReferenced": true,
-            "Reference": "Spacecraft1"
-        },
-        {
-            "IsReferenced": true,
-            "Reference": "Spacecraft1"
-        }
-    ],
-    "PlayerSpacecrafts": [
-      {
-        "IsReferenced": true,
-        "Reference": "Spacecraft1"
-      }
-    ]
-  }
+    {
+        "Reference": "default",
+        "Name": "Default GameMode",
+        "Description": "You against the SpaceJunk",
+        "Stars": [
+            {
+                "IsReferenced": true,
+                "Reference": "DaSun"
+            }
+        ],
+        "Spacecrafts": [
+            {
+                "IsReferenced": true,
+                "Reference": "Spacecraft1"
+            }
+        ],
+        "PlayerSpacecrafts": [
+            {
+                "IsReferenced": true,
+                "Reference": "Spacecraft1"
+            }
+        ]
+    },
+    {
+        "Reference": "1v1",
+        "Name": "1v1",
+        "Description": "Fight against onother",
+        "Stars": [
+            {
+                "IsReferenced": true,
+                "Reference": "DaSun"
+            }
+        ],
+        "Spacecrafts": [
+            {
+                "IsReferenced": true,
+                "Reference": "Spacecraft1"
+            },
+            {
+                "IsReferenced": true,
+                "Reference": "Spacecraft1"
+            }
+        ],
+        "PlayerSpacecrafts": [
+            {
+                "IsReferenced": true,
+                "Reference": "Spacecraft1"
+            }
+        ]
+    }
 ]

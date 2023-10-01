@@ -27,6 +27,7 @@ namespace Assets.Scripts.Core.Definitions.Loaders
                     {
                         Reference = loadedGameMode.Reference,
                         Name = loadedGameMode.Name,
+                        Description = loadedGameMode.Description,
                     };
 
                     CheckItems(loadedGameMode.Stars, newGameMode.Stars, this.starCache);
