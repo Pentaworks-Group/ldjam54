@@ -31,12 +31,9 @@ namespace Assets.Scripts.Scenes.Space
         //private double fireEnergyUsage;
         //private double energyRechargeRate = 20000f;
         //private double baseEnergyConsumption;
-
-
         private double fireCooldown = 0;
 
         public String deathMessage { get; private set; }
-
 
         void Update()
         {
@@ -73,7 +70,6 @@ namespace Assets.Scripts.Scenes.Space
             }
         }
 
-
         private void InitShip()
         {
             InitGravity();
@@ -99,13 +95,14 @@ namespace Assets.Scripts.Scenes.Space
 
         private Dictionary<String, Action> GenerateKeyBindingsMap()
         {
-            return new Dictionary<String, Action> {
-            { "Accelerate", Accelerate },
-            { "DeAccelerate", DeAccelerate },
-            { "TurnLeft", TurnLeft },
-            { "TurnRight", TurnRight },
-            { "FireProjectile", FireProjectile }
-        };
+            return new Dictionary<String, Action>()
+            {
+                { "Accelerate", Accelerate },
+                { "DeAccelerate", DeAccelerate },
+                { "TurnLeft", TurnLeft },
+                { "TurnRight", TurnRight },
+                { "FireProjectile", FireProjectile }
+            };
         }
 
         private void MapKeybindings(Dictionary<String, KeyCode> keybindindsInit)
@@ -125,8 +122,6 @@ namespace Assets.Scripts.Scenes.Space
 
         }
 
-
-
         private void HarvestEnergy()
         {
             Vector3 direction = Rb.position - gravityCenter.Rb.position;
@@ -138,9 +133,6 @@ namespace Assets.Scripts.Scenes.Space
             energy += energyGain;
             energy = Math.Min(energy, spacecraft.EnergyCapacity);
         }
-
-
-
 
         private void OnTriggerEnter(Collider collider)
         {
@@ -179,6 +171,8 @@ namespace Assets.Scripts.Scenes.Space
             {
                 Rb.AddForce(Rb.transform.forward * (float)spacecraft.Acceleration);
                 energy -= spacecraft.AccelerationEnergyConsumption;
+
+                GameFrame.Base.Audio.Effects.PlayAt(GameFrame.Base.Resources.Manager.Audio.Get("RocketEngine_Firing_Middle"), this.transform.position);
             }
         }
 
@@ -216,6 +210,8 @@ namespace Assets.Scripts.Scenes.Space
                 projectileSpawnerBehaviour.SpawnProjectile(this.transform);
                 energy -= spacecraft.WeaponEnergyConsumption;
                 fireCooldown = spacecraft.WeaponsRateOfFire;
+
+                GameFrame.Base.Audio.Effects.PlayAt(GameFrame.Base.Resources.Manager.Audio.Get("ProjectileFired"), this.transform.position);
             }
         }
     }
