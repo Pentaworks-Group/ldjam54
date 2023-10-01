@@ -24,6 +24,9 @@ namespace Assets.Scripts.Scenes.Space
 
         private Spacecraft spacecraft;
 
+        private float keyInteractionInterval = 0.01f;
+        private Dictionary<KeyCode, float> lastKeyteraction = new Dictionary<KeyCode, float>();
+
         private double energy;
         //private double energyCapacity;
         //private double accelerateEnergyUsage;
@@ -37,17 +40,34 @@ namespace Assets.Scripts.Scenes.Space
 
         private double fireCooldown = 0;
 
- 
+        private void Awake()
+        {
+            foreach (var keyBinding in keyBindings)
+            {
+                lastKeyteraction[keyBinding.Key] = -1f;
+            }
+        }
+
 
         void Update()
         {
             foreach (var keyBinding in keyBindings)
             {
-                if (Input.GetKey(keyBinding.Key))
+                if (lastKeyteraction[keyBinding.Key] <= 0)
                 {
-                    keyBinding.Value.Invoke();
+
+                    if (Input.GetKey(keyBinding.Key))
+                    {
+                        keyBinding.Value.Invoke();
+                        lastKeyteraction[keyBinding.Key] = keyInteractionInterval;
+                    }
+                }
+                else
+                {
+                    lastKeyteraction[keyBinding.Key] -= Time.deltaTime;
                 }
             }
+
             energy -= spacecraft.BaseEnergyConsumption * Time.deltaTime;
             HarvestEnergy();
             if (energy < 0)
