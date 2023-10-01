@@ -27,6 +27,11 @@ namespace Assets.Scripts.Core.Definitions.Loaders
                     {
                         Reference = loadedGameMode.Reference,
                         Name = loadedGameMode.Name,
+                        JunkSpawnInterval = loadedGameMode.JunkSpawnInterval,
+                        JunkSpawnInitialDistance = loadedGameMode.JunkSpawnInitialDistance,
+                        JunkSpawnPosition = loadedGameMode.JunkSpawnPosition,
+                        JunkSpawnForce = loadedGameMode.JunkSpawnForce,
+                        JunkSpawnTorque = loadedGameMode.JunkSpawnTorque
                         Description = loadedGameMode.Description,
                     };
 

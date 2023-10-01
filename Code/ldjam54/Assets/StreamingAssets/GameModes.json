@@ -3,6 +3,20 @@
         "Reference": "default",
         "Name": "Default GameMode",
         "Description": "You against the SpaceJunk",
+        "JunkSpawnInterval": 2,
+        "JunkSpawnInitialDistance": 20,
+        "JunkSpawnPosition": {
+            "Min": -7,
+            "Max": 7
+        },
+        "JunkSpawnForce": {
+            "Min": -6,
+            "Max": 6
+        },
+        "JunkSpawnTorque": {
+            "Min": -3,
+            "Max": 3
+        },
         "Stars": [
             {
                 "IsReferenced": true,
@@ -26,6 +40,20 @@
         "Reference": "1v1",
         "Name": "1v1",
         "Description": "Fight against onother",
+        "JunkSpawnInterval": 2,
+        "JunkSpawnInitialDistance": 20,
+        "JunkSpawnPosition": {
+            "Min": -7,
+            "Max": 7
+        },
+        "JunkSpawnForce": {
+            "Min": -6,
+            "Max": 6
+        },
+        "JunkSpawnTorque": {
+            "Min": -3,
+            "Max": 3
+        },
         "Stars": [
             {
                 "IsReferenced": true,
