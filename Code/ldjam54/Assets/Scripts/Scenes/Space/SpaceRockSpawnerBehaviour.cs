@@ -64,17 +64,36 @@ namespace Assets.Scripts.Scenes.Space
             var newRock = Instantiate(template, instanceParent);
 
             var randomPosition = CreateRandomVector(gameState.Mode.JunkSpawnPosition.Min, gameState.Mode.JunkSpawnPosition.Max);
-            var initialDistance = (float)gameState.Mode.JunkSpawnInitialDistance / randomPosition.sqrMagnitude;
 
             newRock.transform.position = randomPosition;
+
+            var rockCollider = newRock.GetComponent<Collider>();
+
+            if (this.spaceBehaviour?.spaceShipBehaviours?.Count > 0)
+            {
+                foreach (var spaceShipBehaviour in this.spaceBehaviour.spaceShipBehaviours)
+                {
+                    var collider = spaceShipBehaviour.GetComponent<Collider>();
+
+                    if (collider != null)
+                    {
+                        if (collider.bounds.Intersects(rockCollider.bounds))
+                        {
+                            newRock.transform.position *= -1f;
+                        }
+                    }
+                }
+            }
+
+            var initialDistance = (float)gameState.Mode.JunkSpawnInitialDistance / randomPosition.sqrMagnitude;
+            
             newRock.SetActive(true);
 
             var rb = newRock.GetComponent<GravityBehaviour>().Rb;
 
-            // ?? dot product for perpendicularity eg
+            //  dot product for perpendicularity eg
             rb.velocity = Vector3.Cross(randomPosition, Vector3.up) * initialDistance;
 
-            // rb.velocity = CreateRandomVector(-initdist, initdist);
             rb.AddForce(CreateRandomVector(gameState.Mode.JunkSpawnForce.Min * initialDistance, gameState.Mode.JunkSpawnForce.Max * initialDistance));
             rb.AddTorque(CreateRandomVector(gameState.Mode.JunkSpawnTorque.Min, gameState.Mode.JunkSpawnTorque.Max));
         }
