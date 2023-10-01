@@ -26,6 +26,7 @@ Todo:
  - Credits
  - SavedGames
  - GameModes
+ - GameOver Text
  - Overhaul SpaceScene (Background, Buttons, ....)
    
  Audio:
@@ -44,8 +45,10 @@ WIP:
 Nice to have:
 ----------------------------------
  - Force Landscape on phones
+ - get webgl to close game
  - Win Conditions
  - counter time & killed junk
+ - death dependent gameover message
  
 Ideas:
 ----------------------------------
