@@ -22,6 +22,7 @@ namespace Assets.Scripts.Scenes.Space
         private Double junkSpawnInterval = -1;
 
         private Transform instanceParent;
+        private GameObject containerTemplate;
 
         private void Awake()
         {
@@ -39,6 +40,7 @@ namespace Assets.Scripts.Scenes.Space
             }
 
             instanceParent = this.transform.Find("Instances");
+            containerTemplate = this.transform.Find("Junk").gameObject;
         }
 
         private void Update()
@@ -59,15 +61,17 @@ namespace Assets.Scripts.Scenes.Space
 
         private void SpawnRandomRock()
         {
-            var template = spaceRockModels.GetRandomEntry();
 
-            var newRock = Instantiate(template, instanceParent);
+            var newRock = Instantiate(containerTemplate, instanceParent);
+            var template = spaceRockModels.GetRandomEntry();
+            var model = Instantiate(template, newRock.transform);
+
 
             var randomPosition = CreateRandomVector(gameState.Mode.JunkSpawnPosition.Min, gameState.Mode.JunkSpawnPosition.Max);
 
             newRock.transform.position = randomPosition;
 
-            var rockCollider = newRock.GetComponent<Collider>();
+            var rockCollider = model.GetComponent<Collider>();
 
             if (this.spaceBehaviour.StarBehaviour != null)
             {
@@ -98,7 +102,9 @@ namespace Assets.Scripts.Scenes.Space
 
             newRock.SetActive(true);
 
-            var rb = newRock.GetComponent<GravityBehaviour>().Rb;
+            var spaceJunkBehaviour = newRock.GetComponent<SpaceJunkBehaviour>();
+            spaceJunkBehaviour.SetModel(model); 
+            var rb = spaceJunkBehaviour.Rb;
 
             //  dot product for perpendicularity eg
             rb.velocity = Vector3.Cross(randomPosition, Vector3.up) * initialDistance;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Core.Model;
 
 using UnityEngine;
-using UnityEngine.Video;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Scenes.Space
 {
@@ -35,6 +35,8 @@ namespace Assets.Scripts.Scenes.Space
         private double fireCooldown = 0;
 
         public String deathMessage { get; private set; }
+        private bool isDead = false;
+
 
         void Update()
         {
@@ -80,7 +82,7 @@ namespace Assets.Scripts.Scenes.Space
             gameObject.tag = "Ship";
         }
 
-        public void SpawnShip(Spacecraft spacecraft, Dictionary<String, KeyCode> keybindinds, String shipName)
+        public void SpawnShip(Spacecraft spacecraft, Dictionary<String, KeyCode> keybindinds, String shipName, Color color)
         {
             InitShip();
             this.gameObject.name = shipName;
@@ -92,6 +94,7 @@ namespace Assets.Scripts.Scenes.Space
             Rb.mass = (float)spacecraft.Mass;
 
             MapKeybindings(keybindinds);
+            gameObject.transform.Find("Canvas/Image").GetComponent<Image>().color = color;
         }
 
         private Dictionary<String, Action> GenerateKeyBindingsMap()
@@ -142,7 +145,7 @@ namespace Assets.Scripts.Scenes.Space
             switch (tag)
             {
                 case "Junk":
-                    TriggerGameOver("You joined the space junk");
+                    TriggerGameOver("You joined the space junk gang");
                     break;
                 case "Ship":
                     TriggerGameOver("Never go alone. Together forever with " + other.name);
@@ -161,9 +164,18 @@ namespace Assets.Scripts.Scenes.Space
 
         private void TriggerGameOver(String deathMessage)
         {
-            this.deathMessage = deathMessage;
-            spaceBehaviour.TriggerGameOver(this);
-            Destroy(gameObject);
+            if (isDead == false)
+            {
+                this.deathMessage = deathMessage;
+                spaceBehaviour.TriggerGameOver(this);
+                gameObject.transform.Find("Explosion").gameObject.SetActive(true);
+                gameObject.transform.Find("Model").gameObject.SetActive(false);
+                gameObject.transform.Find("Canvas").gameObject.SetActive(false);
+                Destroy(gameObject, 3);
+                Rb.velocity = Vector3.zero;
+                Rb.constraints = RigidbodyConstraints.FreezeAll;
+                isDead = true;
+            }
         }
 
         public void Accelerate()

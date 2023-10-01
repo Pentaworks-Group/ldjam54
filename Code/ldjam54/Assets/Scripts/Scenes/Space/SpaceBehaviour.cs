@@ -12,7 +12,10 @@ namespace Assets.Scripts.Scenes.Space
     {
         [SerializeField]
         private GameObject ShipTemplate;
-        
+
+        [SerializeField]
+        private List<Color> colors;
+
         [SerializeField]
         private List<InputPadBehaviour> InputPadBehaviours;
 
@@ -47,10 +50,9 @@ namespace Assets.Scripts.Scenes.Space
             int length = Base.Core.Game.State.Mode.Spacecrafts.Count;
 
             spaceShipBehaviours = new List<SpaceShipBehaviour>();
-
             for (int i = 0; i < length; i++)
             {
-                var behaviour = SpawnShip(keyBindings[i], InputPadBehaviours[i], "Player" + (i + 1));
+                var behaviour = SpawnShip(keyBindings[i], InputPadBehaviours[i], "Player" + (i + 1), colors[i]);
                 spaceShipBehaviours.Add(behaviour);
             }
         }
@@ -83,7 +85,7 @@ namespace Assets.Scripts.Scenes.Space
             return keyDict;
         }
 
-        private SpaceShipBehaviour SpawnShip(Dictionary<String, KeyCode> keybindings, InputPadBehaviour padBehaviour, String shipName)
+        private SpaceShipBehaviour SpawnShip(Dictionary<String, KeyCode> keybindings, InputPadBehaviour padBehaviour, String shipName, Color color)
         {
             var ship = Instantiate(ShipTemplate, ShipTemplate.transform.parent.parent.Find("Instances"));
 
@@ -98,7 +100,7 @@ namespace Assets.Scripts.Scenes.Space
             padBehaviour.Init(shipBehaviour);
             var spaceCraft = Base.Core.Game.State.Spacecraft;
 
-            shipBehaviour.SpawnShip(spaceCraft, keybindings, shipName);
+            shipBehaviour.SpawnShip(spaceCraft, keybindings, shipName, color);
             ship.SetActive(true);
 
             return shipBehaviour;
