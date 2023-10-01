@@ -16,14 +16,12 @@ namespace Assets.Scripts.Scenes.Space
             } else
             {
                 Destroy(gameObject);
-                Debug.Log("Destroy Projectile");
             }
         }
 
         private void OnTriggerEnter(Collider other)
         {
             Destroy(this.gameObject);
-            Debug.Log("Projectile Collision");
         }
 
 

@@ -19,7 +19,6 @@ namespace Assets.Scripts.Scenes.Space
         private void OnTriggerEnter(Collider other)
         {
             Destroy(this.gameObject);
-            Debug.Log("SpaceJunk Collision");
         }
     }
 }
