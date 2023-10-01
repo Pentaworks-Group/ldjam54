@@ -3,6 +3,7 @@
         "Reference": "default",
         "Name": "Default GameMode",
         "Description": "You against the SpaceJunk",
+        "ShipSpawnDistance": 9,
         "JunkSpawnInterval": 2,
         "JunkSpawnInitialDistance": 20,
         "JunkSpawnPosition": {
@@ -40,6 +41,7 @@
         "Reference": "1v1",
         "Name": "1v1",
         "Description": "Fight against onother",
+        "ShipSpawnDistance": 9,
         "JunkSpawnInterval": -1,
         "JunkSpawnInitialDistance": 20,
         "JunkSpawnPosition": {
@@ -65,6 +67,90 @@
                 "IsReferenced": true,
                 "Reference": "Spacecraft1"
             },
+            {
+                "IsReferenced": true,
+                "Reference": "Spacecraft1"
+            }
+        ],
+        "PlayerSpacecrafts": [
+            {
+                "IsReferenced": true,
+                "Reference": "Spacecraft1"
+            }
+        ]
+    },
+    {
+        "Reference": "Runni",
+        "Name": "You cant run, neighter hide",
+        "Description": "Try to not fall into the sun",
+        "ShipSpawnDistance": 9,
+        "JunkSpawnInterval": -1,
+        "JunkSpawnInitialDistance": 20,
+        "JunkSpawnPosition": {
+            "Min": -7,
+            "Max": 7
+        },
+        "JunkSpawnForce": {
+            "Min": -6,
+            "Max": 6
+        },
+        "JunkSpawnTorque": {
+            "Min": -3,
+            "Max": 3
+        },
+        "Stars": [
+            {
+                "IsReferenced": true,
+                "Reference": "MegaDeth"
+            }
+        ],
+        "Spacecrafts": [
+            {
+                "IsReferenced": true,
+                "Reference": "Spacecraft1"
+            }
+        ],
+        "PlayerSpacecrafts": [
+            {
+                "IsReferenced": true,
+                "Reference": "Spacecraft1"
+            }
+        ]
+    },
+    {
+        "Reference": "GetTotaSun",
+        "Name": "Get to the sun",
+        "Description": "This strange sun dose not want you",
+        "ShipSpawnDistance": 5,
+        "JunkSpawnInterval": -1,
+        "JunkSpawnInitialDistance": 20,
+        "JunkSpawnPosition": {
+            "Min": -7,
+            "Max": 7
+        },
+        "JunkSpawnForce": {
+            "Min": -6,
+            "Max": 6
+        },
+        "JunkSpawnTorque": {
+            "Min": -3,
+            "Max": 3
+        },
+        "Stars": [
+            {
+                "Reference": "Gimli",
+                "Name": "Gimli",
+                "Gravity": -0.05,
+                "Mass": 1000,
+                "Models": [
+                    "DaSun"
+                ],
+                "Materials": [
+                    "DaSun"
+                ]
+            }
+        ],
+        "Spacecrafts": [
             {
                 "IsReferenced": true,
                 "Reference": "Spacecraft1"
