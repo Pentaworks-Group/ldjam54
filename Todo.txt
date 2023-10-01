@@ -9,7 +9,7 @@ Todo:
  ? T.R.A.I.N.S - ??????
   
  Bugs: 
- - open menu after dead
+ - 
  
  Exceptions: 
  - 
