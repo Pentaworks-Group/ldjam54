@@ -31,7 +31,7 @@ namespace Assets.Scripts.Core.Definitions.Loaders
                         JunkSpawnInitialDistance = loadedGameMode.JunkSpawnInitialDistance,
                         JunkSpawnPosition = loadedGameMode.JunkSpawnPosition,
                         JunkSpawnForce = loadedGameMode.JunkSpawnForce,
-                        JunkSpawnTorque = loadedGameMode.JunkSpawnTorque
+                        JunkSpawnTorque = loadedGameMode.JunkSpawnTorque,
                         Description = loadedGameMode.Description,
                     };
 
