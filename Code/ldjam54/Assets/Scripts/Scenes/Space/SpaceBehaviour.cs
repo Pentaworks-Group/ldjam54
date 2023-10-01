@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 using Assets.Scripts.Scenes.Space.InputHandling;
@@ -19,7 +18,7 @@ namespace Assets.Scripts.Scenes.Space
         [SerializeField]
         private List<InputPadBehaviour> InputPadBehaviours;
 
-        public List<SpaceShipBehaviour> spaceShipBehaviours { private set; get; }
+        public List<SpaceShipBehaviour> spaceShipBehaviours { get; private set; }
 
         private void Awake()
         {
@@ -27,17 +26,21 @@ namespace Assets.Scripts.Scenes.Space
             {
                 Base.Core.Game.Start();
             }
-
         }
 
 
         private void Start()
         {
-            var keyBindings = new List<Dictionary<String, KeyCode>>();
-            keyBindings.Add(GetKeybindingsWASD());
-            keyBindings.Add(GetKeybindingsArrows());
+            var keyBindings = new List<Dictionary<String, KeyCode>>()
+            {
+                GetKeybindingsWASD(),
+                GetKeybindingsArrows()
+            };
+
             int length = Base.Core.Game.State.Mode.Spacecrafts.Count;
+
             spaceShipBehaviours = new List<SpaceShipBehaviour>();
+
             for (int i = 0; i < length; i++)
             {
                 var behaviour = SpawnShip(keyBindings[i], InputPadBehaviours[i]);
@@ -47,25 +50,29 @@ namespace Assets.Scripts.Scenes.Space
 
         private Dictionary<String, KeyCode> GetKeybindingsWASD()
         {
-            var keyDict = new Dictionary<String, KeyCode>{
+            var keyDict = new Dictionary<String, KeyCode>()
+            {
                 { "Accelerate", KeyCode.W },
-            { "DeAccelerate", KeyCode.S },
-            { "TurnLeft", KeyCode.A },
-            { "TurnRight", KeyCode.D },
-            { "FireProjectile", KeyCode.Space }
+                { "DeAccelerate", KeyCode.S },
+                { "TurnLeft", KeyCode.A },
+                { "TurnRight", KeyCode.D },
+                { "FireProjectile", KeyCode.Space }
             };
+
             return keyDict;
         }
 
         private Dictionary<String, KeyCode> GetKeybindingsArrows()
         {
-            var keyDict = new Dictionary<String, KeyCode>{
+            var keyDict = new Dictionary<String, KeyCode>()
+            {
                 { "Accelerate", KeyCode.UpArrow },
-            { "DeAccelerate", KeyCode.DownArrow },
-            { "TurnLeft", KeyCode.LeftArrow },
-            { "TurnRight", KeyCode.RightArrow },
-            { "FireProjectile", KeyCode.RightControl }
+                { "DeAccelerate", KeyCode.DownArrow },
+                { "TurnLeft", KeyCode.LeftArrow },
+                { "TurnRight", KeyCode.RightArrow },
+                { "FireProjectile", KeyCode.RightControl }
             };
+
             return keyDict;
         }
 
@@ -74,17 +81,21 @@ namespace Assets.Scripts.Scenes.Space
             var ship = Instantiate(ShipTemplate, ShipTemplate.transform.parent.parent.Find("Instances"));
 
             var vec = new Vector3(UnityEngine.Random.Range(-100, 100), 0, UnityEngine.Random.Range(-100, 100));
+
             vec = vec.normalized * (float)Core.Game.SelectedGameMode.ShipSpawnDistance;
+
             ship.transform.position = vec;
+
             var shipBehaviour = ship.GetComponent<SpaceShipBehaviour>();
-            padBehaviour.Init(shipBehaviour);   
+
+            padBehaviour.Init(shipBehaviour);
             var spaceCraft = Base.Core.Game.State.Spacecraft;
-           
+
             shipBehaviour.SpawnShip(spaceCraft, keybindings);
             ship.SetActive(true);
+
             return shipBehaviour;
         }
-
 
         public void Restart()
         {
