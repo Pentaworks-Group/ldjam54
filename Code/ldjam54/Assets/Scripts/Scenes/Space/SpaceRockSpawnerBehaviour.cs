@@ -19,6 +19,7 @@ namespace Assets.Scripts.Scenes.Space
 
         private Transform instanceParent;
 
+
         private void Awake()
         {
             foreach (Transform child in this.transform.Find("Templates"))
@@ -47,17 +48,16 @@ namespace Assets.Scripts.Scenes.Space
             var newRock = Instantiate(template, instanceParent);
             var randPosition = CreateRandomVector(-7, 7);
             var initdist = 20/randPosition.sqrMagnitude;
-            var ortho = new Vector3(0f, 0.8f, 0f);
             
             newRock.transform.position = randPosition;
             newRock.SetActive(true);
             
             var rb = newRock.GetComponent<GravityBehaviour>().Rb;
 
-            rb.isKinematic = false; //Set as it doesnt take velocity into account otherwise. See documentation
-
+            //rb.isKinematic = false; //Set as it doesnt take velocity into account otherwise. See documentation
             // ?? dot product for perpendicularity eg
-            rb.velocity = Vector3.Cross (randPosition, ortho) * initdist ;
+            rb.velocity = Vector3.Cross (randPosition, Vector3.up) * initdist;
+
             // rb.velocity = CreateRandomVector(-initdist, initdist);
             rb.AddForce(CreateRandomVector(-6*initdist, 6*initdist));
             rb.AddTorque(CreateRandomVector(-3, 3));
