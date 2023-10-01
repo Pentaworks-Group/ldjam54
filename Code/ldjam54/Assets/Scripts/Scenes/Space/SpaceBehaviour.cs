@@ -100,6 +100,7 @@ namespace Assets.Scripts.Scenes.Space
         {
             Time.timeScale = 1;
             Base.Core.Game.ChangeScene(Constants.SceneNames.Space);
+            Time.timeScale = 1;
         }
 
         public void TriggerGameOver()
