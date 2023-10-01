@@ -17,8 +17,6 @@ namespace Assets.Scripts.Scenes.Space
         private GravityManagerBehaviour gravityCenter;
         [SerializeField]
         private RectTransform energyBar;
-        [SerializeField]
-        private TMPro.TextMeshProUGUI energyText;
 
         private Spacecraft spacecraft;
 
@@ -61,7 +59,6 @@ namespace Assets.Scripts.Scenes.Space
                 TriggerGameOver();
             }
             energyBar.anchorMax = new Vector2((float)(energy / spacecraft.EnergyCapacity), 1);
-            energyText.text = energy.ToString();
 
             if (fireCooldown > 0)
             {

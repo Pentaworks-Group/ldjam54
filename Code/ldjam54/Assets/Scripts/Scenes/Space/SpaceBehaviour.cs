@@ -10,9 +10,6 @@ namespace Assets.Scripts.Scenes.Space
     public class SpaceBehaviour : MonoBehaviour
     {
         [SerializeField]
-        private GameObject GameOverText;
-
-        [SerializeField]
         private GameObject ShipTemplate;
 
         [SerializeField]
@@ -82,7 +79,7 @@ namespace Assets.Scripts.Scenes.Space
 
             var vec = new Vector3(UnityEngine.Random.Range(-100, 100), 0, UnityEngine.Random.Range(-100, 100));
 
-            vec = vec.normalized * (float)Core.Game.SelectedGameMode.ShipSpawnDistance;
+            vec = vec.normalized * (float)Base.Core.Game.State.Mode.ShipSpawnDistance;
 
             ship.transform.position = vec;
 

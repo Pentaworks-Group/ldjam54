@@ -6,6 +6,8 @@ namespace Assets.Scripts.Core.Model
     public class GameMode
     {
         public String Name { get; set; }
+        public String Description { get; set; }
+        public Double ShipSpawnDistance { get; set; }
         public Double JunkSpawnInterval { get; set; } = -1;
         public GameFrame.Core.Math.Range JunkSpawnPosition { get; set; }
         public GameFrame.Core.Math.Range JunkSpawnForce { get; set; }
