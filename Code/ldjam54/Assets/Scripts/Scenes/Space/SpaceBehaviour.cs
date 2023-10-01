@@ -10,9 +10,6 @@ namespace Assets.Scripts.Scenes.Space
     public class SpaceBehaviour : MonoBehaviour
     {
         [SerializeField]
-        private GameObject GameOverText;
-
-        [SerializeField]
         private GameObject ShipTemplate;
 
         [SerializeField]
