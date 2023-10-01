@@ -32,7 +32,7 @@ namespace Assets.Scripts.Scenes.Space
             var keyBindings = new List<Dictionary<String, KeyCode>>();
             keyBindings.Add(GetKeybindingsWASD());
             keyBindings.Add(GetKeybindingsArrows());
-            int length = Base.Core.Game.State.GameMode.Spacecrafts.Count;
+            int length = Base.Core.Game.State.Mode.Spacecrafts.Count;
             for (int i = 0; i < length; i++)
             {
                 SpawnShip(keyBindings[i], InputPadBehaviours[i]);

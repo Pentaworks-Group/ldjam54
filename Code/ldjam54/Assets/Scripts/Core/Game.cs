@@ -60,7 +60,7 @@ namespace Assets.Scripts.Core
             {
                 CreatedOn = DateTime.Now,
                 CurrentScene = Constants.SceneNames.Space,
-                GameMode = ConvertGameMode(SelectedGameMode),
+                Mode = ConvertGameMode(SelectedGameMode),
                 Spacecraft = ConvertSpacecraft(SelectedGameMode.PlayerSpacecrafts.GetRandomEntry())
             };
 
@@ -95,7 +95,12 @@ namespace Assets.Scripts.Core
         {
             var gameMode = new Model.GameMode()
             {
-                Name = selectedGameMode.Name
+                Name = selectedGameMode.Name,
+                JunkSpawnInterval = selectedGameMode.JunkSpawnInterval.GetValueOrDefault(-1),
+                JunkSpawnInitialDistance = selectedGameMode.JunkSpawnInitialDistance.GetValueOrDefault(),
+                JunkSpawnPosition = selectedGameMode.JunkSpawnPosition?.Copy(),
+                JunkSpawnForce = selectedGameMode.JunkSpawnForce.Copy(),
+                JunkSpawnTorque = selectedGameMode.JunkSpawnTorque.Copy()
             };
 
             gameMode.Star = ConvertStar(selectedGameMode.Stars.GetRandomEntry());
