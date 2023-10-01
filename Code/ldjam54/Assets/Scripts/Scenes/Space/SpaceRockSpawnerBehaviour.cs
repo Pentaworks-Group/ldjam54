@@ -17,7 +17,7 @@ namespace Assets.Scripts.Scenes.Space
         private SpaceBehaviour spaceBehaviour;
 
         private readonly List<GameObject> spaceRockModels = new List<GameObject>();
-        
+
         private GameState gameState;
         private Double junkSpawnInterval = -1;
 
@@ -69,15 +69,24 @@ namespace Assets.Scripts.Scenes.Space
 
             var rockCollider = newRock.GetComponent<Collider>();
 
+            if (this.spaceBehaviour.StarBehaviour != null)
+            {
+                if (this.spaceBehaviour.StarBehaviour.TryGetComponent<Collider>(out var starCollider))
+                {
+                    while (starCollider.bounds.Intersects(rockCollider.bounds))
+                    {
+                        newRock.transform.position *= 2f;
+                    }
+                }
+            }
+
             if (this.spaceBehaviour?.spaceShipBehaviours?.Count > 0)
             {
                 foreach (var spaceShipBehaviour in this.spaceBehaviour.spaceShipBehaviours)
                 {
-                    var collider = spaceShipBehaviour.GetComponent<Collider>();
-
-                    if (collider != null)
+                    if (spaceShipBehaviour.TryGetComponent<Collider>(out var spacecraftCollider))
                     {
-                        if (collider.bounds.Intersects(rockCollider.bounds))
+                        if (spacecraftCollider.bounds.Intersects(rockCollider.bounds))
                         {
                             newRock.transform.position *= -1f;
                         }
@@ -86,7 +95,7 @@ namespace Assets.Scripts.Scenes.Space
             }
 
             var initialDistance = (float)gameState.Mode.JunkSpawnInitialDistance / randomPosition.sqrMagnitude;
-            
+
             newRock.SetActive(true);
 
             var rb = newRock.GetComponent<GravityBehaviour>().Rb;

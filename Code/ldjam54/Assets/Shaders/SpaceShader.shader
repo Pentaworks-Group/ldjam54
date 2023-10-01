@@ -31,15 +31,7 @@ Properties
     
     //x,y - smoothstep, z - border, w - power
     [Space][NoiseCutParameters] _NoiseMaskParams2("Background cut parameters", Vector) = (0.07, -0.001, 0.51, 2.5) 
-    
-    [Header(Moon settings)]
-    [Toggle(ENABLE_MOON)] _EnableMoon("Enable moon", Int) = 1
-    _MoonTex("Moon texture", 2D) = "black" {}
-    _MoonTint("Moon tint color", Color) = (1.0, 1.0, 1.0, 1.0)
-    //x,y - smoothstep, w - power, z - strength
-    [Space][BloomParameters] _MoonBloomParams("Moon blooming parameters", Vector) = (10.0, -1.0, 0.3, 5.3)
-    [Space] _MoonSize("Moon size", Range(0.0, 1.0)) = 0.095
-    
+
     //Musi byc w skyboxie bo inaczej Unity krzyczyyyyyy xD
     [HideInInspector] _SunDisk ("Sun", Int) = 2
 }
@@ -48,15 +40,12 @@ SubShader {
     Cull Off ZWrite Off
 
     Pass {
-
         CGPROGRAM
-
         #pragma vertex vert
         #pragma fragment frag
 
 		#pragma shader_feature _ ENABLE_BACKGROUND_NOISE
-		#pragma shader_feature _ ENABLE_MOON
-
+		
 		#include "Includes/Utils.cginc"
 
         struct vertexData
@@ -98,13 +87,6 @@ SubShader {
 			float4 _NoiseParams;
 			float4 _NoiseMaskParams;
 			float4 _NoiseMaskParams2;
-		#endif
-
-		#if defined(ENABLE_MOON)
-			float _MoonSize;
-			float4 _MoonTint;
-			float4 _MoonBloomParams;
-			sampler2D _MoonTex;
 		#endif
 
 		float stars(float3 rayDir, float sphereRadius, float sizeMod)
@@ -160,27 +142,7 @@ SubShader {
 			#endif
 			
 			float4 sky = _Color * star * _Brightness + skyColor;
-
-			#if defined(ENABLE_MOON)
-				float3 lightDir = normalize(_WorldSpaceLightPos0.xyz);
-				float3 rightLightDir = -normalize(cross(lightDir, float3(0.0, 1.0, 0.0)));
-				float3 upLightDir = -normalize(cross(rightLightDir, lightDir));
-
-				float3x3 moonMatrix = float3x3(rightLightDir, upLightDir, lightDir);
-
-				float3 moonUV = (mul(moonMatrix, rayDir)) / _MoonSize + float3(0.5, 0.5, 0.0);
-
-				float4 moonCol = float4(0,0,0,0);
-				float moonBloom = pow(smoothstep(_MoonBloomParams.x, _MoonBloomParams.y, length(moonUV.xy - 0.5)), _MoonBloomParams.w) * _MoonBloomParams.z * (dot(rayDir, lightDir) * 0.5 + 0.5);
-
-				if (moonUV.x > 0.0 && moonUV.x < 1.0 && moonUV.y > 0.0 && moonUV.y < 1.0 && moonUV.z > 0.0)
-				{
-					moonCol = tex2D(_MoonTex, moonUV.xy) * _MoonTint;
-				}
-
-				sky = lerp(sky, moonCol, moonCol.a) + moonBloom * _MoonTint;
-			#endif
-			
+						
             return sky + _WorldSpaceLightPos0.w;
         }
         ENDCG

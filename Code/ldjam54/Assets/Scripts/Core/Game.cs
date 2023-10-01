@@ -18,6 +18,8 @@ namespace Assets.Scripts.Core
 
         public static Definitions.GameMode SelectedGameMode { get; set; }
 
+        public float SkyboxSeed { get; } = UnityEngine.Random.Range(0, 1000);
+
         public IList<Definitions.GameMode> AvailableGameModes
         {
             get

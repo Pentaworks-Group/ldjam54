@@ -12,11 +12,21 @@ namespace Assets.Scripts.Scenes.Space
     {
         [SerializeField]
         private GameObject ShipTemplate;
-
+        
         [SerializeField]
         private List<InputPadBehaviour> InputPadBehaviours;
 
         public List<SpaceShipBehaviour> spaceShipBehaviours { get; private set; }
+
+        [SerializeField]
+        private GravityManagerBehaviour starBehaviour;
+        public GravityManagerBehaviour StarBehaviour
+        {
+            get
+            {
+                return this.starBehaviour;
+            }
+        }
 
         private void Awake()
         {
@@ -25,7 +35,6 @@ namespace Assets.Scripts.Scenes.Space
                 Base.Core.Game.Start();
             }
         }
-
 
         private void Start()
         {

@@ -59,8 +59,11 @@ namespace Assets.Scripts.Scenes.MainMenu
         private void Awake()
         {
             GameObject.Find("UI/Fitter/VersionText").GetComponent<TMPro.TMP_Text>().text = $"Version: {Application.version}";
-
-
+            
+            if (TryGetComponent<SkyBoxShaderUpdater>(out var skyBoxShaderUpdater))
+            {
+                skyBoxShaderUpdater.Seed = Base.Core.Game.SkyboxSeed;
+            }
         }
     }
 }
