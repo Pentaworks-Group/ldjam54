@@ -20,7 +20,7 @@ namespace Assets.Scripts.Scenes.Space
             Rb.useGravity = false;
             Rb.constraints = RigidbodyConstraints.FreezeAll;
 
-            var star = Core.Game.SelectedGameMode.Stars[0];
+            var star = Base.Core.Game.State.Mode.Star;
             this.Rb.mass = (float)star.Mass;
             G = (float)star.Gravity;
         }

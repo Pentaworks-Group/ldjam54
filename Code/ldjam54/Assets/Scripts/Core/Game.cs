@@ -96,11 +96,13 @@ namespace Assets.Scripts.Core
             var gameMode = new Model.GameMode()
             {
                 Name = selectedGameMode.Name,
+                Description = selectedGameMode.Description,
                 JunkSpawnInterval = selectedGameMode.JunkSpawnInterval.GetValueOrDefault(-1),
                 JunkSpawnInitialDistance = selectedGameMode.JunkSpawnInitialDistance.GetValueOrDefault(),
                 JunkSpawnPosition = selectedGameMode.JunkSpawnPosition?.Copy(),
                 JunkSpawnForce = selectedGameMode.JunkSpawnForce.Copy(),
-                JunkSpawnTorque = selectedGameMode.JunkSpawnTorque.Copy()
+                JunkSpawnTorque = selectedGameMode.JunkSpawnTorque.Copy(),
+                ShipSpawnDistance = selectedGameMode.ShipSpawnDistance.GetValueOrDefault(),
             };
 
             gameMode.Star = ConvertStar(selectedGameMode.Stars.GetRandomEntry());
@@ -150,6 +152,7 @@ namespace Assets.Scripts.Core
             var model = new Model.Star()
             {
                 Gravity = definition.Gravity.GetValueOrDefault(),
+                Mass = definition.Mass.GetValueOrDefault(),
                 Model = definition.Models.GetRandomEntry(),
                 Material = definition.Materials.GetRandomEntry()
             };
