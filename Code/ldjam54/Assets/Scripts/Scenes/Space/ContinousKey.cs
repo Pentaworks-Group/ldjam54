@@ -1,18 +1,28 @@
+using System;
+
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-namespace Assets.Scripts.Scenes.Space.InputHandling
+namespace Assets.Scripts.Scenes.Space
 {
-    public class ContinousButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+    public class ContinousKey : MonoBehaviour
     {
         private float interval = 0.1f;
-        [SerializeField] private float startTime = 0f;
-        [SerializeField] private UnityEvent repeatingMethod;
-        [SerializeField] private UnityEvent clickMethod;
 
+        private float startTime = 0f;
 
-        public void OnPointerDown(PointerEventData eventdata)
+        private Action repeatingMethod;
+
+        private Action clickMethod;
+
+        public void Init(Action repeatingMethod, Action clickMethod)
+        {
+            this.repeatingMethod = repeatingMethod;
+            this.clickMethod = clickMethod; 
+        }
+
+        public void KeyDown()
         {
             if (repeatingMethod != default)
             {
@@ -24,7 +34,7 @@ namespace Assets.Scripts.Scenes.Space.InputHandling
             }
         }
 
-        public void OnPointerUp(PointerEventData eventdata)
+        public void KeyUp()
         {
             CancelInvoke("RepeatingCall");
         }

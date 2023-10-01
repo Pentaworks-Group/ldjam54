@@ -9,7 +9,7 @@ Todo:
  ? T.R.A.I.N.S - ??????
   
  Bugs: 
- - 
+ - open menu after dead
  
  Exceptions: 
  - 
@@ -27,6 +27,7 @@ Todo:
  - SavedGames
  - GameModes
  - Overhaul SpaceScene (Background, Buttons, ....)
+ - Turn energy bar by 90 so it faces the camera
    
  Audio:
  - Background

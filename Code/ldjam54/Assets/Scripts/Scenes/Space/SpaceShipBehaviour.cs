@@ -20,12 +20,9 @@ namespace Assets.Scripts.Scenes.Space
         [SerializeField]
         private TMPro.TextMeshProUGUI energyText;
 
-        private Dictionary<KeyCode, Action> keyBindings = new Dictionary<KeyCode, Action>();
-
         private Spacecraft spacecraft;
 
-        private float keyInteractionInterval = 0.01f;
-        private Dictionary<KeyCode, float> lastKeyteraction = new Dictionary<KeyCode, float>();
+        private Dictionary<KeyCode, ContinousKey> keyInteraction = new Dictionary<KeyCode, ContinousKey>();
 
         private double energy;
         //private double energyCapacity;
@@ -40,31 +37,20 @@ namespace Assets.Scripts.Scenes.Space
 
         private double fireCooldown = 0;
 
-        private void Awake()
-        {
-            foreach (var keyBinding in keyBindings)
-            {
-                lastKeyteraction[keyBinding.Key] = -1f;
-            }
-        }
 
 
         void Update()
         {
-            foreach (var keyBinding in keyBindings)
+            foreach (var keyBinding in keyInteraction)
             {
-                if (lastKeyteraction[keyBinding.Key] <= 0)
-                {
 
-                    if (Input.GetKey(keyBinding.Key))
-                    {
-                        keyBinding.Value.Invoke();
-                        lastKeyteraction[keyBinding.Key] = keyInteractionInterval;
-                    }
-                }
-                else
+                if (Input.GetKeyDown(keyBinding.Key))
                 {
-                    lastKeyteraction[keyBinding.Key] -= Time.deltaTime;
+                    keyBinding.Value.KeyDown();
+                }
+                else if (Input.GetKeyUp(keyBinding.Key))
+                { 
+                    keyBinding.Value.KeyUp();
                 }
             }
 
@@ -131,7 +117,9 @@ namespace Assets.Scripts.Scenes.Space
                 KeyCode keyCode = keybindindsInit.GetValueOrDefault(binding.Key);
                 if (keyCode != default)
                 {
-                    keyBindings.Add(keyCode, binding.Value);
+                    var continousKey = gameObject.AddComponent<ContinousKey>();
+                    continousKey.Init(binding.Value, binding.Value);
+                    this.keyInteraction[keyCode] = continousKey;
                 }
             }
 
