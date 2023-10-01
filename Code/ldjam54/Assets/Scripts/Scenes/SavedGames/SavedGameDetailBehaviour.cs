@@ -3,7 +3,7 @@ using Assets.Scripts.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.Scene.SaveGame
+namespace Assets.Scripts.Scenes.SavedGames
 {
     public class SavedGameDetailBehaviour : MonoBehaviour
     {

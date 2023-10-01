@@ -82,7 +82,7 @@ namespace Assets.Scripts.Prefabs.Menues.Book
             pages.Insert(0, indexPage.GetComponent<PageBehaviour>());
             indexPage.transform.SetSiblingIndex(0);
 
-            this.textAutoSizeController.SizeText();
+            this.textAutoSizeController.Execute();
         }
 
         private void CreateLinks(Int32 numPages, Button buttonTemplate, Single relativeSize, Int32 pageOffset)
@@ -93,7 +93,7 @@ namespace Assets.Scripts.Prefabs.Menues.Book
                 var pageLink = Instantiate(buttonTemplate, buttonTemplate.transform.parent);
                 var text = pageLink.transform.Find("Text").GetComponent<TMP_Text>();
 
-                textAutoSizeController.TextObjects.Add(text);
+                textAutoSizeController.AddLabel(text);
 
                 text.text = page.indexName;
                 var rect = pageLink.GetComponent<RectTransform>();

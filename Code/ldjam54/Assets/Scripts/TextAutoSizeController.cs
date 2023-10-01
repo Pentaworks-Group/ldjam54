@@ -7,53 +7,108 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
+    public enum TextResizePattern
+    {
+        IgnoreRichText,
+        AllCharacters,
+    }
+
+    [ExecuteAlways]
     public class TextAutoSizeController : MonoBehaviour
     {
-        public List<TMP_Text> TextObjects = new List<TMP_Text>();
+        [SerializeField] private List<TMP_Text> _labels = new List<TMP_Text>();
+        [SerializeField] private TextResizePattern _pattern;
+        [SerializeField] private bool _executeOnUpdate;
+        private int _currentIndex;
 
-        private void Awake()
+        public void AddLabel(TMP_Text label)
         {
-            if (TextObjects == null || TextObjects.Count == 0)
+            this._labels.Add(label);
+        }
+
+        public void Execute()
+        {
+            if (_labels.Count == 0)
             {
                 return;
             }
 
-            SizeText();
-        }
+            int count = _labels.Count;
 
-        internal void SizeText()
-        {
-            // Iterate over each of the text objects in the array to find a good test candidate
-            // There are different ways to figure out the best candidate
-            // Preferred width works fine for single line text objects
-            int candidateIndex = 0;
-            float maxPreferredWidth = 0;
+            int index = 0;
+            float maxLength = 0;
 
-            for (int i = 0; i < TextObjects.Count; i++)
+            for (int i = 0; i < count; i++)
             {
-                float preferredWidth = TextObjects[i].preferredWidth;
+                float length = 0;
 
-                if (preferredWidth > maxPreferredWidth)
+                switch (_pattern)
                 {
-                    maxPreferredWidth = preferredWidth;
-                    candidateIndex = i;
+                    case TextResizePattern.IgnoreRichText:
+                        length = _labels[i].GetParsedText().Length;
+                        break;
+
+                    case TextResizePattern.AllCharacters:
+                        length = _labels[i].text.Length;
+                        break;
+
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+                if (length > maxLength)
+                {
+                    maxLength = length;
+                    index = i;
                 }
             }
 
-            // Force an update of the candidate text object so we can retrieve its optimum point size.
-            TextObjects[candidateIndex].enableAutoSizing = true;
-            TextObjects[candidateIndex].ForceMeshUpdate();
-
-            float optimumPointSize = TextObjects[candidateIndex].fontSize;
-
-            // Disable auto size on our test candidate
-            TextObjects[candidateIndex].enableAutoSizing = false;
-
-            // Iterate over all other text objects to set the point size
-            for (int i = 0; i < TextObjects.Count; i++)
+            if (_currentIndex != index)
             {
-                TextObjects[i].fontSize = optimumPointSize;
+                OnChanged(index);
             }
+        }
+
+        private void OnChanged(int index)
+        {
+            // Disable auto size on previous
+            _labels[_currentIndex].enableAutoSizing = false;
+
+            _currentIndex = index;
+
+            // Force an update of the candidate text object so we can retrieve its optimum point size.
+            _labels[index].enableAutoSizing = true;
+            _labels[index].ForceMeshUpdate();
+        }
+
+        private void OnUpdateCheck()
+        {
+            // Iterate over all other text objects to set the point size
+            int count = _labels.Count;
+
+            if (count > 0)
+            {
+                float optimumPointSize = _labels[_currentIndex].fontSize;
+
+                for (int i = 0; i < count; i++)
+                {
+                    if (_currentIndex != i)
+                    {
+                        _labels[i].enableAutoSizing = false;
+                        _labels[i].fontSize = optimumPointSize;
+                    }
+                }
+            }
+        }
+
+        private void Update()
+        {
+            if (_executeOnUpdate)
+            {
+                Execute();
+            }
+
+            OnUpdateCheck();
         }
     }
 }

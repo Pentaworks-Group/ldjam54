@@ -8,7 +8,7 @@ using GameFrame.Core.UI.List;
 
 using UnityEngine.UI;
 
-namespace Assets.Scripts.Scene.SaveGame
+namespace Assets.Scripts.Scenes.SavedGames
 {
     public class SavedGameListBehaviour : ListContainerBehaviour<KeyValuePair<String, SavedGamePreview>>
     {

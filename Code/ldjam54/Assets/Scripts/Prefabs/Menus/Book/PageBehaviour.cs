@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using UnityEngine;
 
@@ -10,7 +6,6 @@ namespace Assets.Scripts.Prefabs.Menues.Book
 {
     public class PageBehaviour : MonoBehaviour
     {
-
         public String indexName;
         private BookBehaviour bookBehaviour;
 
@@ -22,8 +17,5 @@ namespace Assets.Scripts.Prefabs.Menues.Book
         {
             bookBehaviour.OpenPage(this);
         }
-
-
-
     }
 }

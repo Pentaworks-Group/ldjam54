@@ -6,7 +6,7 @@ using GameFrame.Core.UI.List;
 
 using UnityEngine.UI;
 
-namespace Assets.Scripts.Scene.SaveGame
+namespace Assets.Scripts.Scenes.SavedGames
 {
     public class SavedGameListSlotBehaviour : ListSlotBehaviour<KeyValuePair<string, SavedGamePreview>>
     {
