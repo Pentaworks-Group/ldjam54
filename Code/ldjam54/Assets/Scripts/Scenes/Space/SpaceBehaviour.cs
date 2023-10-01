@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 using Assets.Scripts.Scenes.Space.InputHandling;
@@ -40,7 +41,7 @@ namespace Assets.Scripts.Scenes.Space
 
             for (int i = 0; i < length; i++)
             {
-                var behaviour = SpawnShip(keyBindings[i], InputPadBehaviours[i]);
+                var behaviour = SpawnShip(keyBindings[i], InputPadBehaviours[i], "Player" + (i + 1));
                 spaceShipBehaviours.Add(behaviour);
             }
         }
@@ -73,7 +74,7 @@ namespace Assets.Scripts.Scenes.Space
             return keyDict;
         }
 
-        private SpaceShipBehaviour SpawnShip(Dictionary<String, KeyCode> keybindings, InputPadBehaviour padBehaviour)
+        private SpaceShipBehaviour SpawnShip(Dictionary<String, KeyCode> keybindings, InputPadBehaviour padBehaviour, String shipName)
         {
             var ship = Instantiate(ShipTemplate, ShipTemplate.transform.parent.parent.Find("Instances"));
 
@@ -88,7 +89,7 @@ namespace Assets.Scripts.Scenes.Space
             padBehaviour.Init(shipBehaviour);
             var spaceCraft = Base.Core.Game.State.Spacecraft;
 
-            shipBehaviour.SpawnShip(spaceCraft, keybindings);
+            shipBehaviour.SpawnShip(spaceCraft, keybindings, shipName);
             ship.SetActive(true);
 
             return shipBehaviour;
@@ -101,9 +102,21 @@ namespace Assets.Scripts.Scenes.Space
             Time.timeScale = 1;
         }
 
-        public void TriggerGameOver()
+        public void TriggerGameOver(SpaceShipBehaviour spaceShipBehaviour)
         {
-            Base.Core.Game.ChangeScene(Constants.SceneNames.GameOver);
+            Base.Core.Game.State.DeadShips.Add(spaceShipBehaviour.gameObject.name, spaceShipBehaviour.deathMessage);
+            spaceShipBehaviours.Remove(spaceShipBehaviour);
+            StartCoroutine(CheckSurvivorCount());
+        }
+
+        IEnumerator CheckSurvivorCount()
+        {
+            yield return new WaitForSeconds(3);
+
+            if (spaceShipBehaviours.Count <= Base.Core.Game.State.Mode.RequiredSurvivors)
+            {
+                Base.Core.Game.ChangeScene(Constants.SceneNames.GameOver);
+            }
         }
     }
 }

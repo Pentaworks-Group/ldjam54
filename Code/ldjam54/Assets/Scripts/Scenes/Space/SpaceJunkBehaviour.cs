@@ -6,6 +6,10 @@ namespace Assets.Scripts.Scenes.Space
 {
     public class SpaceJunkBehaviour : GravityBehaviour
     {
+        private void Start()
+        {
+            gameObject.tag = "Junk";
+        }
 
         private void Update()
         {

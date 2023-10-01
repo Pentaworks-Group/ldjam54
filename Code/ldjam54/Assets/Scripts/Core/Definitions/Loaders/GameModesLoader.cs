@@ -33,7 +33,8 @@ namespace Assets.Scripts.Core.Definitions.Loaders
                         JunkSpawnForce = loadedGameMode.JunkSpawnForce,
                         JunkSpawnTorque = loadedGameMode.JunkSpawnTorque,
                         Description = loadedGameMode.Description,
-                        ShipSpawnDistance = loadedGameMode.ShipSpawnDistance
+                        ShipSpawnDistance = loadedGameMode.ShipSpawnDistance,
+                        RequiredSurvivors = loadedGameMode.RequiredSurvivors,
                     };
 
                     CheckItems(loadedGameMode.Stars, newGameMode.Stars, this.starCache);

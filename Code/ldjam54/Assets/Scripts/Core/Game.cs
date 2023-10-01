@@ -103,6 +103,7 @@ namespace Assets.Scripts.Core
                 JunkSpawnForce = selectedGameMode.JunkSpawnForce.Copy(),
                 JunkSpawnTorque = selectedGameMode.JunkSpawnTorque.Copy(),
                 ShipSpawnDistance = selectedGameMode.ShipSpawnDistance.GetValueOrDefault(),
+                RequiredSurvivors = selectedGameMode.RequiredSurvivors,
             };
 
             gameMode.Star = ConvertStar(selectedGameMode.Stars.GetRandomEntry());

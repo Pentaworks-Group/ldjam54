@@ -35,6 +35,7 @@ namespace Assets.Scripts.Scenes.Space
 
         private double fireCooldown = 0;
 
+        public String deathMessage { get; private set; }
 
 
         void Update()
@@ -56,7 +57,7 @@ namespace Assets.Scripts.Scenes.Space
             HarvestEnergy();
             if (energy < 0)
             {
-                TriggerGameOver();
+                TriggerGameOver("You forgot to eat and ran out of energy");
             }
             energyBar.anchorMax = new Vector2((float)(energy / spacecraft.EnergyCapacity), 1);
 
@@ -68,7 +69,7 @@ namespace Assets.Scripts.Scenes.Space
             Vector3 t = transform.position;
             if (t.x > 100 || t.x < -100 || t.z > 100 || t.z < -100)
             {
-                TriggerGameOver();
+                TriggerGameOver("Tried to think out of the box");
             }
         }
 
@@ -79,11 +80,13 @@ namespace Assets.Scripts.Scenes.Space
             var dircenter = gravityCenter.transform.position - Rb.transform.position;
             Vector3 left = Vector3.Cross(dircenter, Vector3.down).normalized;
             Rb.velocity = left * 2;
+            gameObject.tag = "Ship";
         }
 
-        public void SpawnShip(Spacecraft spacecraft, Dictionary<String, KeyCode> keybindinds)
+        public void SpawnShip(Spacecraft spacecraft, Dictionary<String, KeyCode> keybindinds, String shipName)
         {
             InitShip();
+            this.gameObject.name = shipName;
             this.spacecraft = spacecraft;
             energy = spacecraft.EnergyCapacity;
             deAccelerateEnergyUsage = (float)spacecraft.AccelerationEnergyConsumption * 0.1f;
@@ -139,14 +142,35 @@ namespace Assets.Scripts.Scenes.Space
 
 
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider collider)
         {
-            TriggerGameOver();
+            GameObject other = collider.gameObject;
+            var tag = other.tag;
+            switch (tag)
+            {
+                case "Junk":
+                    TriggerGameOver("You joined the space junk");
+                    break;
+                case "Ship":
+                    TriggerGameOver("Never go alone. Together forever with " + other.name);
+                    break;
+                case "Sun":
+                    TriggerGameOver("The sun is cosy warm, but you should not go that close");
+                    break;
+                case "Projectile":
+                    TriggerGameOver("These little things are not candy");
+                    break;
+                default:
+                    TriggerGameOver("Nobody knows what hit you, even the programers");
+                    break;
+            }
         }
 
-        private void TriggerGameOver()
+        private void TriggerGameOver(String deathMessage)
         {
-            spaceBehaviour.TriggerGameOver();
+            this.deathMessage = deathMessage;
+            spaceBehaviour.TriggerGameOver(this);
+            Destroy(gameObject);
         }
 
         public void Accelerate()
