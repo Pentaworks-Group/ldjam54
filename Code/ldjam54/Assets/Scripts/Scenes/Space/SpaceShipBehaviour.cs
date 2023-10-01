@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Core.Model;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Scenes.Space
 {
@@ -36,6 +37,7 @@ namespace Assets.Scripts.Scenes.Space
 
         public String deathMessage { get; private set; }
         private bool isDead = false;
+
 
         void Update()
         {
@@ -81,7 +83,7 @@ namespace Assets.Scripts.Scenes.Space
             gameObject.tag = "Ship";
         }
 
-        public void SpawnShip(Spacecraft spacecraft, Dictionary<String, KeyCode> keybindinds, String shipName)
+        public void SpawnShip(Spacecraft spacecraft, Dictionary<String, KeyCode> keybindinds, String shipName, Color color)
         {
             InitShip();
             this.gameObject.name = shipName;
@@ -93,6 +95,7 @@ namespace Assets.Scripts.Scenes.Space
             Rb.mass = (float)spacecraft.Mass;
 
             MapKeybindings(keybindinds);
+            gameObject.transform.Find("Canvas/Image").GetComponent<Image>().color = color;
         }
 
         private Dictionary<String, Action> GenerateKeyBindingsMap()

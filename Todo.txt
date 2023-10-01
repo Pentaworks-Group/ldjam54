@@ -18,7 +18,6 @@ Todo:
  - Load assets from JSON
    
  GamePlay:
- - spawn regions for junk
  - game over per player
  - color multiple players
        
@@ -26,7 +25,6 @@ Todo:
  - Credits
  - SavedGames
  - GameModes
- - GameOver Text
  - Overhaul SpaceScene (Background, Buttons, ....)
    
  Audio:
