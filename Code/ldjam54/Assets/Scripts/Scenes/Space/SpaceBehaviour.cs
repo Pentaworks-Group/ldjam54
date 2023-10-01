@@ -30,6 +30,7 @@ namespace Assets.Scripts.Scenes.Space
 
         }
 
+
         private void Start()
         {
             var keyBindings = new List<Dictionary<String, KeyCode>>();
@@ -94,8 +95,7 @@ namespace Assets.Scripts.Scenes.Space
 
         public void TriggerGameOver()
         {
-            Time.timeScale = 0;
-            GameOverText.SetActive(true);
+            Base.Core.Game.ChangeScene(Constants.SceneNames.GameOver);
         }
     }
 }

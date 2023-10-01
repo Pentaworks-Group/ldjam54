@@ -27,7 +27,6 @@ Todo:
  - SavedGames
  - GameModes
  - Overhaul SpaceScene (Background, Buttons, ....)
- - Turn energy bar by 90 so it faces the camera
    
  Audio:
  - Background
