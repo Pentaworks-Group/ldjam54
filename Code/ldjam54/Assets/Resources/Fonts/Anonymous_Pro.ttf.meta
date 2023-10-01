@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 11acc42a72e828447a3f83b09a9a80b6
+guid: 845a339c0c7bcff4e8c62d5b9f59ec29
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Consolas
+  - Anonymous Pro
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
