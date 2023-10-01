@@ -146,7 +146,7 @@ namespace Assets.Scripts.Scenes.Space
             switch (tag)
             {
                 case "Junk":
-                    TriggerGameOver("You joined the space junk");
+                    TriggerGameOver("You joined the space junk gang");
                     break;
                 case "Ship":
                     TriggerGameOver("Never go alone. Together forever with " + other.name);

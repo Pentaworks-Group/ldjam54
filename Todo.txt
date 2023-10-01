@@ -18,8 +18,9 @@ Todo:
  - Load assets from JSON
    
  GamePlay:
- - game over per player
  - color multiple players
+ - explosion for junk
+ - burner particles
        
  UI: 
  - Credits

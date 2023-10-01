@@ -1,14 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Scenes.Space
 {
     public class SpaceJunkBehaviour : GravityBehaviour
     {
+        private GameObject model;
+        private bool isDead = false;
+
         private void Start()
         {
-            gameObject.tag = "Junk";
+            model.tag = "Junk";
+        }
+
+        public void SetModel(GameObject model)
+        {
+            this.model = model;
         }
 
         private void Update()
@@ -22,7 +28,15 @@ namespace Assets.Scripts.Scenes.Space
 
         private void OnTriggerEnter(Collider other)
         {
-            Destroy(this.gameObject);
+            if (isDead == false)
+            {
+                gameObject.transform.Find("Explosion").gameObject.SetActive(true);
+                model.SetActive(false);
+                Destroy(gameObject, 3);
+                Rb.velocity = Vector3.zero;
+                Rb.constraints = RigidbodyConstraints.FreezeAll;
+                isDead = true;
+            }
         }
     }
 }
