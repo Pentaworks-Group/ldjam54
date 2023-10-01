@@ -19,6 +19,8 @@ namespace Assets.Scripts.Scenes.Space
         [SerializeField]
         private List<InputPadBehaviour> InputPadBehaviours;
 
+        public List<SpaceShipBehaviour> spaceShipBehaviours { private set; get; }
+
         private void Awake()
         {
             if (Base.Core.Game.State == default)
@@ -34,9 +36,11 @@ namespace Assets.Scripts.Scenes.Space
             keyBindings.Add(GetKeybindingsWASD());
             keyBindings.Add(GetKeybindingsArrows());
             int length = Base.Core.Game.State.Mode.Spacecrafts.Count;
+            spaceShipBehaviours = new List<SpaceShipBehaviour>();
             for (int i = 0; i < length; i++)
             {
-                SpawnShip(keyBindings[i], InputPadBehaviours[i]);
+                var behaviour = SpawnShip(keyBindings[i], InputPadBehaviours[i]);
+                spaceShipBehaviours.Add(behaviour);
             }
         }
 
@@ -64,7 +68,7 @@ namespace Assets.Scripts.Scenes.Space
             return keyDict;
         }
 
-        private void SpawnShip(Dictionary<String, KeyCode> keybindings, InputPadBehaviour padBehaviour)
+        private SpaceShipBehaviour SpawnShip(Dictionary<String, KeyCode> keybindings, InputPadBehaviour padBehaviour)
         {
             var ship = Instantiate(ShipTemplate, ShipTemplate.transform.parent.parent.Find("Instances"));
 
@@ -77,6 +81,7 @@ namespace Assets.Scripts.Scenes.Space
            
             shipBehaviour.SpawnShip(spaceCraft, keybindings);
             ship.SetActive(true);
+            return shipBehaviour;
         }
 
 

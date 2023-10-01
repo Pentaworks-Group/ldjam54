@@ -18,10 +18,9 @@ Todo:
  - Load assets from JSON
    
  GamePlay:
- - Destroy Asteroids with projectiles
- - Kill projectiles after certain time
  - spawn regions for junk
- - collision with sun
+ - game over per player
+ - color multiple players
        
  UI: 
  - Credits

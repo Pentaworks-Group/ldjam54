@@ -13,6 +13,9 @@ namespace Assets.Scripts.Scenes.Space
 {
     public class SpaceRockSpawnerBehaviour : MonoBehaviour
     {
+        [SerializeField]
+        private SpaceBehaviour spaceBehaviour;
+
         private readonly List<GameObject> spaceRockModels = new List<GameObject>();
         
         private GameState gameState;
