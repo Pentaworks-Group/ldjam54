@@ -9,7 +9,7 @@ namespace Assets.Scripts.Scenes.Space.InputHandling
 {
     public class ContinousButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
-        private float interval = 0.02f;
+        private float interval = 0.01f;
         [SerializeField] private float startTime = 0f;
         [SerializeField] private UnityEvent repeatingMethod;
         [SerializeField] private UnityEvent clickMethod;

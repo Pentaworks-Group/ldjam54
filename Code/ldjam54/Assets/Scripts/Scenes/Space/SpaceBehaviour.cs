@@ -73,7 +73,6 @@ namespace Assets.Scripts.Scenes.Space
             ship.transform.position = vec;
             var shipBehaviour = ship.GetComponent<SpaceShipBehaviour>();
             padBehaviour.Init(shipBehaviour);   
-            //var gravBehaviour = ship.GetComponent<GravityBehaviour>();
             var spaceCraft = Base.Core.Game.State.Spacecraft;
            
             shipBehaviour.SpawnShip(spaceCraft, keybindings);
