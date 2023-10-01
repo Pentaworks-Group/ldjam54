@@ -40,7 +40,7 @@
         "Reference": "1v1",
         "Name": "1v1",
         "Description": "Fight against onother",
-        "JunkSpawnInterval": 2,
+        "JunkSpawnInterval": -1,
         "JunkSpawnInitialDistance": 20,
         "JunkSpawnPosition": {
             "Min": -7,

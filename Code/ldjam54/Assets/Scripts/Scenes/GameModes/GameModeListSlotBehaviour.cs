@@ -1,15 +1,10 @@
-﻿using System;
-
-using Assets.Scripts.Core;
+﻿using Assets.Scripts.Core;
 
 using GameFrame.Core.UI.List;
 
 using TMPro;
 
-using Unity.VisualScripting;
-
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
+using UnityEngine;
 
 namespace Assets.Scripts.Scenes.GameModes
 {
@@ -18,6 +13,8 @@ namespace Assets.Scripts.Scenes.GameModes
         private TMP_Text nameText;
         private TMP_Text descriptionText;
 
+        [SerializeField]
+        private GameModesBehaviour gameModeBehaviour;
 
         public GameModeListItem GameModeItem
         {
@@ -40,9 +37,10 @@ namespace Assets.Scripts.Scenes.GameModes
             descriptionText.text = content.Description;
         }
 
-        public void OnPointerClick(PointerEventData eventdata)
+        public void SelectThisGameMode()
         {
             Game.SelectedGameMode = content.GameMode;
+            gameModeBehaviour.UpdateSelectedMode();
         }
     }
 }
