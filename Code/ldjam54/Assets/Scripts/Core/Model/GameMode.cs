@@ -13,6 +13,7 @@ namespace Assets.Scripts.Core.Model
         public GameFrame.Core.Math.Range JunkSpawnForce { get; set; }
         public GameFrame.Core.Math.Range JunkSpawnTorque { get; set; }
         public Double JunkSpawnInitialDistance { get; set; }
+        public int RequiredSurvivors { get; set; }
         public Star Star { get; set; }
         public Spacecraft PlayerSpacecraft { get; set; }
         public List<Spacecraft> Spacecrafts { get; set; }

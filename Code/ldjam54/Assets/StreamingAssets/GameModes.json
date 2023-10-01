@@ -41,6 +41,7 @@
         "Reference": "1v1",
         "Name": "1v1",
         "Description": "Fight against another",
+        "RequiredSurvivors": 1,
         "ShipSpawnDistance": 9,
         "JunkSpawnInterval": -1,
         "JunkSpawnInitialDistance": 20,

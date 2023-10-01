@@ -23,6 +23,7 @@ namespace Assets.Scripts.Scenes.Space
             var star = Base.Core.Game.State.Mode.Star;
             this.Rb.mass = (float)star.Mass;
             G = (float)star.Gravity;
+            gameObject.tag = "Sun";
         }
 
         private void FixedUpdate()
