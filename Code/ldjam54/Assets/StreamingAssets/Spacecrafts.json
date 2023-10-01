@@ -7,12 +7,12 @@
     "EnergyRechargeRate": 20000,
     "BaseEnergyConsumption": 5,
     "Acceleration": 1,
-    "AccelerationEnergyConsumption": 2,
+    "AccelerationEnergyConsumption": 1,
     "TurnRate": 1,
-    "TurnRateEnergyConsuption": 1,
+    "TurnRateEnergyConsuption": 0.2,
     "IsWeaponized": true,
-    "WeaponsRateOfFire": 1.5,
-    "WeaponsEnegryConsumption": 20,
+    "WeaponsRateOfFire": 1,
+    "WeaponsEnegryConsumption": 10,
     "Mass": 1,
     "Models": [
       "Spacecraft1"

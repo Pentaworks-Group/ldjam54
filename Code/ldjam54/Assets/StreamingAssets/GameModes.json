@@ -40,7 +40,7 @@
     {
         "Reference": "1v1",
         "Name": "1v1",
-        "Description": "Fight against onother",
+        "Description": "Fight against another",
         "ShipSpawnDistance": 9,
         "JunkSpawnInterval": -1,
         "JunkSpawnInitialDistance": 20,
@@ -81,7 +81,7 @@
     },
     {
         "Reference": "Runni",
-        "Name": "You cant run, neighter hide",
+        "Name": "You cant run, neither hide",
         "Description": "Try to not fall into the sun",
         "ShipSpawnDistance": 9,
         "JunkSpawnInterval": -1,
@@ -120,7 +120,7 @@
     {
         "Reference": "GetTotaSun",
         "Name": "Get to the sun",
-        "Description": "This strange sun dose not want you",
+        "Description": "This strange sun does not want you",
         "ShipSpawnDistance": 5,
         "JunkSpawnInterval": -1,
         "JunkSpawnInitialDistance": 20,
