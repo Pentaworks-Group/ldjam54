@@ -9,6 +9,9 @@ namespace Assets.Scripts.Scenes.GameOver
 {
     public class GameOverBehaviour : BaseMenuBehaviour
     {
-        
+        public void Retry()
+        {
+            Base.Core.Game.Start();
+        }
     }
 }
