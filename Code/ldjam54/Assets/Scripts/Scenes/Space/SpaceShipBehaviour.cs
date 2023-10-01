@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 using Assets.Scripts.Core.Model;
@@ -36,6 +37,7 @@ namespace Assets.Scripts.Scenes.Space
         private double fireCooldown = 0;
 
         public String deathMessage { get; private set; }
+        private bool isDead = false;
 
 
         void Update()
@@ -168,10 +170,20 @@ namespace Assets.Scripts.Scenes.Space
 
         private void TriggerGameOver(String deathMessage)
         {
-            this.deathMessage = deathMessage;
-            spaceBehaviour.TriggerGameOver(this);
-            Destroy(gameObject);
+            if (isDead == false)
+            {
+                this.deathMessage = deathMessage;
+                spaceBehaviour.TriggerGameOver(this);
+                gameObject.transform.Find("Explosion").gameObject.SetActive(true);
+                gameObject.transform.Find("Model").gameObject.SetActive(false);
+                gameObject.transform.Find("Canvas").gameObject.SetActive(false);
+                Destroy(gameObject, 3);
+                Rb.velocity = Vector3.zero;
+                Rb.constraints = RigidbodyConstraints.FreezeAll; 
+                isDead = true;
+            }
         }
+
 
         public void Accelerate()
         {
