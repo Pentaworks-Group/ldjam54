@@ -74,15 +74,13 @@ namespace Assets.Scripts.Core
             return new PlayerOptions()
             {
                 EffectsVolume = 0.7f,
-                AmbienceVolume = 0.15f,
-                BackgroundVolume = 0.1f,
+                AmbienceVolume = 0.10f,
+                BackgroundVolume = 0.05f,
             };
         }
 
         protected override void OnGameStart()
         {
-            base.OnGameStart();
-
             LoadGameSettings();
         }
 
@@ -102,8 +100,6 @@ namespace Assets.Scripts.Core
 
         private void InitializeBackgroundAudio()
         {
-            GameFrame.Base.Audio.Background.Volume = 25f;
-
             var backgroundAudioClips = new List<AudioClip>()
             {
                 GameFrame.Base.Resources.Manager.Audio.Get("Background1"),
@@ -177,6 +173,8 @@ namespace Assets.Scripts.Core
             {
                 Gravity = definition.Gravity.GetValueOrDefault(),
                 Mass = definition.Mass.GetValueOrDefault(),
+                LightRange = definition.LightRange.GetRandom(),
+                LightIntensity = definition.LightIntensity.GetRandom(),
                 Model = definition.Models.GetRandomEntry(),
                 Material = definition.Materials.GetRandomEntry()
             };

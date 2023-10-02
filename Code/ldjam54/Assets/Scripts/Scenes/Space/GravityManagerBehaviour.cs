@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 namespace Assets.Scripts.Scenes.Space
@@ -9,7 +9,6 @@ namespace Assets.Scripts.Scenes.Space
         private static List<GravityBehaviour> BodiesToAttract = new List<GravityBehaviour>();
 
         public Rigidbody Rb { get; private set; }
-
 
         float G = 60f;
         const float MaxAcceleration = 200;
@@ -21,8 +20,16 @@ namespace Assets.Scripts.Scenes.Space
             Rb.constraints = RigidbodyConstraints.FreezeAll;
 
             var star = Base.Core.Game.State.Mode.Star;
+
             this.Rb.mass = (float)star.Mass;
             G = (float)star.Gravity;
+
+            if (TryGetComponent<Light>(out var light))
+            {
+                light.range = star.LightRange;
+                light.intensity = star.LightIntensity;
+            }
+
             gameObject.tag = "Sun";
         }
 
@@ -57,7 +64,7 @@ namespace Assets.Scripts.Scenes.Space
         public static void DeRegisterBody(GravityBehaviour gravityBehaviour)
         {
             BodiesToAttract.Remove(gravityBehaviour);
-        } 
+        }
 
         private void AttractBody(GravityBehaviour gravityBehaviour)
         {
