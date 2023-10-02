@@ -42,7 +42,7 @@ namespace Assets.Scripts.Scenes.MainMenu
 
         public void ShowCredits()
         {
-            ShowScene(SceneNames.Credits);
+            ShowScene(SceneNames.Credits, false);
         }
 
         public void QuitGame()
@@ -56,9 +56,13 @@ namespace Assets.Scripts.Scenes.MainMenu
 #endif
         }
 
-        private void ShowScene(String sceneName)
+        private void ShowScene(String sceneName, Boolean playButtonSound = true)
         {
-            Base.Core.Game.PlayButtonSound();
+            if (playButtonSound)
+            {
+                Base.Core.Game.PlayButtonSound();
+            }
+
             Base.Core.Game.ChangeScene(sceneName);
         }
 
