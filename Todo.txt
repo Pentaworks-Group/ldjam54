@@ -1,6 +1,6 @@
 Color codes:
 ----------------------------------
- - Text: #E2E2E2
+ - Text: #E2E2E2 / Title 8A8A8A
  - Button (or Background): 1D56E5 with Aplha 153 (Hex:99)
 
  Credits:
@@ -30,7 +30,6 @@ Todo:
  - GameModes
  - Overhaul SpaceScene (Background, Buttons, ....)
  - adapt list container graphics
- - SpaceScene - Load Shader values.
  - auto textsize ignore tooltips or set tooltip size
    
  Audio:

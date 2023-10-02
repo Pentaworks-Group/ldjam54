@@ -356,7 +356,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6787831112013729053}
   - component: {fileID: 968013502718019502}
-  - component: {fileID: 8859227741405956962}
   m_Layer: 5
   m_Name: TutorialContainer
   m_TagString: Untagged
@@ -400,21 +399,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShouldGenerateIndexPage: 0
---- !u!114 &8859227741405956962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6866792273898710445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85a6e3f31e747f749846b5890f558956, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _labels: []
-  _pattern: 0
-  _executeOnUpdate: 0
 --- !u!1 &8251070617075701678
 GameObject:
   m_ObjectHideFlags: 0
