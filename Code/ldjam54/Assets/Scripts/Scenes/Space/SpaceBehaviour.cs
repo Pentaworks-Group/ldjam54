@@ -2,15 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+using Assets.Scripts.Constants;
+using Assets.Scripts.Core.Model;
 using Assets.Scripts.Scenes.Space.InputHandling;
-
-using GameFrame.Core.Extensions;
 
 using TMPro;
 
 using UnityEngine;
-
-using Vector3 = UnityEngine.Vector3;
 
 namespace Assets.Scripts.Scenes.Space
 {
@@ -32,7 +30,7 @@ namespace Assets.Scripts.Scenes.Space
         private TextMeshProUGUI timeElapsedDisplay;
 
 
-        public List<SpaceShipBehaviour> spaceShipBehaviours { get; private set; }
+        public List<SpacecraftBehaviour> playerSpacecraftBehaviours { get; private set; }
 
         [SerializeField]
         private GravityManagerBehaviour starBehaviour;
@@ -67,17 +65,36 @@ namespace Assets.Scripts.Scenes.Space
                 GetKeybindingsArrows()
             };
 
-            int length = Base.Core.Game.State.Mode.Spacecrafts.Count;
+            playerSpacecraftBehaviours = new List<SpacecraftBehaviour>();
 
-            spaceShipBehaviours = new List<SpaceShipBehaviour>();
+            var playerSpacecrafts = Base.Core.Game.State.PlayerSpacecraft;
 
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < playerSpacecrafts.Count; i++)
             {
+                var spacecraft = playerSpacecrafts[i];
+
                 var junkKillCounter = killCountDisplays[i];
 
-                var behaviour = SpawnShip(keyBindings[i], this.InputPadBehaviours[i], "Player" + (i + 1), this.colors[i], junkKillCounter);
-                spaceShipBehaviours.Add(behaviour);
+                var behaviour = SpawnShip(spacecraft, keyBindings[i], this.InputPadBehaviours[i], "Player-" + (i + 1), this.colors[i], junkKillCounter);
+                playerSpacecraftBehaviours.Add(behaviour);
             }
+
+            var aiSpacecrafts = Base.Core.Game.State.Spacecrafts;
+
+            if (aiSpacecrafts.Count >0 )
+            {
+                throw new NotSupportedException("AI Ships are notyet supported!");
+            }
+
+            //for (int i = 0; i < aiSpacecrafts.Count; i++)
+            //{                
+                //var spacecraft = aiSpacecrafts[i];
+
+                //var junkKillCounter = killCountDisplays[i];
+
+                //var behaviour = SpawnShip(spacecraft, keyBindings[i], this.InputPadBehaviours[i], "AI-" + (i + 1), this.colors[i], junkKillCounter);
+                //playerSpacecraftBehaviours.Add(behaviour);
+            //}
         }
 
         private void Update()
@@ -90,11 +107,11 @@ namespace Assets.Scripts.Scenes.Space
         {
             var keyDict = new Dictionary<String, KeyCode>()
             {
-                { "Accelerate", KeyCode.W },
-                { "DeAccelerate", KeyCode.S },
-                { "TurnLeft", KeyCode.A },
-                { "TurnRight", KeyCode.D },
-                { "FireProjectile", KeyCode.Space }
+                { KeyActions.Accelerate, KeyCode.W },
+                { KeyActions.Decelerate, KeyCode.S },
+                { KeyActions.TurnLeft, KeyCode.A },
+                { KeyActions.TurnRight, KeyCode.D },
+                { KeyActions.FireProjectile, KeyCode.Space }
             };
 
             return keyDict;
@@ -104,23 +121,21 @@ namespace Assets.Scripts.Scenes.Space
         {
             var keyDict = new Dictionary<String, KeyCode>()
             {
-                { "Accelerate", KeyCode.UpArrow },
-                { "DeAccelerate", KeyCode.DownArrow },
-                { "TurnLeft", KeyCode.LeftArrow },
-                { "TurnRight", KeyCode.RightArrow },
-                { "FireProjectile", KeyCode.RightControl }
+                { KeyActions.Accelerate, KeyCode.UpArrow },
+                { KeyActions.Decelerate, KeyCode.DownArrow },
+                { KeyActions.TurnLeft, KeyCode.LeftArrow },
+                { KeyActions.TurnRight, KeyCode.RightArrow },
+                { KeyActions.FireProjectile, KeyCode.RightControl }
             };
 
             return keyDict;
         }
 
-        private SpaceShipBehaviour SpawnShip(Dictionary<String, KeyCode> keybindings, InputPadBehaviour padBehaviour, String shipName, Color color, TextMeshProUGUI junkKillCounter)
+        private SpacecraftBehaviour SpawnShip(Spacecraft spacecraft, Dictionary<String, KeyCode> keybindings, InputPadBehaviour padBehaviour, String shipName, Color color, TextMeshProUGUI junkKillCounter)
         {
             var ship = Instantiate(ShipTemplate, ShipTemplate.transform.parent.parent.Find("Instances"));
 
-            var spacecraft = Base.Core.Game.State.Spacecraft;
-
-            var shipBehaviour = ship.GetComponent<SpaceShipBehaviour>();
+            var shipBehaviour = ship.GetComponent<SpacecraftBehaviour>();
 
             padBehaviour.Init(shipBehaviour);
 
@@ -139,10 +154,10 @@ namespace Assets.Scripts.Scenes.Space
             Time.timeScale = 1;
         }
 
-        public void TriggerGameOver(SpaceShipBehaviour spaceShipBehaviour)
+        public void TriggerGameOver(SpacecraftBehaviour spaceShipBehaviour)
         {
             Base.Core.Game.State.DeadShips.Add(spaceShipBehaviour.gameObject.name, spaceShipBehaviour.DeathMessage);
-            spaceShipBehaviours.Remove(spaceShipBehaviour);
+            playerSpacecraftBehaviours.Remove(spaceShipBehaviour);
             StartCoroutine(CheckSurvivorCount());
         }
 
@@ -150,7 +165,7 @@ namespace Assets.Scripts.Scenes.Space
         {
             yield return new WaitForSeconds(3);
 
-            if (spaceShipBehaviours.Count <= Base.Core.Game.State.Mode.RequiredSurvivors)
+            if (playerSpacecraftBehaviours.Count <= Base.Core.Game.State.Mode.RequiredSurvivors)
             {
                 Base.Core.Game.ChangeScene(Constants.SceneNames.GameOver);
             }

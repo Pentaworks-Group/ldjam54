@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 
+using Assets.Scripts.Constants;
+
 using UnityEngine;
 
 namespace Assets.Scripts.Scenes.Space
@@ -30,7 +32,7 @@ namespace Assets.Scripts.Scenes.Space
                 light.intensity = star.LightIntensity;
             }
 
-            gameObject.tag = "Sun";
+            gameObject.tag = GameObjectTags.Sun;
         }
 
         private void FixedUpdate()

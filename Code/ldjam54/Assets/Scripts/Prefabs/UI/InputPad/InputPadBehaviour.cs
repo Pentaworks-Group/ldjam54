@@ -4,9 +4,9 @@ namespace Assets.Scripts.Scenes.Space.InputHandling
 {
     public class InputPadBehaviour : MonoBehaviour
     {
-        private SpaceShipBehaviour shipBehaviour;
+        private SpacecraftBehaviour shipBehaviour;
 
-        public void Init(SpaceShipBehaviour shipBehaviour)
+        public void Init(SpacecraftBehaviour shipBehaviour)
         {
             this.shipBehaviour = shipBehaviour;
             gameObject.SetActive(true);
@@ -14,7 +14,7 @@ namespace Assets.Scripts.Scenes.Space.InputHandling
 
         public void OnButtonBottomMiddle()
         {
-            shipBehaviour.DeAccelerate();
+            shipBehaviour.Decelerate();
         }
 
         public void OnButtonMiddleMiddle()

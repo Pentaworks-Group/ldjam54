@@ -30,7 +30,7 @@ namespace Assets.Scripts.Scenes.Space
         //    }
         //}
 
-        public void SpawnProjectile(SpaceShipBehaviour source)
+        public void SpawnProjectile(SpacecraftBehaviour source)
         {
             var newProjectile = Instantiate(template, instanceParent);
             var sourceTransform = source.transform;

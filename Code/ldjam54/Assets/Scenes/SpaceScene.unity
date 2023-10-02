@@ -2024,14 +2024,19 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 14cad0c6e1603a24ca2f728302704a39, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 894727760}
+      addedObject: {fileID: 894727765}
   m_SourcePrefab: {fileID: 100100000, guid: 14cad0c6e1603a24ca2f728302704a39, type: 3}
 --- !u!1 &894727759 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 14cad0c6e1603a24ca2f728302704a39, type: 3}
   m_PrefabInstance: {fileID: 894727758}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &894727760
+--- !u!4 &894727764 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 14cad0c6e1603a24ca2f728302704a39, type: 3}
+  m_PrefabInstance: {fileID: 894727758}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &894727765
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2040,7 +2045,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 894727759}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94c0f8512c9408445ab0f0504f0456f6, type: 3}
+  m_Script: {fileID: 11500000, guid: d997d0b7410bcc243862131bd7087c84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spaceBehaviour: {fileID: 1913412566}
@@ -2048,11 +2053,6 @@ MonoBehaviour:
   gravityCenter: {fileID: 1513976821}
   energyBar: {fileID: 7663171}
   burnerParticles: {fileID: 401344942}
---- !u!4 &894727764 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 14cad0c6e1603a24ca2f728302704a39, type: 3}
-  m_PrefabInstance: {fileID: 894727758}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &912109237
 GameObject:
   m_ObjectHideFlags: 0
@@ -2272,7 +2272,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.15
+  m_fontSize: 29.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

@@ -64,7 +64,8 @@ namespace Assets.Scripts.Core
                 CreatedOn = DateTime.Now,
                 CurrentScene = Constants.SceneNames.Space,
                 Mode = ConvertGameMode(SelectedGameMode),
-                Spacecraft = ConvertSpacecraft(SelectedGameMode.PlayerSpacecrafts.GetRandomEntry()),
+                PlayerSpacecraft = ConvertSpacecrafts(SelectedGameMode.PlayerSpacecrafts),
+                Spacecrafts = ConvertSpacecrafts(SelectedGameMode.Spacecrafts),
                 Skybox = GenerateRandomSkybox()
             };
 
@@ -130,8 +131,8 @@ namespace Assets.Scripts.Core
             };
 
             gameMode.Star = ConvertStar(selectedGameMode.Stars.GetRandomEntry());
-            gameMode.PlayerSpacecraft = ConvertSpacecraft(selectedGameMode.PlayerSpacecrafts.GetRandomEntry());
             gameMode.Spacecrafts = ConvertSpacecrafts(selectedGameMode.Spacecrafts);
+            gameMode.PlayerSpacecraft = ConvertSpacecraft(selectedGameMode.PlayerSpacecrafts.GetRandomEntry());
 
             return gameMode;
         }
@@ -196,7 +197,7 @@ namespace Assets.Scripts.Core
                 Seed = UnityEngine.Random.Range(10, 1000),
                 //SkyColor = new GameFrame.Core.Media.Color(1,1,1,1),
                 //StarSizeRange = new Vector2
-                
+
             };
 
             return skyboxShader;

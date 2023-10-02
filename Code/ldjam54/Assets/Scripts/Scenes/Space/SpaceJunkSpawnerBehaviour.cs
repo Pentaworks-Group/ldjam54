@@ -119,9 +119,9 @@ namespace Assets.Scripts.Scenes.Space
                     }
                 }
 
-                if (this.spaceBehaviour?.spaceShipBehaviours?.Count > 0)
+                if (this.spaceBehaviour?.playerSpacecraftBehaviours?.Count > 0)
                 {
-                    foreach (var spaceShipBehaviour in this.spaceBehaviour.spaceShipBehaviours)
+                    foreach (var spaceShipBehaviour in this.spaceBehaviour.playerSpacecraftBehaviours)
                     {
                         if (spaceShipBehaviour.TryGetComponent<Collider>(out var spacecraftCollider))
                         {
