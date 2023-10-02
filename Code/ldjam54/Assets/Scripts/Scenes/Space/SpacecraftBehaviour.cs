@@ -94,6 +94,7 @@ namespace Assets.Scripts.Scenes.Space
 
             if (t.x > 100 || t.x < -100 || t.z > 100 || t.z < -100)
             {
+                GameFrame.Base.Audio.Effects.Play("ShootingStars");
                 TriggerGameOver("Tried to think out of the box");
             }
         }
@@ -238,7 +239,10 @@ namespace Assets.Scripts.Scenes.Space
                 gameObject.transform.Find("Explosion").gameObject.SetActive(true);
                 gameObject.transform.Find("Model").gameObject.SetActive(false);
                 gameObject.transform.Find("Canvas").gameObject.SetActive(false);
+
+                GameFrame.Base.Audio.Effects.PlayAt("Explosion_Spacecraft", this.transform.position);
                 Destroy(gameObject, 3);
+
                 spacecraft.Velocity = GameFrame.Core.Math.Vector3.Zero;
                 Rb.velocity = Vector3.zero;
                 Rb.constraints = RigidbodyConstraints.FreezeAll;
@@ -255,7 +259,7 @@ namespace Assets.Scripts.Scenes.Space
                 spacecraft.Velocity = Rb.velocity.ToFrame();
                 spacecraft.CurrentEnergy -= spacecraft.AccelerationEnergyConsumption;
 
-                GameFrame.Base.Audio.Effects.PlayAt(GameFrame.Base.Resources.Manager.Audio.Get("RocketEngine_Firing_Middle"), this.transform.position);
+                GameFrame.Base.Audio.Effects.PlayAt("RocketEngine_Firing_Middle", this.transform.position);
                 burnerParticles.Play();
             }
         }
@@ -269,7 +273,7 @@ namespace Assets.Scripts.Scenes.Space
                 spacecraft.Velocity = Rb.velocity.ToFrame();
                 spacecraft.CurrentEnergy -= spacecraft.DecelerationEnergyConsumption;
 
-                GameFrame.Base.Audio.Effects.PlayAt(GameFrame.Base.Resources.Manager.Audio.Get("RCS_Firing_Middle"), this.transform.position);
+                GameFrame.Base.Audio.Effects.PlayAt("RCS_Firing_Middle", this.transform.position);
             }
         }
 
@@ -282,7 +286,7 @@ namespace Assets.Scripts.Scenes.Space
                 spacecraft.Velocity = Rb.velocity.ToFrame();
                 spacecraft.CurrentEnergy -= spacecraft.TurnRateEnergyConsuption;
 
-                GameFrame.Base.Audio.Effects.PlayAt(GameFrame.Base.Resources.Manager.Audio.Get("RCS_Firing_Start"), this.transform.position);
+                GameFrame.Base.Audio.Effects.PlayAt("RCS_Firing_Start", this.transform.position);
             }
         }
 
@@ -295,7 +299,7 @@ namespace Assets.Scripts.Scenes.Space
                 spacecraft.Velocity = Rb.velocity.ToFrame();
                 spacecraft.CurrentEnergy -= spacecraft.TurnRateEnergyConsuption;
 
-                GameFrame.Base.Audio.Effects.PlayAt(GameFrame.Base.Resources.Manager.Audio.Get("RCS_Firing_Start"), this.transform.position);
+                GameFrame.Base.Audio.Effects.PlayAt("RCS_Firing_Start", this.transform.position);
             }
         }
 
@@ -307,7 +311,7 @@ namespace Assets.Scripts.Scenes.Space
                 spacecraft.CurrentEnergy -= spacecraft.WeaponEnergyConsumption;
                 spacecraft.WeaponCooldown = spacecraft.WeaponsRateOfFire;
 
-                GameFrame.Base.Audio.Effects.PlayAt(GameFrame.Base.Resources.Manager.Audio.Get("ProjectileFired"), this.transform.position);
+                GameFrame.Base.Audio.Effects.PlayAt("ProjectileFired", this.transform.position);
             }
         }
 

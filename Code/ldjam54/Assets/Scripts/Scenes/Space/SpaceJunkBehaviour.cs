@@ -33,6 +33,8 @@ namespace Assets.Scripts.Scenes.Space
             if (position.x > 100 || position.x < -100 || position.z > 100 || position.z < -100)
             {
                 Base.Core.Game.State.SpaceJunks.Remove(spaceJunk);
+                GameFrame.Base.Audio.Effects.PlayAt("Explosion_Junk", this.transform.position);
+
                 Destroy(gameObject);
             }
             else
@@ -50,6 +52,7 @@ namespace Assets.Scripts.Scenes.Space
                 gameObject.transform.Find("Explosion").gameObject.SetActive(true);
                 modelGameObject.SetActive(false);
                 Base.Core.Game.State.SpaceJunks.Remove(spaceJunk);
+                GameFrame.Base.Audio.Effects.PlayAt("Explosion_Junk", this.transform.position);
                 Destroy(gameObject, 3);
                 Rb.velocity = Vector3.zero;
                 Rb.constraints = RigidbodyConstraints.FreezeAll;
