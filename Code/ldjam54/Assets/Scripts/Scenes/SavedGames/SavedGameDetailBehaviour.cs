@@ -64,6 +64,7 @@ namespace Assets.Scripts.Scenes.SavedGames
         public void LoadGame()
         {
             Base.Core.Game.PlayButtonSound();
+            Time.timeScale = 1.0f;
             Base.Core.Game.LoadSavedGame(key);
         }
 

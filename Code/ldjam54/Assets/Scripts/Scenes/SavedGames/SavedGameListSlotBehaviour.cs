@@ -6,6 +6,7 @@ using GameFrame.Core.UI.List;
 
 using TMPro;
 
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Scenes.SavedGames
@@ -57,6 +58,7 @@ namespace Assets.Scripts.Scenes.SavedGames
         public void LoadGame()
         {
             Base.Core.Game.PlayButtonSound();
+            Time.timeScale = 1.0f;
             Base.Core.Game.LoadSavedGame(content.Key);
         }
     }
