@@ -71,7 +71,7 @@ namespace Assets.Scripts.Scenes.Space
                     break;
 
                 case GameObjectTags.Ship:
-                    TriggerGameOver("Never go alone. Together forever with " + other.name);
+                    TriggerGameOver("Never go alone. Together forever with " + other.transform.parent.name);
                     break;
 
                 case GameObjectTags.Sun:
@@ -130,7 +130,8 @@ namespace Assets.Scripts.Scenes.Space
 
         private void InitShip()
         {
-            gameObject.tag = GameObjectTags.Ship;
+            transform.Find("Model").gameObject.tag = GameObjectTags.Ship;
+            
 
             var position = spacecraft.Position.ToUnity();
 
