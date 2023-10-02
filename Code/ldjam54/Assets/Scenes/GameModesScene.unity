@@ -251,7 +251,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1112137428}
+      - m_Target: {fileID: 1112137427}
         m_TargetAssemblyTypeName: Assets.Scripts.Scenes.GameModes.GameModesBehaviour,
           Assembly-CSharp
         m_MethodName: StartSelectedGame
@@ -287,7 +287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
-  gameModeBehaviour: {fileID: 1112137428}
+  gameModeBehaviour: {fileID: 1112137427}
 --- !u!114 &121656684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -989,7 +989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NumDisplayedSlots: 5
-  gameModeBehaviour: {fileID: 1112137428}
+  gameModeBehaviour: {fileID: 1112137427}
 --- !u!1 &931455086
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,7 +1251,7 @@ PrefabInstance:
     - target: {fileID: 5306721249535304996, guid: 5af1972d0fa96a846b46ab227f52e02c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1112137428}
+      objectReference: {fileID: 1112137427}
     - target: {fileID: 5306721249535304996, guid: 5af1972d0fa96a846b46ab227f52e02c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1283,19 +1283,31 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4343750656532501571, guid: 5af1972d0fa96a846b46ab227f52e02c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1785806546}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4110042594290172172, guid: 5af1972d0fa96a846b46ab227f52e02c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1112137427}
   m_SourcePrefab: {fileID: 100100000, guid: 5af1972d0fa96a846b46ab227f52e02c, type: 3}
---- !u!114 &1112137428 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5051658503508402019, guid: 5af1972d0fa96a846b46ab227f52e02c, type: 3}
+--- !u!1 &1112137426 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4110042594290172172, guid: 5af1972d0fa96a846b46ab227f52e02c, type: 3}
   m_PrefabInstance: {fileID: 1112137425}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+--- !u!114 &1112137427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112137426}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72ad5f4ec28883e40bad12490b585222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameText: {fileID: 931455088}
+  descriptionText: {fileID: 217458709}
+  selectedStartButton: {fileID: 34424943}
 --- !u!1 &1250977418
 GameObject:
   m_ObjectHideFlags: 0

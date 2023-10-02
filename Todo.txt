@@ -24,12 +24,15 @@ Todo:
  -
        
  UI: 
+ - fill tutorial
  - Credits
  - SavedGames
  - GameModes
  - Overhaul SpaceScene (Background, Buttons, ....)
  - use fitter for pausemenu
+ - adapt list container graphics
  - SpaceScene - Load Shader values.
+ - auto textsize ignore tooltips or set tooltip size
    
  Audio:
  - Background
