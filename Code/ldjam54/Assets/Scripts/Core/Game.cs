@@ -165,7 +165,7 @@ namespace Assets.Scripts.Core
                 TurnRateEnergyConsuption = definition.TurnRateEnergyConsuption.GetValueOrDefault(),
                 IsWeaponized = definition.IsWeaponized.GetValueOrDefault(),
                 WeaponsRateOfFire = definition.WeaponsRateOfFire.GetValueOrDefault(),
-                WeaponEnergyConsumption = definition.WeaponEnergyConsumption.GetValueOrDefault(),
+                WeaponsEnegryConsumption = definition.WeaponsEnegryConsumption.GetValueOrDefault(),
                 Mass = definition.Mass.GetValueOrDefault(),
                 Model = definition.Models.GetRandomEntry(),
                 Material = definition.Materials.GetRandomEntry(),

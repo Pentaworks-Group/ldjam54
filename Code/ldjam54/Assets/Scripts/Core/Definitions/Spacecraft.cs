@@ -17,7 +17,7 @@ namespace Assets.Scripts.Core.Definitions
         public Double? DecelerationEnergyConsumption { get; set; }
         public Boolean? IsWeaponized { get; set; }
         public Double? WeaponsRateOfFire { get; set; }
-        public Double? WeaponEnergyConsumption { get; set; }
+        public Double? WeaponsEnegryConsumption { get; set; }
         public Double? Mass { get; set; }
 
         public List<String> Models { get; set; }

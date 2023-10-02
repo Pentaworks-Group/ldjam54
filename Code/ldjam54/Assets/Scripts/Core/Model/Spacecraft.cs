@@ -18,7 +18,7 @@ namespace Assets.Scripts.Core.Model
         public Double TurnRateEnergyConsuption { get; set; }
         public Boolean IsWeaponized { get; set; }
         public Double WeaponsRateOfFire { get; set; }
-        public Double WeaponEnergyConsumption { get; set; }
+        public Double WeaponsEnegryConsumption { get; set; }
         public Double Mass { get; set; }
 
         public Double CurrentEnergy { get; set; }
