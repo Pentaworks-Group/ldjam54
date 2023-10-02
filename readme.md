@@ -20,11 +20,5 @@ There are none - but a variety of game-over ones... or is there?
 ## Known issues
 - WebGL - Play in fullscreen, there are some text scaling issues
 
-## Screenshots
-
-
-![Screenshot-space.png](///raw/38f/83/z/5e169.png)
-
-
 ## Changelog
 - LDJam - the version to be rated
