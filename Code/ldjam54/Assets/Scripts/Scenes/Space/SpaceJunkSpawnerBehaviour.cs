@@ -98,6 +98,8 @@ namespace Assets.Scripts.Scenes.Space
             var modelGameObject = Instantiate(template, newSpaceJunk.transform);
 
             var spaceJunkBehaviour = newSpaceJunk.GetComponent<SpaceJunkBehaviour>();
+
+            spaceBehaviour.RegisterSpaceJunk(spaceJunkBehaviour);
             spaceJunkBehaviour.SetModel(spaceJunk, modelGameObject);
 
             if (!spaceJunk.Position.HasValue)

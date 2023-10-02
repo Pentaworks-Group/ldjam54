@@ -35,12 +35,14 @@ namespace Assets.Scripts.Scenes.Space
         private ParticleSystem burnerFrontParticles;
         private TextMeshProUGUI junkKillCountDisplay;
 
-        private Spacecraft spacecraft;
+        public Spacecraft spacecraft { get; private set; }
 
         private readonly Dictionary<KeyCode, ContinousKey> keyInteraction = new Dictionary<KeyCode, ContinousKey>();
 
         private bool isDead = false;
         private int junkKillCount = 0;
+        private float junkKillUpdate = 0;
+        private float energyBarUpdate = 0;
 
         public String DeathMessage { get; private set; }
 
@@ -56,13 +58,17 @@ namespace Assets.Scripts.Scenes.Space
                     spacecraft.WeaponCooldown -= Time.deltaTime;
                 }
 
-                spacecraft.Position = this.transform.position.ToFrame();
-                spacecraft.Velocity = Rb.velocity.ToFrame();
-                spacecraft.Rotation = transform.rotation.eulerAngles.ToFrame();
 
                 UpdateJunkKillDisplay();
                 OutOfBoundCheck();
             }
+        }
+
+        public void SerializeState()
+        {
+            spacecraft.Position = this.transform.position.ToFrame();
+            spacecraft.Velocity = Rb.velocity.ToFrame();
+            spacecraft.Rotation = transform.rotation.eulerAngles.ToFrame();
         }
 
         private void OnTriggerEnter(Collider collider)
@@ -115,8 +121,15 @@ namespace Assets.Scripts.Scenes.Space
             {
                 TriggerGameOver("You forgot to eat and ran out of energy");
             }
-
-            energyBar.anchorMax = new Vector2((float)(spacecraft.CurrentEnergy / spacecraft.EnergyCapacity), 1);
+            if (energyBarUpdate < 0)
+            {
+                energyBar.anchorMax = new Vector2((float)(spacecraft.CurrentEnergy / spacecraft.EnergyCapacity), 1);
+                energyBarUpdate = 0.2f;
+            }
+            else
+            {
+                energyBarUpdate -= Time.deltaTime;
+            }
         }
 
         private void CheckKeys()
@@ -340,7 +353,14 @@ namespace Assets.Scripts.Scenes.Space
 
         private void UpdateJunkKillDisplay()
         {
-            junkKillCountDisplay.text = junkKillCount.ToString();
+            if (junkKillUpdate < 0)
+            {
+                junkKillCountDisplay.text = junkKillCount.ToString();
+                junkKillUpdate = 1;
+            } else
+            {
+                junkKillUpdate -= Time.deltaTime;
+            }
         }
     }
 }

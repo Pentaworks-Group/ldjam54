@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.00000028838008, g: 0.059997737, b: 0.11999545, a: 1}
+  m_IndirectSpecularColor: {r: 0.000043593976, g: 0.060048245, b: 0.12003567, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6112,6 +6112,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &631608996 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 150234829049567140, guid: ea658807be36e2f4791b62353e8271c5, type: 3}
+  m_PrefabInstance: {fileID: 722092701}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ded2841f64966df44bacefdb28bd5c1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &635445521
 GameObject:
   m_ObjectHideFlags: 0
@@ -6477,6 +6488,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: -37.46662
       objectReference: {fileID: 0}
+    - target: {fileID: 3419666978994244910, guid: ea658807be36e2f4791b62353e8271c5, type: 3}
+      propertyPath: spaceBehaviour
+      value: 
+      objectReference: {fileID: 1913412566}
     - target: {fileID: 3997138373246794373, guid: ea658807be36e2f4791b62353e8271c5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OpenTutorial
@@ -6488,6 +6503,42 @@ PrefabInstance:
     - target: {fileID: 4881762453490254551, guid: ea658807be36e2f4791b62353e8271c5, type: 3}
       propertyPath: m_SizeDelta.y
       value: -37.46662
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272067350304075732, guid: ea658807be36e2f4791b62353e8271c5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272067350304075732, guid: ea658807be36e2f4791b62353e8271c5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272067350304075732, guid: ea658807be36e2f4791b62353e8271c5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1913412566}
+    - target: {fileID: 5272067350304075732, guid: ea658807be36e2f4791b62353e8271c5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 631608996}
+    - target: {fileID: 5272067350304075732, guid: ea658807be36e2f4791b62353e8271c5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272067350304075732, guid: ea658807be36e2f4791b62353e8271c5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SaveGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272067350304075732, guid: ea658807be36e2f4791b62353e8271c5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Assets.Scripts.Scenes.Space.SpaceBehaviour, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272067350304075732, guid: ea658807be36e2f4791b62353e8271c5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Assets.Scripts.Scene.SaveGame.SavedGameListBehaviour, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272067350304075732, guid: ea658807be36e2f4791b62353e8271c5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7016828543276112029, guid: ea658807be36e2f4791b62353e8271c5, type: 3}
       propertyPath: m_Name
@@ -7358,7 +7409,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.15
+  m_fontSize: 25.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8294,6 +8345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa3b87b26659bbc4893fbdd088e18174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spaceBehaviour: {fileID: 1913412566}
 --- !u!1001 &1802149377
 PrefabInstance:
   m_ObjectHideFlags: 0

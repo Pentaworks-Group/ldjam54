@@ -54,6 +54,7 @@ Nice to have:
  - health
  - suicide button with own message
  - drag & drop scroll bar in lists
+ - improve touch control, maybe change button layout for 2 hand?
  
 Ideas:
 ----------------------------------
