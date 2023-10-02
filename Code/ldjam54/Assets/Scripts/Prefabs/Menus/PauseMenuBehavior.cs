@@ -41,7 +41,6 @@ namespace Assets.Scripts.Prefabs.Menus
             backButton = transform.Find("ToggleArea/Background/Background/Header/Back").GetComponent<Button>();
             continueButton = transform.Find("ToggleArea/Background/Background/Header/Continue").GetComponent<Button>();
 
-
             currentOpenMenu = transform.Find("ToggleArea/Background/Background/Header/Openmenu").GetComponent<Text>();
         }
 
@@ -58,7 +57,6 @@ namespace Assets.Scripts.Prefabs.Menus
             }
         }
 
-
         private void HandleEsc()
         {
             if (openSubMenues.Count > 0)
@@ -73,13 +71,12 @@ namespace Assets.Scripts.Prefabs.Menus
             }
         }
 
-
         public void OpenTutorial()
         {
             Tutorial.SetActive(true);
             menuToggle.SetActive(false);
+
             OpeningSubMenu(CloseTutorial);
-            Base.Core.Game.PlayButtonSound();
         }
 
         public void CloseTutorial()

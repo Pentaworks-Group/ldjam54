@@ -126,7 +126,7 @@ namespace Assets.Scripts.Prefabs.Menues.Book
                 this.indexPageButton.SetActive(canOpenPreviousPage);
                 this.pageForwardButton.SetActive(canOpenNextPage);
 
-                GameFrame.Base.Audio.Effects.Play("PageFlip");
+                GameFrame.Base.Audio.Effects.Play("Blip");
             }
         }
 

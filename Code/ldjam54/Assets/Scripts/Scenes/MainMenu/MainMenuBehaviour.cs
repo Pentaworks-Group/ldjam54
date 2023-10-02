@@ -64,7 +64,6 @@ namespace Assets.Scripts.Scenes.MainMenu
 
         public void ShowTutorial()
         {
-            Base.Core.Game.PlayButtonSound();
             Tutorial.SetActive(true);
             Menu.SetActive(false);
         }
