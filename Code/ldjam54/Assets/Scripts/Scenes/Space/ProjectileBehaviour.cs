@@ -30,14 +30,14 @@ namespace Assets.Scripts.Scenes.Space
         private void OnTriggerEnter(Collider other)
         {
             var tag = other.tag;
+
             switch (tag)
             {
-                case "Junk":
+                case GameObjectTags.Junk:
                     source.IncreaseJunkKillCount();
                     break;
-                default:
-                    break;
             }
+
             Destroy(this.gameObject);
         }
 

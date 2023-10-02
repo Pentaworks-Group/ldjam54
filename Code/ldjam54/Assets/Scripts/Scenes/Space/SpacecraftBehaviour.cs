@@ -328,13 +328,21 @@ namespace Assets.Scripts.Scenes.Space
 
         public void FireProjectile()
         {
-            if (!isDead && spacecraft.CurrentEnergy > spacecraft.WeaponEnergyConsumption && spacecraft.WeaponCooldown <= 0)
+            if (!isDead)
             {
-                projectileSpawnerBehaviour.SpawnProjectile(this);
-                spacecraft.CurrentEnergy -= spacecraft.WeaponEnergyConsumption;
-                spacecraft.WeaponCooldown = spacecraft.WeaponsRateOfFire;
+                if (spacecraft.CurrentEnergy > spacecraft.WeaponsEnegryConsumption && spacecraft.WeaponCooldown <= 0)
+                {
+                    projectileSpawnerBehaviour.SpawnProjectile(this);
+                    spacecraft.CurrentEnergy -= spacecraft.WeaponsEnegryConsumption;
+                    spacecraft.WeaponCooldown = spacecraft.WeaponsRateOfFire;
 
-                GameFrame.Base.Audio.Effects.PlayAt("ProjectileFired", this.transform.position);
+                    GameFrame.Base.Audio.Effects.PlayAt("ProjectileFired", this.transform.position);
+                }
+                //else
+                //{
+                //    // Disabled as fired to often
+                //    GameFrame.Base.Audio.Effects.PlayAt("Error", this.transform.position);
+                //}
             }
         }
 

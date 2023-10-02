@@ -56,20 +56,50 @@ namespace Assets.Scripts
         {
             if ((isAwake) && (this.Skybox != default))
             {
-                skyboxMaterial.SetFloat(seedProperty, Skybox.Seed);
-                skyboxMaterial.SetColor(skyColorProperty, Skybox.SkyColor.ToUnity());
-                skyboxMaterial.SetColor(starColorProperty, Skybox.StarColor.ToUnity());
-                skyboxMaterial.SetVector(starSizeProperty, Skybox.StarSize.ToUnity());
-                skyboxMaterial.SetFloat(layersProperty, Skybox.Layers);
-                skyboxMaterial.SetFloat(densityProperty, Skybox.Density);
-                skyboxMaterial.SetFloat(densityModulationProperty, Skybox.DensityModulation);
-                skyboxMaterial.SetFloat(brigntnessProperty, Skybox.Contrast);
-                skyboxMaterial.SetFloat(brightnessModulationProperty, Skybox.BrightnessModulation);
-                skyboxMaterial.SetColor(skyFogColorProperty, Skybox.SkyFogColor.ToUnity());
-                skyboxMaterial.SetFloat(noiseDensityProperty, Skybox.NoiseDensity);
-                skyboxMaterial.SetVector(noiseParametersProperty, Skybox.NoiseParameters.ToUnity());
-                skyboxMaterial.SetVector(noiseMaskParametersProperty, Skybox.BackgroundMaskParameters.ToUnity());
-                skyboxMaterial.SetVector(noiseCutParametersProperty, Skybox.BackgroundCutParameters.ToUnity());
+                UpdateProperty(seedProperty, Skybox.Seed);
+                UpdateProperty(skyColorProperty, Skybox.SkyColor.ToUnity());
+                UpdateProperty(starColorProperty, Skybox.StarColor.ToUnity());
+                UpdateProperty(starSizeProperty, Skybox.StarSize.ToUnity());
+                UpdateProperty(layersProperty, Skybox.Layers);
+                UpdateProperty(densityProperty, Skybox.Density);
+                UpdateProperty(densityModulationProperty, Skybox.DensityModulation);
+                UpdateProperty(brigntnessProperty, Skybox.Contrast);
+                UpdateProperty(brightnessModulationProperty, Skybox.BrightnessModulation);
+                UpdateProperty(skyFogColorProperty, Skybox.SkyFogColor.ToUnity());
+                UpdateProperty(noiseDensityProperty, Skybox.NoiseDensity);
+                UpdateProperty(noiseParametersProperty, Skybox.NoiseParameters.ToUnity());
+                UpdateProperty(noiseMaskParametersProperty, Skybox.BackgroundMaskParameters.ToUnity());
+                UpdateProperty(noiseCutParametersProperty, Skybox.BackgroundCutParameters.ToUnity());
+            }
+        }
+
+        private void UpdateProperty(Int32 propertyIndex, float newValue)
+        {
+            var currentValue = skyboxMaterial.GetFloat(propertyIndex);
+
+            if (!Equals(currentValue, newValue))
+            {
+                skyboxMaterial.SetFloat(propertyIndex, newValue);
+            }
+        }
+
+        private void UpdateProperty(Int32 propertyIndex, Color newValue)
+        {
+            var currentValue = skyboxMaterial.GetColor(propertyIndex);
+
+            if (!Equals(currentValue,newValue))
+            {
+                skyboxMaterial.SetColor(propertyIndex, newValue);
+            }
+        }
+
+        private void UpdateProperty(Int32 propertyIndex, UnityEngine.Vector4 newValue)
+        {
+            var currentValue = skyboxMaterial.GetVector(propertyIndex);
+
+            if (!Equals(currentValue, newValue))
+            {
+                skyboxMaterial.SetVector(propertyIndex, newValue);
             }
         }
     }

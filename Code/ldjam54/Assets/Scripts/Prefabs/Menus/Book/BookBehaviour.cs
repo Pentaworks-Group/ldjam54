@@ -8,9 +8,15 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.Prefabs.Menues.Book
 {
+    [RequireComponent(typeof(TextAutoSizeController))]
     public class BookBehaviour : MonoBehaviour
     {
         public bool ShouldGenerateIndexPage = false;
+
+        [SerializeField]
+        private TextAutoSizeController pageTitleTextSizeController;
+        [SerializeField]
+        private TextAutoSizeController indexPageLinkTextSizeController;
 
         private Int32 currentPageIndex = -1;
         private GameObject pageBackButton;
@@ -19,14 +25,12 @@ namespace Assets.Scripts.Prefabs.Menues.Book
 
         private List<PageBehaviour> pages;
         private PageBehaviour currentPage;
-        //private TextAutoSizeController textAutoSizeController;
 
         public void Awake()
         {
             this.pageBackButton = this.transform.Find("PageButtons/PageBackContainer/PageBackButton").gameObject;
             this.indexPageButton = this.transform.Find("PageButtons/IndexPageButton").gameObject;
             this.pageForwardButton = this.transform.Find("PageButtons/PageForwardContainer/PageForwardButton").gameObject;
-            //this.textAutoSizeController = GetComponent<TextAutoSizeController>();
 
             LoadPages();
 
@@ -41,10 +45,16 @@ namespace Assets.Scripts.Prefabs.Menues.Book
         private void LoadPages()
         {
             this.pages = new List<PageBehaviour>();
+
             foreach (Transform child in this.transform.Find("PageArea"))
             {
                 var pageBehaviour = child.gameObject.GetComponent<PageBehaviour>();
+
                 pageBehaviour.SetPageBehaviour(this);
+
+                pageTitleTextSizeController.AddLabel(pageBehaviour.transform.Find("LeftArea/PageTitle").GetComponent<TMP_Text>());
+                pageTitleTextSizeController.AddLabel(pageBehaviour.transform.Find("RightArea/PageTitle").GetComponent<TMP_Text>());
+
                 pages.Add(pageBehaviour);
             }
         }
@@ -63,6 +73,9 @@ namespace Assets.Scripts.Prefabs.Menues.Book
             var indexPage = Instantiate(template, pageArea);
 
             var numPages = Math.Min(5, pages.Count);
+
+            pageTitleTextSizeController.AddLabel(indexPage.transform.transform.Find("LeftArea/PageTitle").GetComponent<TMP_Text>());
+
             var buttonTemplate = indexPage.transform.Find("LeftArea/LeftAreaContent/Button").GetComponent<Button>();
 
             var relativeSize = 0.2f;
@@ -81,8 +94,6 @@ namespace Assets.Scripts.Prefabs.Menues.Book
 
             pages.Insert(0, indexPage.GetComponent<PageBehaviour>());
             indexPage.transform.SetSiblingIndex(0);
-
-            //this.textAutoSizeController.Execute();
         }
 
         private void CreateLinks(Int32 numPages, Button buttonTemplate, Single relativeSize, Int32 pageOffset)
@@ -93,11 +104,19 @@ namespace Assets.Scripts.Prefabs.Menues.Book
                 var pageLink = Instantiate(buttonTemplate, buttonTemplate.transform.parent);
                 var text = pageLink.transform.Find("Text").GetComponent<TMP_Text>();
 
-                //textAutoSizeController.AddLabel(text);
+                if (ShouldGenerateIndexPage)
+                {
+                    text.enableAutoSizing = false;
+                    this.indexPageLinkTextSizeController.AddLabel(text);
+                }
 
                 text.text = page.indexName;
+                text.enableWordWrapping = false;
+
                 var rect = pageLink.GetComponent<RectTransform>();
+
                 float top = 1 - (float)i * relativeSize;
+
                 rect.anchorMin = new Vector2(0, top - relativeSize);
                 rect.anchorMax = new Vector2(1, top);
                 pageLink.onClick.AddListener(pages[i].OpenThisPage);
@@ -126,7 +145,7 @@ namespace Assets.Scripts.Prefabs.Menues.Book
                 this.indexPageButton.SetActive(canOpenPreviousPage);
                 this.pageForwardButton.SetActive(canOpenNextPage);
 
-                GameFrame.Base.Audio.Effects.Play("PageFlip");
+                GameFrame.Base.Audio.Effects.Play("Blip");
             }
         }
 

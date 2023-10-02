@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NightSkyShader
+  m_Name: MenuShader
   m_Shader: {fileID: 4800000, guid: 3baef74de0e1a2b41a419a4da72880e5, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -98,12 +98,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _AtmosphereThickness: 1
-    - _Brightness: 1.8333867
-    - _BrightnessMod: 2.4462247
+    - _Brightness: 1.9909122
+    - _BrightnessMod: 2.5216177
     - _BumpScale: 1
     - _Cutoff: 0.5
-    - _Density: 3.380489
-    - _DensityMod: 1.6878303
+    - _Density: 1.0415683
+    - _DensityMod: 2.650578
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnableBackgroundNoise: 1
@@ -113,18 +113,18 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _ImageType: 0
-    - _Layers: 4.0687733
+    - _Layers: 2.7407901
     - _Layout: 0
     - _Mapping: 1
     - _Metallic: 0
     - _MirrorOnBack: 0
     - _Mode: 0
     - _MoonSize: 0.095
-    - _NoiseDensity: 16.352667
+    - _NoiseDensity: 16.656395
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Rotation: 0
-    - _Seed: 879
+    - _Seed: 275
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -145,6 +145,6 @@ Material:
     - _SkyColor: {r: 0, g: 0.06, b: 0.12, a: 1}
     - _SkyFogColor: {r: 0, g: 0.33, b: 0.34, a: 1}
     - _SkyTint: {r: 0.31764707, g: 0.31764707, b: 0.31764707, a: 1}
-    - _StarSizeRange: {r: 0.9815842, g: 2.6305428, b: 0, a: 0}
+    - _StarSizeRange: {r: 1.3749928, g: 1.0497648, b: 0, a: 0}
     - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
   m_BuildTextureStacks: []

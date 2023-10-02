@@ -60,7 +60,9 @@ namespace Assets.Scripts.Scenes.Space
         {
             if (TryGetComponent<SkyboxShaderUpdater>(out var skyboxShaderUpdater))
             {
-                skyboxShaderUpdater.Skybox = Base.Core.Game.State.Skybox;
+                var gameState = Base.Core.Game.State;
+
+                skyboxShaderUpdater.Skybox = gameState.Skybox;
                 skyboxShaderUpdater.UpdateSkybox();
             }
 

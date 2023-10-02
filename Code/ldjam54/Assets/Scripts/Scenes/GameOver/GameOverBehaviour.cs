@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-
 using Assets.Scripts.Scenes.Menues;
 
 using TMPro;
@@ -23,6 +20,7 @@ namespace Assets.Scripts.Scenes.GameOver
             var minY = rectTemplate.anchorMin.y;
             var maxX = rectTemplate.anchorMax.x;
             var maxY = rectTemplate.anchorMax.y;
+
             foreach (var death in deaths)
             {
                 var deathSlot = Instantiate(playerDeathTemplate, playerDeathTemplate.transform.parent);
@@ -32,6 +30,7 @@ namespace Assets.Scripts.Scenes.GameOver
                 deathSlot.transform.Find("Player").GetComponent<TextMeshProUGUI>().text = death.Key;
                 deathSlot.transform.Find("Death").GetComponent<TextMeshProUGUI>().text = death.Value;
                 deathSlot.SetActive(true);
+
                 cnt++;
             }
         }
