@@ -48,7 +48,6 @@ Nice to have:
  - Force Landscape on phones
  - get webgl to close game
  - Win Conditions
- - counter time & killed junk
  - color multiple players: pad
  - health
  - suicide button with own message
