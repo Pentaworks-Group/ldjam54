@@ -17,7 +17,7 @@ namespace Assets.Scripts.Core
             CreatedOn = String.Format("{0:G}", gameState.CreatedOn);
             SavedOn = String.Format("{0:G}", gameState.SavedOn);
             GameMode = gameState.Mode.Name;
-            PlayerCount = gameState.Mode.Spacecrafts.Count.ToString();
+            PlayerCount = gameState.PlayerSpacecrafts.Count.ToString();
             TimeElapsed = String.Format("{0:#0.0}s", gameState.TimeElapsed);
         }
     }

@@ -15,7 +15,7 @@ namespace Assets.Scripts.Core.Model
         public Double JunkSpawnInitialDistance { get; set; }
         public int RequiredSurvivors { get; set; }
         public Star Star { get; set; }
-        public Spacecraft PlayerSpacecraft { get; set; }
+        public List<Spacecraft> PlayerSpacecrafts { get; set; }
         public List<Spacecraft> Spacecrafts { get; set; }
     }
 }

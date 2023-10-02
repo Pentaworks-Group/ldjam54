@@ -68,7 +68,7 @@ namespace Assets.Scripts.Scenes.Space
 
             playerSpacecraftBehaviours = new List<SpacecraftBehaviour>();
 
-            var playerSpacecrafts = Base.Core.Game.State.PlayerSpacecraft;
+            var playerSpacecrafts = Base.Core.Game.State.PlayerSpacecrafts;
 
             for (int i = 0; i < playerSpacecrafts.Count; i++)
             {
