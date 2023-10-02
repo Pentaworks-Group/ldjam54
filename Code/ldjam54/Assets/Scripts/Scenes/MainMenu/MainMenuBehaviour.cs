@@ -60,9 +60,10 @@ namespace Assets.Scripts.Scenes.MainMenu
         {
             GameObject.Find("UI/Fitter/VersionText").GetComponent<TMPro.TMP_Text>().text = $"Version: {Application.version}";
             
-            if (TryGetComponent<SkyBoxShaderUpdater>(out var skyBoxShaderUpdater))
+            if (TryGetComponent<SkyboxShaderUpdater>(out var skyboxShaderUpdater))
             {
-                skyBoxShaderUpdater.Skybox = Base.Core.Game.Skybox;
+                skyboxShaderUpdater.Skybox = Base.Core.Game.Skybox;
+                skyboxShaderUpdater.UpdateSkybox();
             }
         }
     }
