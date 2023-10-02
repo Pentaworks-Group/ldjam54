@@ -40,36 +40,39 @@ namespace Assets.Scripts.Scenes.Space
 
         void Update()
         {
-            foreach (var keyBinding in keyInteraction)
+            if (!isDead)
             {
-
-                if (Input.GetKeyDown(keyBinding.Key))
+                foreach (var keyBinding in keyInteraction)
                 {
-                    keyBinding.Value.KeyDown();
+
+                    if (Input.GetKeyDown(keyBinding.Key))
+                    {
+                        keyBinding.Value.KeyDown();
+                    }
+                    else if (Input.GetKeyUp(keyBinding.Key))
+                    {
+                        keyBinding.Value.KeyUp();
+                    }
                 }
-                else if (Input.GetKeyUp(keyBinding.Key))
+
+                energy -= spacecraft.BaseEnergyConsumption * Time.deltaTime;
+                HarvestEnergy();
+                if (energy < 0)
                 {
-                    keyBinding.Value.KeyUp();
+                    TriggerGameOver("You forgot to eat and ran out of energy");
                 }
-            }
+                energyBar.anchorMax = new Vector2((float)(energy / spacecraft.EnergyCapacity), 1);
 
-            energy -= spacecraft.BaseEnergyConsumption * Time.deltaTime;
-            HarvestEnergy();
-            if (energy < 0)
-            {
-                TriggerGameOver("You forgot to eat and ran out of energy");
-            }
-            energyBar.anchorMax = new Vector2((float)(energy / spacecraft.EnergyCapacity), 1);
+                if (fireCooldown > 0)
+                {
+                    fireCooldown -= Time.deltaTime;
+                }
 
-            if (fireCooldown > 0)
-            {
-                fireCooldown -= Time.deltaTime;
-            }
-
-            Vector3 t = transform.position;
-            if (t.x > 100 || t.x < -100 || t.z > 100 || t.z < -100)
-            {
-                TriggerGameOver("Tried to think out of the box");
+                Vector3 t = transform.position;
+                if (t.x > 100 || t.x < -100 || t.z > 100 || t.z < -100)
+                {
+                    TriggerGameOver("Tried to think out of the box");
+                }
             }
         }
 
