@@ -8,9 +8,7 @@ Color codes:
  - Audio credits to Pixabay (not all!)
 
 Todo:
-----------------------------------
- Name:
- ? T.R.A.I.N.S - ??????
+---------------------------------- 
   
  Bugs: 
  - 
@@ -33,7 +31,7 @@ Todo:
  - use fitter for pausemenu
    
  Audio:
- - Background => Default volumne seems to high...
+ - Background
  - Ambience
  - Effects
   
