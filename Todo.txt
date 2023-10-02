@@ -8,9 +8,7 @@ Color codes:
  - Audio credits to Pixabay (not all!)
 
 Todo:
-----------------------------------
- Name:
- ? T.R.A.I.N.S - ??????
+---------------------------------- 
   
  Bugs: 
  - 
@@ -33,9 +31,10 @@ Todo:
  - Overhaul SpaceScene (Background, Buttons, ....)
  - use fitter for pausemenu
  - adapt list container graphics
+ - SpaceScene - Load Shader values.
    
  Audio:
- - Background => Default volumne seems to high...
+ - Background
  - Ambience
  - Effects
   
