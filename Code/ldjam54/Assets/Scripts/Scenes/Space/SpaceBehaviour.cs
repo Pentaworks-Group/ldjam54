@@ -9,7 +9,6 @@ using Assets.Scripts.Scenes.Space.InputHandling;
 using TMPro;
 
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Assets.Scripts.Scenes.Space
 {
@@ -30,7 +29,6 @@ namespace Assets.Scripts.Scenes.Space
         [SerializeField]
         private TextMeshProUGUI timeElapsedDisplay;
 
-
         public List<SpacecraftBehaviour> playerSpacecraftBehaviours { get; private set; }
         public List<SpaceJunkBehaviour> spaceJunkBehaviours { get; private set; } = new List<SpaceJunkBehaviour>();
 
@@ -44,9 +42,7 @@ namespace Assets.Scripts.Scenes.Space
             }
         }
 
-
         private float timeUpdate = 0;
-
 
         private void Awake()
         {
@@ -125,7 +121,6 @@ namespace Assets.Scripts.Scenes.Space
             Base.Core.Game.SaveGame();
             //callback.Invoke();
         }
-
 
         public void SerializeToGameState()
         {

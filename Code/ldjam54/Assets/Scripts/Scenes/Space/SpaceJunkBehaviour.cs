@@ -4,7 +4,6 @@ using Assets.Scripts.Core.Model;
 using GameFrame.Core.Extensions;
 
 using UnityEngine;
-using UnityEngine.UIElements;
 
 using Vector3 = UnityEngine.Vector3;
 

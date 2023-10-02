@@ -150,7 +150,7 @@ namespace Assets.Scripts.Scenes.Space
         private void InitShip()
         {
             transform.Find("Model").gameObject.tag = GameObjectTags.Ship;
-            
+
 
             var position = spacecraft.Position.ToUnity();
 
@@ -357,7 +357,8 @@ namespace Assets.Scripts.Scenes.Space
             {
                 junkKillCountDisplay.text = junkKillCount.ToString();
                 junkKillUpdate = 1;
-            } else
+            }
+            else
             {
                 junkKillUpdate -= Time.deltaTime;
             }
