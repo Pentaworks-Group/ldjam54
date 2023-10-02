@@ -111,7 +111,7 @@ namespace Assets.Scripts.Prefabs.Menues.Book
                 }
 
                 text.text = page.indexName;
-                text.ForceMeshUpdate();
+                text.enableWordWrapping = false;
 
                 var rect = pageLink.GetComponent<RectTransform>();
 
