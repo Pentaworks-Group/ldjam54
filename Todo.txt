@@ -32,6 +32,7 @@ Todo:
  - use fitter for pausemenu
  - adapt list container graphics
  - SpaceScene - Load Shader values.
+ - auto textsize ignore tooltips or set tooltip size
    
  Audio:
  - Background
