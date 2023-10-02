@@ -68,7 +68,9 @@ namespace Assets.Scripts.Scenes.Space
             spaceShipBehaviours = new List<SpaceShipBehaviour>();
             for (int i = 0; i < length; i++)
             {
-                var behaviour = SpawnShip(keyBindings[i], InputPadBehaviours[i], "Player" + (i + 1), colors[i]);
+
+                var junkKillCounter = killCountDisplays[i];
+                var behaviour = SpawnShip(keyBindings[i], this.InputPadBehaviours[i], "Player" + (i + 1), this.colors[i], junkKillCounter);
                 spaceShipBehaviours.Add(behaviour);
             }
         }
@@ -76,7 +78,7 @@ namespace Assets.Scripts.Scenes.Space
         private void Update()
         {
             Base.Core.Game.State.TimeElapsed += Time.deltaTime;
-            timeElapsedDisplay.text = Base.Core.Game.State.TimeElapsed.ToString();  
+            timeElapsedDisplay.text = Base.Core.Game.State.TimeElapsed.ToString("F1");
         }
 
         private Dictionary<String, KeyCode> GetKeybindingsWASD()
@@ -107,7 +109,7 @@ namespace Assets.Scripts.Scenes.Space
             return keyDict;
         }
 
-        private SpaceShipBehaviour SpawnShip(Dictionary<String, KeyCode> keybindings, InputPadBehaviour padBehaviour, String shipName, Color color)
+        private SpaceShipBehaviour SpawnShip(Dictionary<String, KeyCode> keybindings, InputPadBehaviour padBehaviour, String shipName, Color color, TextMeshProUGUI junkKillCounter)
         {
             var ship = Instantiate(ShipTemplate, ShipTemplate.transform.parent.parent.Find("Instances"));
 
@@ -120,9 +122,11 @@ namespace Assets.Scripts.Scenes.Space
             var shipBehaviour = ship.GetComponent<SpaceShipBehaviour>();
 
             padBehaviour.Init(shipBehaviour);
+
+            junkKillCounter.transform.parent.gameObject.SetActive(true);
             var spaceCraft = Base.Core.Game.State.Spacecraft;
 
-            shipBehaviour.SpawnShip(spaceCraft, keybindings, shipName, color);
+            shipBehaviour.SpawnShip(spaceCraft, keybindings, shipName, color, junkKillCounter);
             ship.SetActive(true);
 
             return shipBehaviour;

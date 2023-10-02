@@ -122,9 +122,10 @@ namespace Assets.Scripts.Scenes.Space
             gameObject.tag = "Ship";
         }
 
-        public void SpawnShip(Spacecraft spacecraft, Dictionary<String, KeyCode> keybindinds, String shipName, Color color)
+        public void SpawnShip(Spacecraft spacecraft, Dictionary<String, KeyCode> keybindinds, String shipName, Color color, TextMeshProUGUI junkKillDisplay)
         {
             InitShip();
+            junkKillCountDisplay = junkKillDisplay;
             this.gameObject.name = shipName;
             this.spacecraft = spacecraft;
             energy = spacecraft.EnergyCapacity;
@@ -237,7 +238,7 @@ namespace Assets.Scripts.Scenes.Space
         {
             if (energy > spacecraft.WeaponEnergyConsumption && fireCooldown <= 0)
             {
-                projectileSpawnerBehaviour.SpawnProjectile(this.transform);
+                projectileSpawnerBehaviour.SpawnProjectile(this);
                 energy -= spacecraft.WeaponEnergyConsumption;
                 fireCooldown = spacecraft.WeaponsRateOfFire;
 

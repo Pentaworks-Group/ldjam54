@@ -35,15 +35,16 @@ namespace Assets.Scripts.Scenes.Space
         //    }
         //}
 
-        public void SpawnProjectile(Transform source)
+        public void SpawnProjectile(SpaceShipBehaviour source)
         {
             var newProjectile = Instantiate(template, instanceParent);
-            newProjectile.transform.SetPositionAndRotation(source.position + source.forward * 0.9f, source.rotation);
+            var sourceTransform = source.transform;
+            newProjectile.transform.SetPositionAndRotation(sourceTransform.position + sourceTransform.forward * 0.9f, sourceTransform.rotation);
             newProjectile.SetActive(true);
 
             var projectileBehaviour = newProjectile.GetComponent<ProjectileBehaviour>();
+            projectileBehaviour.Init(source);
 
-            //gravityBehaviour.Init();
             var rb = projectileBehaviour.Rb;
             rb.mass = 0.01f;
             rb.AddForce(source.transform.forward * speed);
