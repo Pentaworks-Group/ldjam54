@@ -22,8 +22,6 @@ Todo:
  - Load assets from JSON
    
  GamePlay:
- - color multiple players
- - explosion for junk
  - burner particles
        
  UI: 
@@ -51,7 +49,7 @@ Nice to have:
  - get webgl to close game
  - Win Conditions
  - counter time & killed junk
- - death dependent gameover message
+ - color multiple players: pad
  
 Ideas:
 ----------------------------------
