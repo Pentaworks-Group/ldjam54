@@ -4,19 +4,33 @@ using Assets.Scripts.Core;
 
 using GameFrame.Core.UI.List;
 
+using TMPro;
+
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Scenes.SavedGames
 {
     public class SavedGameListSlotBehaviour : ListSlotBehaviour<KeyValuePair<string, SavedGamePreview>>
     {
-        private Text createdOn;
-        private Text timeStamp;
+        private TextAutoSizeController textAutoSizeController;
+        private TMP_Text createdOnText;
+        private TMP_Text timeStampText;
+        private TMP_Text gameModeText;
 
         public override void RudeAwake()
         {
-            createdOn = transform.Find("SlotContainer/Info/Created").GetComponent<Text>();
-            timeStamp = transform.Find("SlotContainer/Info/TimeStamp").GetComponent<Text>();
+            createdOnText = transform.Find("SlotContainer/Info/Created").GetComponent<TMP_Text>();
+            timeStampText = transform.Find("SlotContainer/Info/TimeStamp").GetComponent<TMP_Text>();
+            gameModeText = transform.Find("SlotContainer/Info/GameMode").GetComponent<TMP_Text>();
+
+            if (TryGetComponent<TextAutoSizeController>(out var textAutoSizeController))
+            {
+                textAutoSizeController.AddLabel(createdOnText);
+                textAutoSizeController.AddLabel(timeStampText);
+                textAutoSizeController.AddLabel(gameModeText);
+
+                this.textAutoSizeController = textAutoSizeController;
+            }
         }
 
         public SavedGamePreview GetSavedGamedPreview()
@@ -33,9 +47,11 @@ namespace Assets.Scripts.Scenes.SavedGames
         {
             SavedGamePreview savedGame = GetSavedGamedPreview();
 
-            createdOn.text = savedGame.CreatedOn;
-            timeStamp.text = savedGame.SavedOn;
+            createdOnText.text = savedGame.CreatedOn;
+            timeStampText.text = savedGame.SavedOn;
+            gameModeText.text = savedGame.GameMode;
 
+            textAutoSizeController?.Execute();
         }
 
         public void LoadGame()

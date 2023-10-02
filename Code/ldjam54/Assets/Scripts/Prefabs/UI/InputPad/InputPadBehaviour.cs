@@ -1,10 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-
 
 namespace Assets.Scripts.Scenes.Space.InputHandling
 {
@@ -37,10 +31,10 @@ namespace Assets.Scripts.Scenes.Space.InputHandling
         {
             shipBehaviour.TurnRight();
         }
-        public void OnButtonTopMiddle()
-        {  
-            shipBehaviour.Accelerate(); 
-        }
 
+        public void OnButtonTopMiddle()
+        {
+            shipBehaviour.Accelerate();
+        }
     }
 }
