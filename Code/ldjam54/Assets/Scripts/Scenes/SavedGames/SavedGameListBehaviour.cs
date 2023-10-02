@@ -16,8 +16,6 @@ namespace Assets.Scripts.Scenes.SavedGames
         public Button SaveNewButton;
         public Button DeleteAllButton;
 
-        [SerializeField]
-        private TextAutoSizeController textAutoSizeController;
 
         public override void CustomStart()
         {
@@ -39,7 +37,6 @@ namespace Assets.Scripts.Scenes.SavedGames
             {
                 DeleteAllButton.interactable = savedGames.Count > 0;
             }
-            //textAutoSizeController.ForceChildren();
         }
 
         public void OnDeleteAll()
@@ -52,9 +49,7 @@ namespace Assets.Scripts.Scenes.SavedGames
 
         public void SaveGame()
         {
-            Base.Core.Game.PlayButtonSound();
 
-            Base.Core.Game.SaveGame();
             UpdateList();
         }
     }

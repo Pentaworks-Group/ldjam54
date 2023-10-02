@@ -1,4 +1,5 @@
 using Assets.Scripts.Core;
+using Assets.Scripts.Scenes.Space;
 
 using TMPro;
 
@@ -11,7 +12,9 @@ namespace Assets.Scripts.Scenes.SavedGames
     {
         [SerializeField]
         private SavedGameListBehaviour listBehaviour;
-        
+        [SerializeField]
+        private SpaceBehaviour spaceBehaviour;
+
         [SerializeField]
         private TextAutoSizeController textSizeController;
 
@@ -67,7 +70,7 @@ namespace Assets.Scripts.Scenes.SavedGames
         public void OverrideGame()
         {
             Base.Core.Game.PlayButtonSound();
-
+            spaceBehaviour.SerializeToGameState();
             Base.Core.Game.OverwriteSavedGame(key);
             listBehaviour.UpdateList();
             ClearDetails();

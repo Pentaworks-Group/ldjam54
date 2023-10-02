@@ -9,6 +9,7 @@ using Assets.Scripts.Scenes.Space.InputHandling;
 using TMPro;
 
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Assets.Scripts.Scenes.Space
 {
@@ -31,6 +32,7 @@ namespace Assets.Scripts.Scenes.Space
 
 
         public List<SpacecraftBehaviour> playerSpacecraftBehaviours { get; private set; }
+        public List<SpaceJunkBehaviour> spaceJunkBehaviours { get; private set; } = new List<SpaceJunkBehaviour>();
 
         [SerializeField]
         private GravityManagerBehaviour starBehaviour;
@@ -41,6 +43,9 @@ namespace Assets.Scripts.Scenes.Space
                 return this.starBehaviour;
             }
         }
+
+
+        private float timeUpdate = 0;
 
 
         private void Awake()
@@ -81,26 +86,79 @@ namespace Assets.Scripts.Scenes.Space
 
             var aiSpacecrafts = Base.Core.Game.State.Spacecrafts;
 
-            if (aiSpacecrafts.Count >0 )
+            if (aiSpacecrafts.Count > 0)
             {
                 throw new NotSupportedException("AI Ships are notyet supported!");
             }
 
             //for (int i = 0; i < aiSpacecrafts.Count; i++)
             //{                
-                //var spacecraft = aiSpacecrafts[i];
+            //var spacecraft = aiSpacecrafts[i];
 
-                //var junkKillCounter = killCountDisplays[i];
+            //var junkKillCounter = killCountDisplays[i];
 
-                //var behaviour = SpawnShip(spacecraft, keyBindings[i], this.InputPadBehaviours[i], "AI-" + (i + 1), this.colors[i], junkKillCounter);
-                //playerSpacecraftBehaviours.Add(behaviour);
+            //var behaviour = SpawnShip(spacecraft, keyBindings[i], this.InputPadBehaviours[i], "AI-" + (i + 1), this.colors[i], junkKillCounter);
+            //playerSpacecraftBehaviours.Add(behaviour);
             //}
         }
 
         private void Update()
         {
             Base.Core.Game.State.TimeElapsed += Time.deltaTime;
-            timeElapsedDisplay.text = Base.Core.Game.State.TimeElapsed.ToString("F1");
+            if (timeUpdate < 0)
+            {
+                timeElapsedDisplay.text = Base.Core.Game.State.TimeElapsed.ToString("F1");
+                timeUpdate = 1;
+            }
+            else
+            {
+                timeUpdate -= Time.deltaTime;
+            }
+        }
+
+        public void SaveGame()
+        {
+            Base.Core.Game.PlayButtonSound();
+            SerializeToGameState();
+            Base.Core.Game.SaveGame();
+            //callback.Invoke();
+        }
+
+
+        public void SerializeToGameState()
+        {
+            SerializeSpaceCrafts();
+            SerializeSpaceJunks();
+        }
+
+        private void SerializeSpaceJunks()
+        {
+            //Base.Core.Game.State.SpaceJunks.Clear();
+            foreach (var spaceJunk in spaceJunkBehaviours)
+            {
+                spaceJunk.SerializeSpaceJunk();
+                //Base.Core.Game.State.SpaceJunks.Add(spaceJunk.spaceJunk);
+            }
+        }
+
+        private void SerializeSpaceCrafts()
+        {
+            //Base.Core.Game.State.PlayerSpacecraft.Clear();
+            foreach (var spaceCraft in playerSpacecraftBehaviours)
+            {
+                spaceCraft.SerializeState();
+                //Base.Core.Game.State.PlayerSpacecraft.Add(spaceCraft.spacecraft);
+            }
+        }
+
+        public void RegisterSpaceJunk(SpaceJunkBehaviour spaceJunkBehaviour)
+        {
+            spaceJunkBehaviours.Add(spaceJunkBehaviour);
+        }
+
+        public void RemoveSpaceJunk(SpaceJunkBehaviour spaceJunkBehaviour)
+        {
+            spaceJunkBehaviours.Remove(spaceJunkBehaviour);
         }
 
         private Dictionary<String, KeyCode> GetKeybindingsWASD()
