@@ -13,7 +13,7 @@ Todo:
  ? T.R.A.I.N.S - ??????
   
  Bugs: 
- - 
+ - Close tutorial with esc in pausemenu
  
  Exceptions: 
  - 

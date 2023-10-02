@@ -32,15 +32,15 @@ public class PauseMenuBehavior : MonoBehaviour
     private void Awake()
     {
         menuToggle = transform.Find("ToggleArea").gameObject;
-        pauseArea = transform.Find("ToggleArea/ContentArea/PauseArea").gameObject;
-        optionsArea = transform.Find("ToggleArea/ContentArea/OptionsArea").gameObject;
-        savedGameArea = transform.Find("ToggleArea/ContentArea/SaveGameArea").gameObject;
+        pauseArea = transform.Find("ToggleArea/Background/Background/ContentArea/PauseArea").gameObject;
+        optionsArea = transform.Find("ToggleArea/Background/Background/ContentArea/OptionsArea").gameObject;
+        savedGameArea = transform.Find("ToggleArea/Background/Background/ContentArea/SaveGameArea").gameObject;
 
-        backButton = transform.Find("ToggleArea/Header/Back").GetComponent<Button>();
-        continueButton = transform.Find("ToggleArea/Header/Continue").GetComponent<Button>();
+        backButton = transform.Find("ToggleArea/Background/Background/Header/Back").GetComponent<Button>();
+        continueButton = transform.Find("ToggleArea/Background/Background/Header/Continue").GetComponent<Button>();
 
 
-        currentOpenMenu = transform.Find("ToggleArea/Header/Openmenu").GetComponent<Text>();
+        currentOpenMenu = transform.Find("ToggleArea/Background/Background/Header/Openmenu").GetComponent<Text>();
     }
 
     void Start()
