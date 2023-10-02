@@ -77,7 +77,7 @@ namespace Assets.Scripts.Scenes.Space
                     TriggerGameOver("These little things are not candy");
                     break;
                 default:
-                    TriggerGameOver("Nobody knows what hit you, even the programers");
+                    TriggerGameOver("Nobody knows what hit you, not even the programers");
                     break;
             }
         }

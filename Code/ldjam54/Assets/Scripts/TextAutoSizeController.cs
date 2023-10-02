@@ -19,7 +19,17 @@ namespace Assets.Scripts
         [SerializeField] private List<TMP_Text> _labels = new List<TMP_Text>();
         [SerializeField] private TextResizePattern _pattern;
         [SerializeField] private bool _executeOnUpdate;
+        [SerializeField] private bool _searchChildren = false;
         private int _currentIndex;
+
+        private void Start()
+        {
+            if (_searchChildren)
+            {
+                var tt = transform.GetComponentsInChildren<TMP_Text>(true);
+                _labels = new List<TMP_Text>(tt);
+            }
+        }
 
         public void AddLabel(TMP_Text label)
         {
