@@ -26,11 +26,13 @@ Todo:
  -
        
  UI: 
+ - fill tutorial
  - Credits
  - SavedGames
  - GameModes
  - Overhaul SpaceScene (Background, Buttons, ....)
  - use fitter for pausemenu
+ - adapt list container graphics
    
  Audio:
  - Background => Default volumne seems to high...
