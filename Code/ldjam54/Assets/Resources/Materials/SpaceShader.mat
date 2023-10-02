@@ -98,12 +98,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _AtmosphereThickness: 1
-    - _Brightness: 2.1329749
-    - _BrightnessMod: 1.9933577
+    - _Brightness: 2.2380674
+    - _BrightnessMod: 1.5939548
     - _BumpScale: 1
     - _Cutoff: 0.5
-    - _Density: 1.1496682
-    - _DensityMod: 1.1757193
+    - _Density: 2.910455
+    - _DensityMod: 0.6711108
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnableBackgroundNoise: 1
@@ -113,18 +113,18 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _ImageType: 0
-    - _Layers: 1.0612006
+    - _Layers: 3.8294008
     - _Layout: 0
     - _Mapping: 1
     - _Metallic: 0
     - _MirrorOnBack: 0
     - _Mode: 0
     - _MoonSize: 0.095
-    - _NoiseDensity: 17.611877
+    - _NoiseDensity: 5.498155
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Rotation: 0
-    - _Seed: 741
+    - _Seed: 314
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -145,6 +145,6 @@ Material:
     - _SkyColor: {r: 0, g: 0.06, b: 0.12, a: 1}
     - _SkyFogColor: {r: 0, g: 0.33, b: 0.34, a: 1}
     - _SkyTint: {r: 0.31764707, g: 0.31764707, b: 0.31764707, a: 1}
-    - _StarSizeRange: {r: 0.6619816, g: 1.0783845, b: 0, a: 0}
+    - _StarSizeRange: {r: 2.2804608, g: 2.0388527, b: 0, a: 0}
     - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
   m_BuildTextureStacks: []
