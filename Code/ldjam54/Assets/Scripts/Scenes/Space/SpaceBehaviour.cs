@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 using Assets.Scripts.Scenes.Space.InputHandling;
 
+using TMPro;
+
 using UnityEngine;
 
 namespace Assets.Scripts.Scenes.Space
@@ -19,6 +21,13 @@ namespace Assets.Scripts.Scenes.Space
         [SerializeField]
         private List<InputPadBehaviour> InputPadBehaviours;
 
+        [SerializeField]
+        private List<TextMeshProUGUI> killCountDisplays;
+
+        [SerializeField]
+        private TextMeshProUGUI timeElapsedDisplay;
+
+
         public List<SpaceShipBehaviour> spaceShipBehaviours { get; private set; }
 
         [SerializeField]
@@ -30,6 +39,7 @@ namespace Assets.Scripts.Scenes.Space
                 return this.starBehaviour;
             }
         }
+
 
         private void Awake()
         {
@@ -55,6 +65,12 @@ namespace Assets.Scripts.Scenes.Space
                 var behaviour = SpawnShip(keyBindings[i], InputPadBehaviours[i], "Player" + (i + 1), colors[i]);
                 spaceShipBehaviours.Add(behaviour);
             }
+        }
+
+        private void Update()
+        {
+            Base.Core.Game.State.TimeElapsed += Time.deltaTime;
+            timeElapsedDisplay.text = Base.Core.Game.State.TimeElapsed.ToString();  
         }
 
         private Dictionary<String, KeyCode> GetKeybindingsWASD()

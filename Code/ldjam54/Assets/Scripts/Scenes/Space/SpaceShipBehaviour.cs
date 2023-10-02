@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 using Assets.Scripts.Core.Model;
 
+using TMPro;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,60 +20,95 @@ namespace Assets.Scripts.Scenes.Space
         private GravityManagerBehaviour gravityCenter;
         [SerializeField]
         private RectTransform energyBar;
+        private TextMeshProUGUI junkKillCountDisplay;
 
         private Spacecraft spacecraft;
 
         private Dictionary<KeyCode, ContinousKey> keyInteraction = new Dictionary<KeyCode, ContinousKey>();
 
         private double energy;
-        //private double energyCapacity;
-        //private double accelerateEnergyUsage;
         private float deAcceleration;
         private float deAccelerateEnergyUsage;
-        //private double turnEnergyUsage = 1;
-        //private double fireEnergyUsage;
-        //private double energyRechargeRate = 20000f;
-        //private double baseEnergyConsumption;
-        private double fireCooldown = 0;
 
+
+        private double fireCooldown = 0;
         public String deathMessage { get; private set; }
         private bool isDead = false;
+        private int junkKillCount = 0;
+
 
 
         void Update()
         {
             if (!isDead)
             {
-                foreach (var keyBinding in keyInteraction)
-                {
-
-                    if (Input.GetKeyDown(keyBinding.Key))
-                    {
-                        keyBinding.Value.KeyDown();
-                    }
-                    else if (Input.GetKeyUp(keyBinding.Key))
-                    {
-                        keyBinding.Value.KeyUp();
-                    }
-                }
-
-                energy -= spacecraft.BaseEnergyConsumption * Time.deltaTime;
-                HarvestEnergy();
-                if (energy < 0)
-                {
-                    TriggerGameOver("You forgot to eat and ran out of energy");
-                }
-                energyBar.anchorMax = new Vector2((float)(energy / spacecraft.EnergyCapacity), 1);
+                CheckKeys();
+                HandleEnergy();
 
                 if (fireCooldown > 0)
                 {
                     fireCooldown -= Time.deltaTime;
                 }
 
-                Vector3 t = transform.position;
-                if (t.x > 100 || t.x < -100 || t.z > 100 || t.z < -100)
+                UpdateJunkKillDisplay();
+                OutOfBoundCheck();
+            }
+        }
+        private void OnTriggerEnter(Collider collider)
+        {
+            GameObject other = collider.gameObject;
+            var tag = other.tag;
+            switch (tag)
+            {
+                case "Junk":
+                    TriggerGameOver("You joined the space junk gang");
+                    break;
+                case "Ship":
+                    TriggerGameOver("Never go alone. Together forever with " + other.name);
+                    break;
+                case "Sun":
+                    TriggerGameOver("The sun is cosy warm, but you should not go that close");
+                    break;
+                case "Projectile":
+                    TriggerGameOver("These little things are not candy");
+                    break;
+                default:
+                    TriggerGameOver("Nobody knows what hit you, even the programers");
+                    break;
+            }
+        }
+        private void OutOfBoundCheck()
+        {
+            Vector3 t = transform.position;
+            if (t.x > 100 || t.x < -100 || t.z > 100 || t.z < -100)
+            {
+                TriggerGameOver("Tried to think out of the box");
+            }
+        }
+
+        private void HandleEnergy()
+        {
+            energy -= spacecraft.BaseEnergyConsumption * Time.deltaTime;
+            HarvestEnergy();
+            if (energy < 0)
+            {
+                TriggerGameOver("You forgot to eat and ran out of energy");
+            }
+            energyBar.anchorMax = new Vector2((float)(energy / spacecraft.EnergyCapacity), 1);
+        }
+
+        private void CheckKeys()
+        {
+            foreach (var keyBinding in keyInteraction)
+            {
+
+                if (Input.GetKeyDown(keyBinding.Key))
                 {
-                    TriggerGameOver("Tried to think out of the box");
+                    keyBinding.Value.KeyDown();
+                }
+                else if (Input.GetKeyUp(keyBinding.Key))
+                {
+                    keyBinding.Value.KeyUp();
                 }
             }
         }
@@ -140,29 +177,7 @@ namespace Assets.Scripts.Scenes.Space
             energy = Math.Min(energy, spacecraft.EnergyCapacity);
         }
 
-        private void OnTriggerEnter(Collider collider)
-        {
-            GameObject other = collider.gameObject;
-            var tag = other.tag;
-            switch (tag)
-            {
-                case "Junk":
-                    TriggerGameOver("You joined the space junk gang");
-                    break;
-                case "Ship":
-                    TriggerGameOver("Never go alone. Together forever with " + other.name);
-                    break;
-                case "Sun":
-                    TriggerGameOver("The sun is cosy warm, but you should not go that close");
-                    break;
-                case "Projectile":
-                    TriggerGameOver("These little things are not candy");
-                    break;
-                default:
-                    TriggerGameOver("Nobody knows what hit you, even the programers");
-                    break;
-            }
-        }
+
 
         private void TriggerGameOver(String deathMessage)
         {
@@ -228,6 +243,16 @@ namespace Assets.Scripts.Scenes.Space
 
                 GameFrame.Base.Audio.Effects.PlayAt(GameFrame.Base.Resources.Manager.Audio.Get("ProjectileFired"), this.transform.position);
             }
+        }
+
+        public void IncreaseJunkKillCount()
+        {
+            junkKillCount++;
+        }
+
+        private void UpdateJunkKillDisplay()
+        {
+            junkKillCountDisplay.text = junkKillCount.ToString();
         }
     }
 }

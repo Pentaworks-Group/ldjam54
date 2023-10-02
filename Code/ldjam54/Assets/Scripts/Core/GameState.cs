@@ -11,5 +11,6 @@ namespace Assets.Scripts.Core
         public GameMode Mode { get; set; }
         public Double NextJunkSpawn { get; set; }              
         public Dictionary<String, String> DeadShips { get; set; } = new Dictionary<String, String>();
+        public Double TimeElapsed { get; set; }
     }
 }
