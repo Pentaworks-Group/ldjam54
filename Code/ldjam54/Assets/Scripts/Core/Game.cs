@@ -192,6 +192,16 @@ namespace Assets.Scripts.Core
 
         private SkyboxShader GenerateRandomSkybox()
         {
+            var skyR = UnityEngine.Random.Range(0.02f, 0.063f);
+            var skyG = UnityEngine.Random.Range(0.05f, 0.108f);
+            var skyB = UnityEngine.Random.Range(0.05f, 0.15f);
+            var starR = UnityEngine.Random.Range(0.7f, 1f);
+            var starG = UnityEngine.Random.Range(0.4f, 1f);
+            var starB = UnityEngine.Random.Range(0.6f, 1f);
+            var fogR = UnityEngine.Random.Range(0.03f, .21f);
+            var fogG = UnityEngine.Random.Range(0.16f, .61f);
+            var fogB = UnityEngine.Random.Range(0.16f, .81f);
+
             var skyboxShader = new SkyboxShader()
             {
                 NoiseParameters = new GameFrame.Core.Math.Vector4(0.75f, 6.0f, 0.795f, 2.08f),
@@ -199,16 +209,18 @@ namespace Assets.Scripts.Core
                 BackgroundCutParameters = new GameFrame.Core.Math.Vector4(0.07f, -0.001f, 0.51f, 2.5f),
                 IsGalaxyNoiseEnabled = 1,
                 // Edit these
+              
+
                 Seed = UnityEngine.Random.Range(0, 1000),
-                SkyColor = new GameFrame.Core.Media.Color(0.0f, 0.06f, 0.12f, 1.0f),
-                StarColor = new GameFrame.Core.Media.Color(1, 1, 1, 1),
+                SkyColor = new GameFrame.Core.Media.Color(skyR, skyG, skyB, 1.0f),
+                StarColor = new GameFrame.Core.Media.Color(starR,starG,starB,1),
                 StarSize = new GameFrame.Core.Math.Vector4(UnityEngine.Random.Range(0.4f, 3f), UnityEngine.Random.Range(0.4f, 3f), 0f, 0f),
                 Layers = UnityEngine.Random.Range(1f, 5f),
-                Density = UnityEngine.Random.Range(0.5f, 4f),
-                DensityModulation = UnityEngine.Random.Range(0.5f, 4f),
+                Density = UnityEngine.Random.Range(0.1f, 2.5f),
+                DensityModulation = UnityEngine.Random.Range(1.1f, 3f),
                 Contrast = UnityEngine.Random.Range(0f, 3f),
                 BrightnessModulation = UnityEngine.Random.Range(1.01f, 4f),
-                SkyFogColor = new GameFrame.Core.Media.Color(0.0f, 0.33f, 0.34f, 1.0f),
+                SkyFogColor = new GameFrame.Core.Media.Color(fogR, fogG, fogB, 1.0f),
                 NoiseDensity = UnityEngine.Random.Range(1f, 30f),
             };
 

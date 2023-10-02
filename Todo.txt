@@ -20,15 +20,9 @@ Todo:
  - Load assets from JSON
    
  GamePlay:
- - burner particles
- -
-       
+ - 
+ 
  UI: 
- - fill tutorial
- - Credits
- - SavedGames
- - GameModes
- - Overhaul SpaceScene (Background, Buttons, ....)
  - adapt list container graphics
  - auto textsize ignore tooltips or set tooltip size
    
