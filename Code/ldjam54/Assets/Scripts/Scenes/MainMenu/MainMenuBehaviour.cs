@@ -62,7 +62,7 @@ namespace Assets.Scripts.Scenes.MainMenu
             
             if (TryGetComponent<SkyBoxShaderUpdater>(out var skyBoxShaderUpdater))
             {
-                skyBoxShaderUpdater.Seed = Base.Core.Game.SkyboxSeed;
+                skyBoxShaderUpdater.Seed = Base.Core.Game.Skybox.Seed;
             }
         }
     }
