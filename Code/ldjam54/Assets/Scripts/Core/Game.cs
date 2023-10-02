@@ -194,10 +194,22 @@ namespace Assets.Scripts.Core
         {
             var skyboxShader = new SkyboxShader()
             {
-                Seed = UnityEngine.Random.Range(10, 1000),
-                //SkyColor = new GameFrame.Core.Media.Color(1,1,1,1),
-                //StarSizeRange = new Vector2
-
+                NoiseParameters = new GameFrame.Core.Math.Vector4(0.75f, 6.0f, 0.795f, 2.08f),
+                BackgroundMaskParameters = new GameFrame.Core.Math.Vector4(0.33f, 6.0f, 0.628f, 2.11f),
+                BackgroundCutParameters = new GameFrame.Core.Math.Vector4(0.07f, -0.001f, 0.51f, 2.5f),
+                IsGalaxyNoiseEnabled = 1,
+                // Edit these
+                Seed = UnityEngine.Random.Range(0, 1000),
+                SkyColor = new GameFrame.Core.Media.Color(0.0f, 0.06f, 0.12f, 1.0f),
+                StarColor = new GameFrame.Core.Media.Color(1,1,1,1),
+                StarSize = new GameFrame.Core.Math.Vector4(UnityEngine.Random.Range(0.4f, 3f), UnityEngine.Random.Range(0.4f, 3f), 0f, 0f),
+                Layers = UnityEngine.Random.Range(1f, 5f),
+                Density = UnityEngine.Random.Range(0.5f, 4f),
+                DensityModulation = UnityEngine.Random.Range(0.5f, 4f),
+                Contrast = UnityEngine.Random.Range(0f, 3f),
+                BrightnessModulation = UnityEngine.Random.Range(1.01f, 4f),
+                SkyFogColor = new GameFrame.Core.Media.Color(0.0f, 0.33f, 0.34f, 1.0f),
+                NoiseDensity = UnityEngine.Random.Range(1f, 30f),
             };
 
             return skyboxShader;
