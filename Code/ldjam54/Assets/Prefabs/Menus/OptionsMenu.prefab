@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 5508897734500953584}
   - component: {fileID: 8039468310948333088}
   - component: {fileID: 7294951872768128417}
+  - component: {fileID: 3108354260202707514}
   m_Layer: 5
   m_Name: OptionsMenu
   m_TagString: Untagged
@@ -98,6 +99,22 @@ MonoBehaviour:
   EffectsVolumeSlider: {fileID: 7735495492379194200}
   AmbienceVolumeSlider: {fileID: 3562792014074132846}
   BackgroundVolumeSlider: {fileID: 5768997159230793307}
+--- !u!114 &3108354260202707514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5508897734500953585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a6e3f31e747f749846b5890f558956, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _labels: []
+  _pattern: 0
+  _executeOnUpdate: 0
+  _searchChildren: 1
 --- !u!1 &7207261071396578180
 GameObject:
   m_ObjectHideFlags: 0

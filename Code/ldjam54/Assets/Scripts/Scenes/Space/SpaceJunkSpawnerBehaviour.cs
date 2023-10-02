@@ -43,7 +43,7 @@ namespace Assets.Scripts.Scenes.Space
             instanceParent = this.transform.Find("Instances");
             containerTemplate = this.transform.Find("Junk").gameObject;
 
-            if (gameState.SpaceJunks.Count >0)
+            if (gameState?.SpaceJunks?.Count >0)
             {
                 foreach (var spaceJunk in gameState.SpaceJunks)
                 {

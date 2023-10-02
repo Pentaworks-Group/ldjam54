@@ -28,7 +28,15 @@ namespace Assets.Scripts
             {
                 var tt = transform.GetComponentsInChildren<TMP_Text>(true);
                 _labels = new List<TMP_Text>(tt);
+                Execute();
             }
+        }
+
+        public void ForceChildren()
+        {
+            var tt = transform.GetComponentsInChildren<TMP_Text>(true);
+            _labels = new List<TMP_Text>(tt);
+            Execute();
         }
 
         public void AddLabel(TMP_Text label)
