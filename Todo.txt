@@ -23,6 +23,8 @@ Todo:
    
  GamePlay:
  - burner particles
+ - explosion sounds
+ -
        
  UI: 
  - Credits
@@ -51,6 +53,7 @@ Nice to have:
  - color multiple players: pad
  - health
  - suicide button with own message
+ - drag & drop scroll bar in lists
  
 Ideas:
 ----------------------------------
