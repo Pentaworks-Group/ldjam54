@@ -115,6 +115,7 @@ namespace Assets.Scripts.Scenes.Space
             }
         }
 
+
         private void InitShip()
         {
             InitGravity();
@@ -200,7 +201,7 @@ namespace Assets.Scripts.Scenes.Space
 
         public void Accelerate()
         {
-            if (energy > spacecraft.AccelerationEnergyConsumption)
+            if (!isDead && energy > spacecraft.AccelerationEnergyConsumption)
             {
                 Rb.AddForce(Rb.transform.forward * (float)spacecraft.Acceleration);
                 energy -= spacecraft.AccelerationEnergyConsumption;
@@ -213,7 +214,7 @@ namespace Assets.Scripts.Scenes.Space
 
         public void DeAccelerate()
         {
-            if (energy > deAccelerateEnergyUsage)
+            if (!isDead && energy > deAccelerateEnergyUsage)
             {
                 Rb.AddForce(Rb.transform.forward * deAcceleration);
                 energy -= deAccelerateEnergyUsage;
@@ -222,7 +223,7 @@ namespace Assets.Scripts.Scenes.Space
 
         public void TurnLeft()
         {
-            if (energy > spacecraft.TurnRateEnergyConsuption)
+            if (!isDead && energy > spacecraft.TurnRateEnergyConsuption)
             {
                 Rb.AddRelativeTorque(new Vector3(0, (float)-spacecraft.TurnRate, 0));
                 energy -= spacecraft.TurnRateEnergyConsuption;
@@ -231,7 +232,7 @@ namespace Assets.Scripts.Scenes.Space
 
         public void TurnRight()
         {
-            if (energy > spacecraft.TurnRateEnergyConsuption)
+            if (!isDead && energy > spacecraft.TurnRateEnergyConsuption)
             {
                 Rb.AddRelativeTorque(new Vector3(0, (float)spacecraft.TurnRate, 0));
                 energy -= spacecraft.TurnRateEnergyConsuption;
@@ -240,7 +241,7 @@ namespace Assets.Scripts.Scenes.Space
 
         public void FireProjectile()
         {
-            if (energy > spacecraft.WeaponEnergyConsumption && fireCooldown <= 0)
+            if (!isDead && energy > spacecraft.WeaponEnergyConsumption && fireCooldown <= 0)
             {
                 projectileSpawnerBehaviour.SpawnProjectile(this);
                 energy -= spacecraft.WeaponEnergyConsumption;
