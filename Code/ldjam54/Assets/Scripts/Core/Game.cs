@@ -158,6 +158,8 @@ namespace Assets.Scripts.Core
                 BaseEnergyConsumption = definition.BaseEnergyConsumption.GetValueOrDefault(),
                 Acceleration = definition.Acceleration.GetValueOrDefault(),
                 AccelerationEnergyConsumption = definition.AccelerationEnergyConsumption.GetValueOrDefault(),
+                Deceleration = definition.Deceleration.GetValueOrDefault(),
+                DecelerationEnergyConsumption = definition.DecelerationEnergyConsumption.GetValueOrDefault(),
                 TurnRate = definition.TurnRate.GetValueOrDefault(),
                 TurnRateEnergyConsuption = definition.TurnRateEnergyConsuption.GetValueOrDefault(),
                 IsWeaponized = definition.IsWeaponized.GetValueOrDefault(),
@@ -166,6 +168,7 @@ namespace Assets.Scripts.Core
                 Mass = definition.Mass.GetValueOrDefault(),
                 Model = definition.Models.GetRandomEntry(),
                 Material = definition.Materials.GetRandomEntry(),
+                CurrentEnergy = definition.EnergyCapacity.GetValueOrDefault()
             };
 
             return spacecraft;

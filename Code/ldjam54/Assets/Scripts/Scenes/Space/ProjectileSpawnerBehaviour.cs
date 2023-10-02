@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-
-using GameFrame.Core.Extensions;
-
 using UnityEngine;
 
 namespace Assets.Scripts.Scenes.Space

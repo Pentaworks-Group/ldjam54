@@ -3,10 +3,14 @@ using System.Collections.Generic;
 
 using Assets.Scripts.Core.Model;
 
+using GameFrame.Core.Extensions;
+
 using TMPro;
 
 using UnityEngine;
 using UnityEngine.UI;
+
+using Vector3 = UnityEngine.Vector3;
 
 namespace Assets.Scripts.Scenes.Space
 {
@@ -26,19 +30,12 @@ namespace Assets.Scripts.Scenes.Space
 
         private Spacecraft spacecraft;
 
-        private Dictionary<KeyCode, ContinousKey> keyInteraction = new Dictionary<KeyCode, ContinousKey>();
+        private readonly Dictionary<KeyCode, ContinousKey> keyInteraction = new Dictionary<KeyCode, ContinousKey>();
 
-        private double energy;
-        private float deAcceleration;
-        private float deAccelerateEnergyUsage;
-
-
-        private double fireCooldown = 0;
-        public String deathMessage { get; private set; }
         private bool isDead = false;
         private int junkKillCount = 0;
 
-
+        public String DeathMessage { get; private set; }
 
         void Update()
         {
@@ -47,19 +44,24 @@ namespace Assets.Scripts.Scenes.Space
                 CheckKeys();
                 HandleEnergy();
 
-                if (fireCooldown > 0)
+                if (spacecraft.WeaponCooldown > 0)
                 {
-                    fireCooldown -= Time.deltaTime;
+                    spacecraft.WeaponCooldown -= Time.deltaTime;
                 }
 
+                spacecraft.Position = this.transform.position.ToFrame();
+                spacecraft.Velocity = Rb.velocity.ToFrame();
+                
                 UpdateJunkKillDisplay();
                 OutOfBoundCheck();
             }
         }
+
         private void OnTriggerEnter(Collider collider)
         {
             GameObject other = collider.gameObject;
             var tag = other.tag;
+
             switch (tag)
             {
                 case "Junk":
@@ -79,9 +81,11 @@ namespace Assets.Scripts.Scenes.Space
                     break;
             }
         }
+
         private void OutOfBoundCheck()
         {
             Vector3 t = transform.position;
+
             if (t.x > 100 || t.x < -100 || t.z > 100 || t.z < -100)
             {
                 TriggerGameOver("Tried to think out of the box");
@@ -90,20 +94,22 @@ namespace Assets.Scripts.Scenes.Space
 
         private void HandleEnergy()
         {
-            energy -= spacecraft.BaseEnergyConsumption * Time.deltaTime;
+            spacecraft.CurrentEnergy -= spacecraft.BaseEnergyConsumption * Time.deltaTime;
+
             HarvestEnergy();
-            if (energy < 0)
+
+            if (spacecraft.CurrentEnergy < 0)
             {
                 TriggerGameOver("You forgot to eat and ran out of energy");
             }
-            energyBar.anchorMax = new Vector2((float)(energy / spacecraft.EnergyCapacity), 1);
+
+            energyBar.anchorMax = new Vector2((float)(spacecraft.CurrentEnergy / spacecraft.EnergyCapacity), 1);
         }
 
         private void CheckKeys()
         {
             foreach (var keyBinding in keyInteraction)
             {
-
                 if (Input.GetKeyDown(keyBinding.Key))
                 {
                     keyBinding.Value.KeyDown();
@@ -115,25 +121,52 @@ namespace Assets.Scripts.Scenes.Space
             }
         }
 
-
         private void InitShip()
         {
-            InitGravity();
-            var dircenter = gravityCenter.transform.position - Rb.transform.position;
-            Vector3 left = Vector3.Cross(dircenter, Vector3.down).normalized;
-            Rb.velocity = left * 2;
             gameObject.tag = "Ship";
+
+            var position = spacecraft.Position.ToUnity();
+
+            if (position == default)
+            {
+                var vec = new Vector3(UnityEngine.Random.Range(-100, 100), 0, UnityEngine.Random.Range(-100, 100));
+
+                vec = vec.normalized * (float)Base.Core.Game.State.Mode.ShipSpawnDistance;
+
+                spacecraft.Position = vec.ToFrame();
+                position = vec;
+            }
+
+            transform.position = position;
+
+            Vector3 velocity = spacecraft.Velocity.ToUnity();
+
+            if (velocity == default)
+            {
+                var dircenter = gravityCenter.transform.position - Rb.transform.position;
+
+                Vector3 left = Vector3.Cross(dircenter, Vector3.down).normalized;
+
+                left *= 2;
+
+                velocity = left;
+
+                spacecraft.Velocity = velocity.ToFrame();
+            }
+
+            Rb.velocity = velocity;
         }
 
         public void SpawnShip(Spacecraft spacecraft, Dictionary<String, KeyCode> keybindinds, String shipName, Color color, TextMeshProUGUI junkKillDisplay)
         {
+            this.spacecraft = spacecraft;
+
+            InitGravity();
+
             InitShip();
+
             junkKillCountDisplay = junkKillDisplay;
             this.gameObject.name = shipName;
-            this.spacecraft = spacecraft;
-            energy = spacecraft.EnergyCapacity;
-            deAccelerateEnergyUsage = (float)spacecraft.AccelerationEnergyConsumption * 0.1f;
-            deAcceleration = (float)spacecraft.Acceleration * -0.1f;
 
             Rb.mass = (float)spacecraft.Mass;
 
@@ -172,27 +205,30 @@ namespace Assets.Scripts.Scenes.Space
         private void HarvestEnergy()
         {
             Vector3 direction = Rb.position - gravityCenter.Rb.position;
+
             float sqrDistance = direction.sqrMagnitude;
+
             sqrDistance -= 25;
             sqrDistance = Mathf.Max(sqrDistance, .5f);
             sqrDistance = Mathf.Pow(sqrDistance, 2);
+
             var energyGain = (float)spacecraft.EnergyRechargeRate * Time.deltaTime / sqrDistance;
-            energy += energyGain;
-            energy = Math.Min(energy, spacecraft.EnergyCapacity);
+
+            spacecraft.CurrentEnergy += energyGain;
+            spacecraft.CurrentEnergy = Math.Min(spacecraft.CurrentEnergy, spacecraft.EnergyCapacity);
         }
-
-
 
         private void TriggerGameOver(String deathMessage)
         {
             if (isDead == false)
             {
-                this.deathMessage = deathMessage;
+                this.DeathMessage = deathMessage;
                 spaceBehaviour.TriggerGameOver(this);
                 gameObject.transform.Find("Explosion").gameObject.SetActive(true);
                 gameObject.transform.Find("Model").gameObject.SetActive(false);
                 gameObject.transform.Find("Canvas").gameObject.SetActive(false);
                 Destroy(gameObject, 3);
+                spacecraft.Velocity = GameFrame.Core.Math.Vector3.Zero;
                 Rb.velocity = Vector3.zero;
                 Rb.constraints = RigidbodyConstraints.FreezeAll;
                 isDead = true;
@@ -201,51 +237,64 @@ namespace Assets.Scripts.Scenes.Space
 
         public void Accelerate()
         {
-            if (!isDead && energy > spacecraft.AccelerationEnergyConsumption)
+            if (!isDead && spacecraft.CurrentEnergy > spacecraft.AccelerationEnergyConsumption)
             {
                 Rb.AddForce(Rb.transform.forward * (float)spacecraft.Acceleration);
-                energy -= spacecraft.AccelerationEnergyConsumption;
+
+                spacecraft.Velocity = Rb.velocity.ToFrame();
+                spacecraft.CurrentEnergy -= spacecraft.AccelerationEnergyConsumption;
 
                 GameFrame.Base.Audio.Effects.PlayAt(GameFrame.Base.Resources.Manager.Audio.Get("RocketEngine_Firing_Middle"), this.transform.position);
                 burnerParticles.Play();
-
-    }
-}
+            }
+        }
 
         public void DeAccelerate()
         {
-            if (!isDead && energy > deAccelerateEnergyUsage)
+            if (!isDead && spacecraft.CurrentEnergy > spacecraft.DecelerationEnergyConsumption)
             {
-                Rb.AddForce(Rb.transform.forward * deAcceleration);
-                energy -= deAccelerateEnergyUsage;
+                Rb.AddForce(Rb.transform.forward * (float)spacecraft.Deceleration);
+
+                spacecraft.Velocity = Rb.velocity.ToFrame();
+                spacecraft.CurrentEnergy -= spacecraft.DecelerationEnergyConsumption;
+
+                GameFrame.Base.Audio.Effects.PlayAt(GameFrame.Base.Resources.Manager.Audio.Get("RCS_Firing_Middle"), this.transform.position);
             }
         }
 
         public void TurnLeft()
         {
-            if (!isDead && energy > spacecraft.TurnRateEnergyConsuption)
+            if (!isDead && spacecraft.CurrentEnergy > spacecraft.TurnRateEnergyConsuption)
             {
                 Rb.AddRelativeTorque(new Vector3(0, (float)-spacecraft.TurnRate, 0));
-                energy -= spacecraft.TurnRateEnergyConsuption;
+
+                spacecraft.Velocity = Rb.velocity.ToFrame();
+                spacecraft.CurrentEnergy -= spacecraft.TurnRateEnergyConsuption;
+
+                GameFrame.Base.Audio.Effects.PlayAt(GameFrame.Base.Resources.Manager.Audio.Get("RCS_Firing_Start"), this.transform.position);
             }
         }
 
         public void TurnRight()
         {
-            if (!isDead && energy > spacecraft.TurnRateEnergyConsuption)
+            if (spacecraft.CurrentEnergy > spacecraft.TurnRateEnergyConsuption)
             {
                 Rb.AddRelativeTorque(new Vector3(0, (float)spacecraft.TurnRate, 0));
-                energy -= spacecraft.TurnRateEnergyConsuption;
+
+                spacecraft.Velocity = Rb.velocity.ToFrame();                
+                spacecraft.CurrentEnergy -= spacecraft.TurnRateEnergyConsuption;
+
+                GameFrame.Base.Audio.Effects.PlayAt(GameFrame.Base.Resources.Manager.Audio.Get("RCS_Firing_Start"), this.transform.position);
             }
         }
 
         public void FireProjectile()
         {
-            if (!isDead && energy > spacecraft.WeaponEnergyConsumption && fireCooldown <= 0)
+            if (!isDead && spacecraft.CurrentEnergy > spacecraft.WeaponEnergyConsumption && spacecraft.WeaponCooldown <= 0)
             {
                 projectileSpawnerBehaviour.SpawnProjectile(this);
-                energy -= spacecraft.WeaponEnergyConsumption;
-                fireCooldown = spacecraft.WeaponsRateOfFire;
+                spacecraft.CurrentEnergy -= spacecraft.WeaponEnergyConsumption;
+                spacecraft.WeaponCooldown = spacecraft.WeaponsRateOfFire;
 
                 GameFrame.Base.Audio.Effects.PlayAt(GameFrame.Base.Resources.Manager.Audio.Get("ProjectileFired"), this.transform.position);
             }

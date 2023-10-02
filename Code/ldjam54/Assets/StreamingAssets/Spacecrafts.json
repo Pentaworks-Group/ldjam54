@@ -8,6 +8,8 @@
     "BaseEnergyConsumption": 8,
     "Acceleration": 20,
     "AccelerationEnergyConsumption": 10,
+    "Deceleration": 2,
+    "DecelerationEnergyConsumption": 1,
     "TurnRate": 20,
     "TurnRateEnergyConsuption": 2,
     "IsWeaponized": true,

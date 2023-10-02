@@ -4,9 +4,13 @@ using System.Collections.Generic;
 
 using Assets.Scripts.Scenes.Space.InputHandling;
 
+using GameFrame.Core.Extensions;
+
 using TMPro;
 
 using UnityEngine;
+
+using Vector3 = UnityEngine.Vector3;
 
 namespace Assets.Scripts.Scenes.Space
 {
@@ -66,10 +70,11 @@ namespace Assets.Scripts.Scenes.Space
             int length = Base.Core.Game.State.Mode.Spacecrafts.Count;
 
             spaceShipBehaviours = new List<SpaceShipBehaviour>();
+
             for (int i = 0; i < length; i++)
             {
-
                 var junkKillCounter = killCountDisplays[i];
+
                 var behaviour = SpawnShip(keyBindings[i], this.InputPadBehaviours[i], "Player" + (i + 1), this.colors[i], junkKillCounter);
                 spaceShipBehaviours.Add(behaviour);
             }
@@ -113,20 +118,15 @@ namespace Assets.Scripts.Scenes.Space
         {
             var ship = Instantiate(ShipTemplate, ShipTemplate.transform.parent.parent.Find("Instances"));
 
-            var vec = new Vector3(UnityEngine.Random.Range(-100, 100), 0, UnityEngine.Random.Range(-100, 100));
-
-            vec = vec.normalized * (float)Base.Core.Game.State.Mode.ShipSpawnDistance;
-
-            ship.transform.position = vec;
+            var spacecraft = Base.Core.Game.State.Spacecraft;
 
             var shipBehaviour = ship.GetComponent<SpaceShipBehaviour>();
 
             padBehaviour.Init(shipBehaviour);
 
             junkKillCounter.transform.parent.gameObject.SetActive(true);
-            var spaceCraft = Base.Core.Game.State.Spacecraft;
 
-            shipBehaviour.SpawnShip(spaceCraft, keybindings, shipName, color, junkKillCounter);
+            shipBehaviour.SpawnShip(spacecraft, keybindings, shipName, color, junkKillCounter);
             ship.SetActive(true);
 
             return shipBehaviour;
@@ -141,7 +141,7 @@ namespace Assets.Scripts.Scenes.Space
 
         public void TriggerGameOver(SpaceShipBehaviour spaceShipBehaviour)
         {
-            Base.Core.Game.State.DeadShips.Add(spaceShipBehaviour.gameObject.name, spaceShipBehaviour.deathMessage);
+            Base.Core.Game.State.DeadShips.Add(spaceShipBehaviour.gameObject.name, spaceShipBehaviour.DeathMessage);
             spaceShipBehaviours.Remove(spaceShipBehaviour);
             StartCoroutine(CheckSurvivorCount());
         }

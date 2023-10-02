@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-
 using UnityEngine;
 
 namespace Assets.Scripts.Scenes.Space
@@ -18,13 +15,15 @@ namespace Assets.Scripts.Scenes.Space
         {
             if (Rb == default)
             {
-                Rb = this.gameObject.GetComponent<Rigidbody>();
-                if (Rb == default)
+                if (!TryGetComponent<Rigidbody>(out var rigidbody))
                 {
-                    Rb = this.gameObject.AddComponent<Rigidbody>();
-                    Rb.useGravity = false;
-                    Rb.constraints = RigidbodyConstraints.FreezePositionY;
+                    rigidbody = this.gameObject.AddComponent<Rigidbody>();
+
+                    rigidbody.useGravity = false;
+                    rigidbody.constraints = RigidbodyConstraints.FreezePositionY;
                 }
+
+                Rb = rigidbody;
             }
         }
 

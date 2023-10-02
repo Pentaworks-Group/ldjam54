@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 
 namespace Assets.Scripts.Core
 {
@@ -19,6 +20,8 @@ namespace Assets.Scripts.Core
             GameMode = gameState.Mode.Name;
             PlayerCount = gameState.Mode.Spacecrafts.Count.ToString();
             TimeElapsed = String.Format("{0:#0.0}s", gameState.TimeElapsed);
+
+            UnityEngine.Debug.Log($"X: {gameState.Spacecraft.Position.X} Y: {gameState.Spacecraft.Position.Y} Z: {gameState.Spacecraft.Position.Z}");
         }
     }
 }
