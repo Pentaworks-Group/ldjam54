@@ -51,7 +51,8 @@ namespace Assets.Scripts.Scenes.Space
 
                 spacecraft.Position = this.transform.position.ToFrame();
                 spacecraft.Velocity = Rb.velocity.ToFrame();
-                
+                spacecraft.Rotation = transform.rotation.eulerAngles.ToFrame();
+
                 UpdateJunkKillDisplay();
                 OutOfBoundCheck();
             }
@@ -155,6 +156,11 @@ namespace Assets.Scripts.Scenes.Space
             }
 
             Rb.velocity = velocity;
+
+            if (spacecraft.Rotation.HasValue)
+            {
+                transform.Rotate(spacecraft.Rotation.Value.ToUnity(), UnityEngine.Space.World);
+            }
         }
 
         public void SpawnShip(Spacecraft spacecraft, Dictionary<String, KeyCode> keybindinds, String shipName, Color color, TextMeshProUGUI junkKillDisplay)
@@ -281,7 +287,7 @@ namespace Assets.Scripts.Scenes.Space
             {
                 Rb.AddRelativeTorque(new Vector3(0, (float)spacecraft.TurnRate, 0));
 
-                spacecraft.Velocity = Rb.velocity.ToFrame();                
+                spacecraft.Velocity = Rb.velocity.ToFrame();
                 spacecraft.CurrentEnergy -= spacecraft.TurnRateEnergyConsuption;
 
                 GameFrame.Base.Audio.Effects.PlayAt(GameFrame.Base.Resources.Manager.Audio.Get("RCS_Firing_Start"), this.transform.position);
