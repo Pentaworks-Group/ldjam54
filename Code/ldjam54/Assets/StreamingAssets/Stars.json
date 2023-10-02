@@ -1,26 +1,42 @@
 [
-    {
-        "Reference": "DaSun",
-        "Name": "DaSun",
-        "Gravity": 0.06,
-        "Mass": 1000,
-        "Models": [
-            "DaSun"
-        ],
-        "Materials": [
-            "DaSun"
-        ]
+  {
+    "Reference": "DaSun",
+    "Name": "DaSun",
+    "Gravity": 0.06,
+    "Mass": 1000,
+    "LightRange": {
+      "Min": 15,
+      "Max": 50
     },
-    {
-        "Reference": "MegaDeth",
-        "Name": "MegaDeth",
-        "Gravity": 0.6,
-        "Mass": 1000,
-        "Models": [
-            "DaSun"
-        ],
-        "Materials": [
-            "DaSun"
-        ]
-    }
+    "LightIntensity": {
+      "Min": 1,
+      "Max": 5
+    },
+    "Models": [
+      "DaSun"
+    ],
+    "Materials": [
+      "DaSun"
+    ]
+  },
+  {
+    "Reference": "MegaDeth",
+    "Name": "MegaDeth",
+    "Gravity": 0.6,
+    "Mass": 1000,
+    "LightRange": {
+      "Min": 15,
+      "Max": 50
+    },
+    "LightIntensity": {
+      "Min": 1,
+      "Max": 5
+    },
+    "Models": [
+      "DaSun"
+    ],
+    "Materials": [
+      "DaSun"
+    ]
+  }
 ]

@@ -123,7 +123,6 @@ namespace Assets.Scripts.Scenes.Space
                     this.keyInteraction[keyCode] = continousKey;
                 }
             }
-
         }
 
         private void HarvestEnergy()
