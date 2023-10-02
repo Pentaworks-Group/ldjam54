@@ -106,7 +106,7 @@ namespace Assets.Scripts.Scenes.Space
             if (timeUpdate < 0)
             {
                 timeElapsedDisplay.text = Base.Core.Game.State.TimeElapsed.ToString("F1");
-                timeUpdate = 1;
+                timeUpdate = 0.2f;
             }
             else
             {

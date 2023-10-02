@@ -41,10 +41,14 @@ namespace Assets.Scripts.Scenes.Space
 
         private bool isDead = false;
         private int junkKillCount = 0;
-        private float junkKillUpdate = 0;
         private float energyBarUpdate = 0;
 
         public String DeathMessage { get; private set; }
+
+        private void Start()
+        {
+            UpdateJunkKillDisplay();
+        }
 
         void Update()
         {
@@ -57,9 +61,6 @@ namespace Assets.Scripts.Scenes.Space
                 {
                     spacecraft.WeaponCooldown -= Time.deltaTime;
                 }
-
-
-                UpdateJunkKillDisplay();
                 OutOfBoundCheck();
             }
         }
@@ -349,19 +350,12 @@ namespace Assets.Scripts.Scenes.Space
         public void IncreaseJunkKillCount()
         {
             junkKillCount++;
+            UpdateJunkKillDisplay();
         }
 
         private void UpdateJunkKillDisplay()
         {
-            if (junkKillUpdate < 0)
-            {
-                junkKillCountDisplay.text = junkKillCount.ToString();
-                junkKillUpdate = 1;
-            }
-            else
-            {
-                junkKillUpdate -= Time.deltaTime;
-            }
+            junkKillCountDisplay.text = junkKillCount.ToString();
         }
     }
 }
