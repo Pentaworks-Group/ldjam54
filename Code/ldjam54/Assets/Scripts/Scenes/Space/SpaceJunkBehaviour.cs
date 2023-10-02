@@ -1,3 +1,4 @@
+using Assets.Scripts.Constants;
 using Assets.Scripts.Core.Model;
 
 using GameFrame.Core.Extensions;
@@ -16,7 +17,7 @@ namespace Assets.Scripts.Scenes.Space
 
         private void Start()
         {
-            modelGameObject.tag = "Junk";
+            modelGameObject.tag = GameObjectTags.Junk;
         }
 
         public void SetModel(SpaceJunk spaceJunk, GameObject model)

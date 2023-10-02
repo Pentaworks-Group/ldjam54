@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+using Assets.Scripts.Constants;
 using Assets.Scripts.Core.Model;
 
 using GameFrame.Core.Extensions;
@@ -14,7 +15,7 @@ using Vector3 = UnityEngine.Vector3;
 
 namespace Assets.Scripts.Scenes.Space
 {
-    public class SpaceShipBehaviour : GravityBehaviour
+    public class SpacecraftBehaviour : GravityBehaviour
     {
         [SerializeField]
         private SpaceBehaviour spaceBehaviour;
@@ -36,7 +37,6 @@ namespace Assets.Scripts.Scenes.Space
         private int junkKillCount = 0;
 
         public String DeathMessage { get; private set; }
-
 
         void Update()
         {
@@ -66,18 +66,22 @@ namespace Assets.Scripts.Scenes.Space
 
             switch (tag)
             {
-                case "Junk":
+                case GameObjectTags.Junk:
                     TriggerGameOver("You joined the space junk gang");
                     break;
-                case "Ship":
-                    TriggerGameOver("Never go alone. Together forever with " + other.transform.parent.name);
+
+                case GameObjectTags.Ship:
+                    TriggerGameOver("Never go alone. Together forever with " + other.name);
                     break;
-                case "Sun":
+
+                case GameObjectTags.Sun:
                     TriggerGameOver("The sun is cosy warm, but you should not go that close");
                     break;
-                case "Projectile":
+
+                case GameObjectTags.Projectile:
                     TriggerGameOver("These little things are not candy");
                     break;
+
                 default:
                     TriggerGameOver("Nobody knows what hit you, not even the programers");
                     break;
@@ -123,15 +127,9 @@ namespace Assets.Scripts.Scenes.Space
             }
         }
 
-        private void TagShip()
-        {
-            var model = transform.Find("Model").gameObject;
-            model.tag = "Ship";
-        }
-
         private void InitShip()
         {
-            TagShip();
+            gameObject.tag = GameObjectTags.Ship;
 
             var position = spacecraft.Position.ToUnity();
 
@@ -191,11 +189,11 @@ namespace Assets.Scripts.Scenes.Space
         {
             return new Dictionary<String, Action>()
             {
-                { "Accelerate", Accelerate },
-                { "DeAccelerate", DeAccelerate },
-                { "TurnLeft", TurnLeft },
-                { "TurnRight", TurnRight },
-                { "FireProjectile", FireProjectile }
+                { KeyActions.Accelerate, Accelerate },
+                { KeyActions.Decelerate, Decelerate },
+                { KeyActions.TurnLeft, TurnLeft },
+                { KeyActions.TurnRight, TurnRight },
+                { KeyActions.FireProjectile, FireProjectile }
             };
         }
 
@@ -262,7 +260,7 @@ namespace Assets.Scripts.Scenes.Space
             }
         }
 
-        public void DeAccelerate()
+        public void Decelerate()
         {
             if (!isDead && spacecraft.CurrentEnergy > spacecraft.DecelerationEnergyConsumption)
             {

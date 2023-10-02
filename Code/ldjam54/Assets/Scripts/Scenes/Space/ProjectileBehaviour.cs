@@ -1,3 +1,5 @@
+using Assets.Scripts.Constants;
+
 using UnityEngine;
 
 namespace Assets.Scripts.Scenes.Space
@@ -5,11 +7,11 @@ namespace Assets.Scripts.Scenes.Space
     public class ProjectileBehaviour : GravityBehaviour
     {
         private float remainingTimeToLive = 3;
-        private SpaceShipBehaviour source;
+        private SpacecraftBehaviour source;
 
         private void Start()
         {
-            gameObject.tag = "Projectile";
+            gameObject.tag = GameObjectTags.Projectile;
         }
 
         private void Update()
@@ -39,7 +41,7 @@ namespace Assets.Scripts.Scenes.Space
             Destroy(this.gameObject);
         }
 
-        public void Init(SpaceShipBehaviour source)
+        public void Init(SpacecraftBehaviour source)
         {
             this.source = source;
         }

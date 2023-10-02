@@ -24,18 +24,13 @@
         "Reference": "DaSun"
       }
     ],
-    "Spacecrafts": [
-      {
-        "IsReferenced": true,
-        "Reference": "Spacecraft1"
-      }
-    ],
     "PlayerSpacecrafts": [
       {
         "IsReferenced": true,
         "Reference": "Spacecraft1"
       }
-    ]
+    ],
+    "Spacecrafts": []
   },
   {
     "Reference": "1v1",
@@ -63,7 +58,7 @@
         "Reference": "DaSun"
       }
     ],
-    "Spacecrafts": [
+    "PlayerSpacecrafts": [
       {
         "IsReferenced": true,
         "Reference": "Spacecraft1"
@@ -73,12 +68,7 @@
         "Reference": "Spacecraft1"
       }
     ],
-    "PlayerSpacecrafts": [
-      {
-        "IsReferenced": true,
-        "Reference": "Spacecraft1"
-      }
-    ]
+    "Spacecrafts": [ ]
   },
   {
     "Reference": "1v1J",
@@ -106,7 +96,7 @@
         "Reference": "DaSun"
       }
     ],
-    "Spacecrafts": [
+    "PlayerSpacecrafts": [
       {
         "IsReferenced": true,
         "Reference": "Spacecraft1"
@@ -116,12 +106,7 @@
         "Reference": "Spacecraft1"
       }
     ],
-    "PlayerSpacecrafts": [
-      {
-        "IsReferenced": true,
-        "Reference": "Spacecraft1"
-      }
-    ]
+    "Spacecrafts": []
   },
   {
     "Reference": "Runni",
@@ -148,18 +133,13 @@
         "Reference": "MegaDeth"
       }
     ],
-    "Spacecrafts": [
-      {
-        "IsReferenced": true,
-        "Reference": "Spacecraft1"
-      }
-    ],
     "PlayerSpacecrafts": [
       {
         "IsReferenced": true,
         "Reference": "Spacecraft1"
       }
-    ]
+    ],
+    "Spacecrafts": []
   },
   {
     "Reference": "GetTotaSun",
@@ -194,18 +174,13 @@
         ]
       }
     ],
-    "Spacecrafts": [
-      {
-        "IsReferenced": true,
-        "Reference": "Spacecraft1"
-      }
-    ],
     "PlayerSpacecrafts": [
       {
         "IsReferenced": true,
         "Reference": "Spacecraft1"
       }
-    ]
+    ],
+    "Spacecrafts": []
   },
   {
     "Reference": "mayhem",
@@ -232,17 +207,12 @@
         "Reference": "DaSun"
       }
     ],
-    "Spacecrafts": [
-      {
-        "IsReferenced": true,
-        "Reference": "Spacecraft1"
-      }
-    ],
     "PlayerSpacecrafts": [
       {
         "IsReferenced": true,
         "Reference": "Spacecraft1"
       }
-    ]
+    ],
+    "Spacecrafts": []
   }
 ]
