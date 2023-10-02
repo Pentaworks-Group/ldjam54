@@ -55,6 +55,7 @@ Nice to have:
  - health
  - suicide button with own message
  - drag & drop scroll bar in lists
+ - sun particles
  
 Ideas:
 ----------------------------------
