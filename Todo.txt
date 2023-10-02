@@ -29,6 +29,7 @@ Todo:
  - GameModes
  - Overhaul SpaceScene (Background, Buttons, ....)
  - use fitter for pausemenu
+ - SpaceScene - Load Shader values.
    
  Audio:
  - Background
