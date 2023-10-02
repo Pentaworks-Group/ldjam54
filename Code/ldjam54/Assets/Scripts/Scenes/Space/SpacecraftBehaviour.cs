@@ -27,6 +27,12 @@ namespace Assets.Scripts.Scenes.Space
         private RectTransform energyBar;
         [SerializeField]
         private ParticleSystem burnerParticles;
+        [SerializeField]
+        private ParticleSystem burnerLeftParticles;
+        [SerializeField]
+        private ParticleSystem burnerRightParticles;
+        [SerializeField]
+        private ParticleSystem burnerFrontParticles;
         private TextMeshProUGUI junkKillCountDisplay;
 
         private Spacecraft spacecraft;
@@ -275,6 +281,7 @@ namespace Assets.Scripts.Scenes.Space
                 spacecraft.CurrentEnergy -= spacecraft.DecelerationEnergyConsumption;
 
                 GameFrame.Base.Audio.Effects.PlayAt("RCS_Firing_Middle", this.transform.position);
+                burnerFrontParticles.Play();
             }
         }
 
@@ -288,6 +295,7 @@ namespace Assets.Scripts.Scenes.Space
                 spacecraft.CurrentEnergy -= spacecraft.TurnRateEnergyConsuption;
 
                 GameFrame.Base.Audio.Effects.PlayAt("RCS_Firing_Start", this.transform.position);
+                burnerRightParticles.Play();
             }
         }
 
@@ -301,6 +309,7 @@ namespace Assets.Scripts.Scenes.Space
                 spacecraft.CurrentEnergy -= spacecraft.TurnRateEnergyConsuption;
 
                 GameFrame.Base.Audio.Effects.PlayAt("RCS_Firing_Start", this.transform.position);
+                burnerLeftParticles.Play();
             }
         }
 
