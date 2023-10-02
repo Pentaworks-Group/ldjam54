@@ -220,19 +220,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6787831112013729053, guid: 4b5008d320e00994c915dfd5855a2913, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.9
+      value: 0.95
       objectReference: {fileID: 0}
     - target: {fileID: 6787831112013729053, guid: 4b5008d320e00994c915dfd5855a2913, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.9
+      value: 0.95
       objectReference: {fileID: 0}
     - target: {fileID: 6787831112013729053, guid: 4b5008d320e00994c915dfd5855a2913, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6787831112013729053, guid: 4b5008d320e00994c915dfd5855a2913, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6787831112013729053, guid: 4b5008d320e00994c915dfd5855a2913, type: 3}
       propertyPath: m_SizeDelta.x

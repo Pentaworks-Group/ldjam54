@@ -13,6 +13,11 @@ namespace Assets.Scripts.Scenes.MainMenu
         [DllImport("__Internal")]
         private static extern void Quit();
 
+        [SerializeField]
+        private GameObject Tutorial;
+        [SerializeField]
+        private GameObject Menu;
+
         public void PlayGame()
         {
             Base.Core.Game.PlayButtonSound();
@@ -56,9 +61,23 @@ namespace Assets.Scripts.Scenes.MainMenu
             Base.Core.Game.ChangeScene(sceneName);
         }
 
+        public void ShowTutorial()
+        {
+            Base.Core.Game.PlayButtonSound();
+            Tutorial.SetActive(true);
+            Menu.SetActive(false);
+        }
+
+        public void HideTutorial()
+        {
+            Base.Core.Game.PlayButtonSound();
+            Tutorial.SetActive(false);
+            Menu.SetActive(true);
+        }
+
         private void Awake()
         {
-            GameObject.Find("UI/Fitter/VersionText").GetComponent<TMPro.TMP_Text>().text = $"Version: {Application.version}";
+            GameObject.Find("UI/Fitter/Menu/Area/VersionText").GetComponent<TMPro.TMP_Text>().text = $"Version: {Application.version}";
             
             if (TryGetComponent<SkyboxShaderUpdater>(out var skyboxShaderUpdater))
             {
