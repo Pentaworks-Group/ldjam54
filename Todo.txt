@@ -13,7 +13,7 @@ Todo:
  ? T.R.A.I.N.S - ??????
   
  Bugs: 
- - Close tutorial with esc in pausemenu
+ - 
  
  Exceptions: 
  - 
@@ -23,7 +23,6 @@ Todo:
    
  GamePlay:
  - burner particles
- - explosion sounds
  -
        
  UI: 
@@ -31,6 +30,7 @@ Todo:
  - SavedGames
  - GameModes
  - Overhaul SpaceScene (Background, Buttons, ....)
+ - use fitter for pausemenu
    
  Audio:
  - Background => Default volumne seems to high...
