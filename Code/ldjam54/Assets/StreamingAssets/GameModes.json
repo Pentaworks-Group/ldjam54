@@ -81,6 +81,49 @@
         ]
     },
     {
+        "Reference": "1v1J",
+        "Name": "1v1 with junk",
+        "Description": "Fight against another and junk",
+        "RequiredSurvivors": 1,
+        "ShipSpawnDistance": 9,
+        "JunkSpawnInterval": 2,
+        "JunkSpawnInitialDistance": 20,
+        "JunkSpawnPosition": {
+            "Min": -7,
+            "Max": 7
+        },
+        "JunkSpawnForce": {
+            "Min": -6,
+            "Max": 6
+        },
+        "JunkSpawnTorque": {
+            "Min": -3,
+            "Max": 3
+        },
+        "Stars": [
+            {
+                "IsReferenced": true,
+                "Reference": "DaSun"
+            }
+        ],
+        "Spacecrafts": [
+            {
+                "IsReferenced": true,
+                "Reference": "Spacecraft1"
+            },
+            {
+                "IsReferenced": true,
+                "Reference": "Spacecraft1"
+            }
+        ],
+        "PlayerSpacecrafts": [
+            {
+                "IsReferenced": true,
+                "Reference": "Spacecraft1"
+            }
+        ]
+    },
+    {
         "Reference": "Runni",
         "Name": "You cant run, neither hide",
         "Description": "Try to not fall into the sun",
@@ -149,6 +192,44 @@
                 "Materials": [
                     "DaSun"
                 ]
+            }
+        ],
+        "Spacecrafts": [
+            {
+                "IsReferenced": true,
+                "Reference": "Spacecraft1"
+            }
+        ],
+        "PlayerSpacecrafts": [
+            {
+                "IsReferenced": true,
+                "Reference": "Spacecraft1"
+            }
+        ]
+    },
+    {
+        "Reference": "mayhem",
+        "Name": "Lots and lots of junk",
+        "Description": "Its getting a little bit crowded in here",
+        "ShipSpawnDistance": 9,
+        "JunkSpawnInterval": 0.3,
+        "JunkSpawnInitialDistance": 20,
+        "JunkSpawnPosition": {
+            "Min": -7,
+            "Max": 7
+        },
+        "JunkSpawnForce": {
+            "Min": -6,
+            "Max": 6
+        },
+        "JunkSpawnTorque": {
+            "Min": -3,
+            "Max": 3
+        },
+        "Stars": [
+            {
+                "IsReferenced": true,
+                "Reference": "DaSun"
             }
         ],
         "Spacecrafts": [
