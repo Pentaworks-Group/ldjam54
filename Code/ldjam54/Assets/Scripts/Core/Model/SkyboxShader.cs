@@ -12,6 +12,5 @@ namespace Assets.Scripts.Core.Model
         public float BrightnessModulation { get; set; }
         public GameFrame.Core.Media.Color FogColor { get; set; }
         public float NoiseDensity { get; set; }
-
     }
 }
