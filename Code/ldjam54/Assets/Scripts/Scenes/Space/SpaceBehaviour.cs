@@ -42,7 +42,6 @@ namespace Assets.Scripts.Scenes.Space
             }
         }
 
-
         private void Awake()
         {
             if (Base.Core.Game.State == default)
@@ -55,7 +54,9 @@ namespace Assets.Scripts.Scenes.Space
         {
             if (TryGetComponent<SkyboxShaderUpdater>(out var skyboxShaderUpdater))
             {
-                skyboxShaderUpdater.Skybox = Base.Core.Game.State.Skybox;
+                var gameState = Base.Core.Game.State;
+
+                skyboxShaderUpdater.Skybox = gameState.Skybox;
                 skyboxShaderUpdater.UpdateSkybox();
             }
 
@@ -81,19 +82,19 @@ namespace Assets.Scripts.Scenes.Space
 
             var aiSpacecrafts = Base.Core.Game.State.Spacecrafts;
 
-            if (aiSpacecrafts.Count >0 )
+            if (aiSpacecrafts.Count > 0)
             {
                 throw new NotSupportedException("AI Ships are notyet supported!");
             }
 
             //for (int i = 0; i < aiSpacecrafts.Count; i++)
             //{                
-                //var spacecraft = aiSpacecrafts[i];
+            //var spacecraft = aiSpacecrafts[i];
 
-                //var junkKillCounter = killCountDisplays[i];
+            //var junkKillCounter = killCountDisplays[i];
 
-                //var behaviour = SpawnShip(spacecraft, keyBindings[i], this.InputPadBehaviours[i], "AI-" + (i + 1), this.colors[i], junkKillCounter);
-                //playerSpacecraftBehaviours.Add(behaviour);
+            //var behaviour = SpawnShip(spacecraft, keyBindings[i], this.InputPadBehaviours[i], "AI-" + (i + 1), this.colors[i], junkKillCounter);
+            //playerSpacecraftBehaviours.Add(behaviour);
             //}
         }
 
