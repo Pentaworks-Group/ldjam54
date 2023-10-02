@@ -362,7 +362,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: " - Enjoy the game.\n - Don't accelerate too much.\n - Give the star a
-    hug.\n - Try to get a stable orbit.\n - Shot down the junk.\n - Provide feedback.\n\nAnd
+    hug.\n - Try to get a stable orbit.\n - Shoot down the junk.\n - Provide feedback.\n\nAnd
     most importantly: \n - git gud!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a66e9db20c483a84e88ef47293a1187e, type: 2}
