@@ -16,7 +16,7 @@ namespace Assets.Scripts.Scenes.MainMenu
         const float MaxAcceleration = 200;
 
 
-        private static List<AttracteeeBehaviour> BodiesToAttract = new List<AttracteeeBehaviour>();
+        private List<AttracteeeBehaviour> BodiesToAttract = new List<AttracteeeBehaviour>();
 
         private void Awake()
         {
@@ -33,7 +33,7 @@ namespace Assets.Scripts.Scenes.MainMenu
             }
         }
 
-        public static void RegisterBody(AttracteeeBehaviour gravityBehaviour)
+        public void RegisterBody(AttracteeeBehaviour gravityBehaviour)
         {
             BodiesToAttract.Add(gravityBehaviour);
         }

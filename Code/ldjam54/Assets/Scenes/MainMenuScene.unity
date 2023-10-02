@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0.060035378, b: 0.120030604, a: 1}
+  m_IndirectSpecularColor: {r: 0.13759077, g: 0.19445032, b: 0.28419355, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -381,6 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3699570c69c18504f90ad7ee2e463b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attractorBehaviour: {fileID: 1263851134}
 --- !u!1 &239252605
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,6 +656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3699570c69c18504f90ad7ee2e463b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attractorBehaviour: {fileID: 1263851134}
 --- !u!1 &557539291
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,6 +879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3699570c69c18504f90ad7ee2e463b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attractorBehaviour: {fileID: 1263851134}
 --- !u!1001 &645637316
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1005,6 +1008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3699570c69c18504f90ad7ee2e463b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attractorBehaviour: {fileID: 1263851134}
 --- !u!1001 &654612986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1386,6 +1390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3699570c69c18504f90ad7ee2e463b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attractorBehaviour: {fileID: 1263851134}
 --- !u!1 &873676866
 GameObject:
   m_ObjectHideFlags: 0
@@ -2436,6 +2441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3699570c69c18504f90ad7ee2e463b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attractorBehaviour: {fileID: 1263851134}
 --- !u!1001 &1263851125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2450,15 +2456,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2457342415578464418, guid: 406bcc1266d1dd643b023ab57630a9b5, type: 3}
       propertyPath: m_LocalScale.x
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2457342415578464418, guid: 406bcc1266d1dd643b023ab57630a9b5, type: 3}
       propertyPath: m_LocalScale.y
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2457342415578464418, guid: 406bcc1266d1dd643b023ab57630a9b5, type: 3}
       propertyPath: m_LocalScale.z
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2457342415578464418, guid: 406bcc1266d1dd643b023ab57630a9b5, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -3362,6 +3368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3699570c69c18504f90ad7ee2e463b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attractorBehaviour: {fileID: 1263851134}
 --- !u!1 &1639971270
 GameObject:
   m_ObjectHideFlags: 0
@@ -3846,6 +3853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3699570c69c18504f90ad7ee2e463b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attractorBehaviour: {fileID: 1263851134}
 --- !u!1001 &2037195937
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4152,6 +4160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3699570c69c18504f90ad7ee2e463b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attractorBehaviour: {fileID: 1263851134}
 --- !u!1001 &2065071747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4280,6 +4289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3699570c69c18504f90ad7ee2e463b8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attractorBehaviour: {fileID: 1263851134}
 --- !u!1 &2073488456
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,12 +9,15 @@ namespace Assets.Scripts.Scenes.MainMenu
     {
         public Rigidbody Rb { get; private set; }
 
+        [SerializeField]
+        private AttractorBehaviour attractorBehaviour;
+
         private void Awake()
         {
             Rb = gameObject.GetComponent<Rigidbody>();
             Rb.useGravity = false;
             Rb.constraints = RigidbodyConstraints.FreezeAll;
-            AttractorBehaviour.RegisterBody(this);
+            attractorBehaviour.RegisterBody(this);
             StartCoroutine(CheckSurvivorCount());
         }
 
@@ -25,7 +28,7 @@ namespace Assets.Scripts.Scenes.MainMenu
 
 
             Rb.constraints = RigidbodyConstraints.None;
-            Rb.AddForce(CreateRandomVector(-50, 50));
+            Rb.AddForce(CreateRandomVector(-100, 100));
             Rb.AddTorque(CreateRandomVector(-10, 10));
         }
 
