@@ -20,6 +20,8 @@ namespace Assets.Scripts.Scenes.Space
         private GravityManagerBehaviour gravityCenter;
         [SerializeField]
         private RectTransform energyBar;
+        [SerializeField]
+        private ParticleSystem burnerParticles;
         private TextMeshProUGUI junkKillCountDisplay;
 
         private Spacecraft spacecraft;
@@ -204,8 +206,10 @@ namespace Assets.Scripts.Scenes.Space
                 energy -= spacecraft.AccelerationEnergyConsumption;
 
                 GameFrame.Base.Audio.Effects.PlayAt(GameFrame.Base.Resources.Manager.Audio.Get("RocketEngine_Firing_Middle"), this.transform.position);
-            }
-        }
+                burnerParticles.Play();
+
+    }
+}
 
         public void DeAccelerate()
         {
