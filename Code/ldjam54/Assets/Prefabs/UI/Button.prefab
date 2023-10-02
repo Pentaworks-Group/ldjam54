@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -455,6 +455,10 @@ PrefabInstance:
     - target: {fileID: 8405887846135611698, guid: 2f3b736d3e4b6174f915b4e837511045, type: 3}
       propertyPath: m_Name
       value: ToolTip
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405887846135611698, guid: 2f3b736d3e4b6174f915b4e837511045, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8616763760092050020, guid: 2f3b736d3e4b6174f915b4e837511045, type: 3}
       propertyPath: m_Pivot.x
