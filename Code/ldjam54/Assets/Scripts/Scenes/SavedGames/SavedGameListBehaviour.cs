@@ -35,7 +35,6 @@ namespace Assets.Scripts.Scenes.SavedGames
             {
                 DeleteAllButton.interactable = savedGames.Count > 0;
             }
-
         }
 
         public void OnDeleteAll()

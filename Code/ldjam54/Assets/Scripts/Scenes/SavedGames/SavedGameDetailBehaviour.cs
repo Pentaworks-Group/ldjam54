@@ -1,5 +1,7 @@
 using Assets.Scripts.Core;
 
+using TMPro;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,12 +11,15 @@ namespace Assets.Scripts.Scenes.SavedGames
     {
         [SerializeField]
         private SavedGameListBehaviour listBehaviour;
+        
+        [SerializeField]
+        private TextAutoSizeController textSizeController;
 
-        private Text createdOn;
-        private Text timeStamp;
-        private Text completedLevels;
-        private Text currentLevel;
-        private Text owlType;
+        private TMP_Text createdOnText;
+        private TMP_Text timeStampText;
+        private TMP_Text GameModeText;
+        private TMP_Text playerCountText;
+        private TMP_Text timeElapsedText;
 
         [SerializeField]
         private GameObject container;
@@ -23,11 +28,17 @@ namespace Assets.Scripts.Scenes.SavedGames
 
         public void Awake()
         {
-            createdOn = transform.Find("DetailsContainer/Created/Value").GetComponent<Text>();
-            timeStamp = transform.Find("DetailsContainer/TimeStamp/Value").GetComponent<Text>();
-            completedLevels = transform.Find("DetailsContainer/CompletedLevels/Value").GetComponent<Text>();
-            currentLevel = transform.Find("DetailsContainer/CurrentLevel/Value").GetComponent<Text>();
-            owlType = transform.Find("DetailsContainer/OwlType/Value").GetComponent<Text>();
+            createdOnText = transform.Find("DetailsContainer/Created/Value").GetComponent<TMP_Text>();
+            timeStampText = transform.Find("DetailsContainer/TimeStamp/Value").GetComponent<TMP_Text>();
+            GameModeText = transform.Find("DetailsContainer/GameMode/Value").GetComponent<TMP_Text>();
+            playerCountText = transform.Find("DetailsContainer/PlayerCount/Value").GetComponent<TMP_Text>();
+            timeElapsedText = transform.Find("DetailsContainer/TimeElapsed/Value").GetComponent<TMP_Text>();
+
+            textSizeController.AddLabel(createdOnText);
+            textSizeController.AddLabel(timeStampText);
+            textSizeController.AddLabel(GameModeText);
+            textSizeController.AddLabel(playerCountText);
+            textSizeController.AddLabel(timeElapsedText);
 
             var overwriteButton = transform.Find("DetailsContainer/Buttons/Override").GetComponent<Button>();
 
@@ -37,8 +48,11 @@ namespace Assets.Scripts.Scenes.SavedGames
 
         public void DisplayDetails(SavedGamePreview preview)
         {
-            createdOn.text = preview.CreatedOn;
-            timeStamp.text = preview.SavedOn;
+            createdOnText.text = preview.CreatedOn;
+            timeStampText.text = preview.SavedOn;
+            GameModeText.text = preview.GameMode;
+            playerCountText.text = preview.PlayerCount;
+            timeElapsedText.text = preview.TimeElapsed;
 
             this.key = preview.Key;
             container.SetActive(true);
