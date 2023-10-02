@@ -49,16 +49,16 @@ namespace Assets.Scripts.Scenes.Space
             {
                 Base.Core.Game.Start();
             }
+        }
 
+        private void Start()
+        {
             if (TryGetComponent<SkyboxShaderUpdater>(out var skyboxShaderUpdater))
             {
                 skyboxShaderUpdater.Skybox = Base.Core.Game.State.Skybox;
                 skyboxShaderUpdater.UpdateSkybox();
             }
-        }
 
-        private void Start()
-        {
             var keyBindings = new List<Dictionary<String, KeyCode>>()
             {
                 GetKeybindingsWASD(),

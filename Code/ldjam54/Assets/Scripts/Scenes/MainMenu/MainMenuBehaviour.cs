@@ -1,10 +1,9 @@
 using System;
+using System.Runtime.InteropServices;
 
 using Assets.Scripts.Constants;
 
 using UnityEngine;
-using UnityEngine.UI;
-using System.Runtime.InteropServices;
 
 namespace Assets.Scripts.Scenes.MainMenu
 {
@@ -17,6 +16,8 @@ namespace Assets.Scripts.Scenes.MainMenu
         private GameObject Tutorial;
         [SerializeField]
         private GameObject Menu;
+
+        private SkyboxShaderUpdater skyboxShaderUpdater;
 
         public void PlayGame()
         {
@@ -78,12 +79,18 @@ namespace Assets.Scripts.Scenes.MainMenu
         private void Awake()
         {
             GameObject.Find("UI/Fitter/Menu/Area/VersionText").GetComponent<TMPro.TMP_Text>().text = $"Version: {Application.version}";
-            
+
             if (TryGetComponent<SkyboxShaderUpdater>(out var skyboxShaderUpdater))
             {
+                this.skyboxShaderUpdater = skyboxShaderUpdater;
+
                 skyboxShaderUpdater.Skybox = Base.Core.Game.Skybox;
-                skyboxShaderUpdater.UpdateSkybox();
             }
+        }
+
+        private void Start()
+        {
+            skyboxShaderUpdater?.UpdateSkybox();
         }
     }
 }
