@@ -37,6 +37,7 @@ namespace Assets.Scripts.Scenes.Space
 
         public String DeathMessage { get; private set; }
 
+
         void Update()
         {
             if (!isDead)
@@ -69,7 +70,7 @@ namespace Assets.Scripts.Scenes.Space
                     TriggerGameOver("You joined the space junk gang");
                     break;
                 case "Ship":
-                    TriggerGameOver("Never go alone. Together forever with " + other.name);
+                    TriggerGameOver("Never go alone. Together forever with " + other.transform.parent.name);
                     break;
                 case "Sun":
                     TriggerGameOver("The sun is cosy warm, but you should not go that close");
@@ -122,9 +123,15 @@ namespace Assets.Scripts.Scenes.Space
             }
         }
 
+        private void TagShip()
+        {
+            var model = transform.Find("Model").gameObject;
+            model.tag = "Ship";
+        }
+
         private void InitShip()
         {
-            gameObject.tag = "Ship";
+            TagShip();
 
             var position = spacecraft.Position.ToUnity();
 
