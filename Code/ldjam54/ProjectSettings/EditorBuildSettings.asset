@@ -19,7 +19,7 @@ EditorBuildSettings:
     guid: 4515854e2eb4dd445bfe469d51bb5604
   - enabled: 1
     path: Assets/Scenes/CreditsScene.unity
-    guid: 205beffacb2cbf849b892aca9c193b8a
+    guid: 054fe1557ef3b7b40950ee03ae9b472f
   - enabled: 1
     path: Assets/Scenes/SpaceScene.unity
     guid: 698cfd6858dd98c41ad725495abadd40
