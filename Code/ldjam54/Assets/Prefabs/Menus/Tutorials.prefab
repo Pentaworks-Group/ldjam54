@@ -254,7 +254,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48.3
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -397,7 +397,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 69.75
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -620,7 +620,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.85
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -759,7 +759,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 62.75
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2251,7 +2251,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8660093311796581278, guid: fa841755a4615d94ab0fbaede9919f6c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1214248163144865889}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4091246071930193827, guid: fa841755a4615d94ab0fbaede9919f6c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4292224444959857695}
   m_SourcePrefab: {fileID: 100100000, guid: fa841755a4615d94ab0fbaede9919f6c, type: 3}
 --- !u!224 &1787453682594363424 stripped
 RectTransform:
@@ -2268,3 +2271,28 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3792570912684759564, guid: fa841755a4615d94ab0fbaede9919f6c, type: 3}
   m_PrefabInstance: {fileID: 6980750244159892414}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6352219508555623453 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4091246071930193827, guid: fa841755a4615d94ab0fbaede9919f6c, type: 3}
+  m_PrefabInstance: {fileID: 6980750244159892414}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4292224444959857695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6352219508555623453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a6e3f31e747f749846b5890f558956, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _labels:
+  - {fileID: 345894953516766559}
+  - {fileID: 7081913076466740860}
+  - {fileID: 3645578215903925894}
+  - {fileID: 4547715498532116758}
+  _pattern: 0
+  _executeOnUpdate: 0
+  _searchChildren: 0
