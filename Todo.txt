@@ -23,7 +23,6 @@ Todo:
  - 
  
  UI: 
- - adapt list container graphics
  - auto textsize ignore tooltips or set tooltip size
    
  Audio:
@@ -49,6 +48,7 @@ Nice to have:
  - suicide button with own message
  - drag & drop scroll bar in lists
  - improve touch control, maybe change button layout for 2 hand?
+ - keybinidings for menu interaction
  
 Ideas:
 ----------------------------------
