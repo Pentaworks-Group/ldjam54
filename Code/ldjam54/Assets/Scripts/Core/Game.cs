@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Assets.Scripts.Core.Definitions.Loaders;
+using Assets.Scripts.Core.Model;
 
 using GameFrame.Core.Extensions;
 
@@ -18,7 +19,7 @@ namespace Assets.Scripts.Core
 
         public static Definitions.GameMode SelectedGameMode { get; set; }
 
-        public float SkyboxSeed { get; } = UnityEngine.Random.Range(0, 1000);
+        public SkyboxShader Skybox { get; private set; }
 
         public IList<Definitions.GameMode> AvailableGameModes
         {
@@ -63,7 +64,8 @@ namespace Assets.Scripts.Core
                 CreatedOn = DateTime.Now,
                 CurrentScene = Constants.SceneNames.Space,
                 Mode = ConvertGameMode(SelectedGameMode),
-                Spacecraft = ConvertSpacecraft(SelectedGameMode.PlayerSpacecrafts.GetRandomEntry())
+                Spacecraft = ConvertSpacecraft(SelectedGameMode.PlayerSpacecrafts.GetRandomEntry()),
+                Skybox = GenerateRandomSkybox()
             };
 
             return gameState;
@@ -82,6 +84,10 @@ namespace Assets.Scripts.Core
         protected override void OnGameStart()
         {
             LoadGameSettings();
+
+            InitializeAudioClips();
+
+            this.Skybox = GenerateRandomSkybox();
         }
 
         private void LoadGameSettings()
@@ -89,8 +95,6 @@ namespace Assets.Scripts.Core
             new ResourceLoader<Definitions.Spacecraft>(this.availableSpacecrafts).LoadDefinition("Spacecrafts.json");
             new ResourceLoader<Definitions.Star>(this.availableStars).LoadDefinition("Stars.json");
             new GameModesLoader(this.availableGameModes, this.availableStars, this.availableSpacecrafts).LoadDefinition("GameModes.json");
-
-            InitializeAudioClips();
         }
 
         private void InitializeAudioClips()
@@ -180,6 +184,19 @@ namespace Assets.Scripts.Core
             };
 
             return model;
+        }
+
+        private SkyboxShader GenerateRandomSkybox()
+        {
+            var skyboxShader = new SkyboxShader()
+            {
+                Seed = UnityEngine.Random.Range(10, 1000),
+                //SkyColor = new GameFrame.Core.Media.Color(1,1,1,1),
+                //StarSizeRange = new Vector2
+                
+            };
+
+            return skyboxShader;
         }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]

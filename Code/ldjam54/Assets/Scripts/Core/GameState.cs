@@ -9,8 +9,9 @@ namespace Assets.Scripts.Core
     {
         public Spacecraft Spacecraft { get; set; }
         public GameMode Mode { get; set; }
-        public Double NextJunkSpawn { get; set; }              
+        public Double NextJunkSpawn { get; set; }
         public Dictionary<String, String> DeadShips { get; set; } = new Dictionary<String, String>();
+        public SkyboxShader Skybox { get; set; }
         public Double TimeElapsed { get; set; }
     }
 }

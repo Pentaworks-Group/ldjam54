@@ -1,18 +1,22 @@
+using System;
+
+using Assets.Scripts.Core.Model;
+
 using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class SkyBoxShaderUpdater : MonoBehaviour
+    public class SkyboxShaderUpdater : MonoBehaviour
     {
-        public float Seed = 57.95f;
+        public SkyboxShader Skybox { get; set; }
 
         private int seedProperty = -1;
         private float startingSeed;
-        private Material skxboxMaterial;
+        private Material skyboxMaterial;
 
         private void OnDisable()
         {
-            skxboxMaterial.SetFloat(seedProperty, startingSeed);
+            skyboxMaterial.SetFloat(seedProperty, startingSeed);
         }
 
         private void Awake()
@@ -21,10 +25,16 @@ namespace Assets.Scripts
 
             if (seedProperty >= 0)
             {
-                skxboxMaterial = RenderSettings.skybox;
-                startingSeed = skxboxMaterial.GetFloat(seedProperty);
+                skyboxMaterial = RenderSettings.skybox;
+                startingSeed = skyboxMaterial.GetFloat(seedProperty);
+            }
+        }
 
-                skxboxMaterial.SetFloat(seedProperty, Seed);
+        public void UpdateSkybox()
+        {
+            if (this.Skybox != default)
+            {
+                skyboxMaterial?.SetFloat(seedProperty, Skybox.Seed);
             }
         }
     }
