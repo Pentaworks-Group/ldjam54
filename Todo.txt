@@ -29,7 +29,6 @@ Todo:
  - SavedGames
  - GameModes
  - Overhaul SpaceScene (Background, Buttons, ....)
- - use fitter for pausemenu
  - adapt list container graphics
  - SpaceScene - Load Shader values.
  - auto textsize ignore tooltips or set tooltip size
@@ -56,6 +55,7 @@ Nice to have:
  - health
  - suicide button with own message
  - drag & drop scroll bar in lists
+ - sun particles
  
 Ideas:
 ----------------------------------

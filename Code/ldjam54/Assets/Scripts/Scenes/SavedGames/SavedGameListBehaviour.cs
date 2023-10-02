@@ -6,6 +6,7 @@ using Assets.Scripts.Core;
 
 using GameFrame.Core.UI.List;
 
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Scenes.SavedGames
@@ -14,6 +15,9 @@ namespace Assets.Scripts.Scenes.SavedGames
     {
         public Button SaveNewButton;
         public Button DeleteAllButton;
+
+        [SerializeField]
+        private TextAutoSizeController textAutoSizeController;
 
         public override void CustomStart()
         {
@@ -35,6 +39,7 @@ namespace Assets.Scripts.Scenes.SavedGames
             {
                 DeleteAllButton.interactable = savedGames.Count > 0;
             }
+            //textAutoSizeController.ForceChildren();
         }
 
         public void OnDeleteAll()

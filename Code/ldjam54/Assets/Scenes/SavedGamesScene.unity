@@ -346,6 +346,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3051268920918618841, guid: 5af1972d0fa96a846b46ab227f52e02c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3051268920918618841, guid: 5af1972d0fa96a846b46ab227f52e02c, type: 3}
       propertyPath: _searchChildren
       value: 0
       objectReference: {fileID: 0}
@@ -493,7 +497,8 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3051268920918618841, guid: 5af1972d0fa96a846b46ab227f52e02c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4343750656532501571, guid: 5af1972d0fa96a846b46ab227f52e02c, type: 3}
@@ -567,10 +572,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 621294673}
     m_Modifications:
-    - target: {fileID: 134746106048516243, guid: e09e34ffd5b4c04408f3b7160d0a1ae8, type: 3}
-      propertyPath: m_fontSize
-      value: 50.1
-      objectReference: {fileID: 0}
     - target: {fileID: 1055190752250365509, guid: e09e34ffd5b4c04408f3b7160d0a1ae8, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -579,14 +580,34 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1517876913381635653, guid: e09e34ffd5b4c04408f3b7160d0a1ae8, type: 3}
-      propertyPath: m_SizeDelta.x
+    - target: {fileID: 1473397205103167515, guid: e09e34ffd5b4c04408f3b7160d0a1ae8, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2178267694021636468, guid: e09e34ffd5b4c04408f3b7160d0a1ae8, type: 3}
-      propertyPath: m_fontSize
-      value: 50.1
+    - target: {fileID: 1473397205103167515, guid: e09e34ffd5b4c04408f3b7160d0a1ae8, type: 3}
+      propertyPath: _searchChildren
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1473397205103167515, guid: e09e34ffd5b4c04408f3b7160d0a1ae8, type: 3}
+      propertyPath: _executeOnUpdate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473397205103167515, guid: e09e34ffd5b4c04408f3b7160d0a1ae8, type: 3}
+      propertyPath: _labels.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473397205103167515, guid: e09e34ffd5b4c04408f3b7160d0a1ae8, type: 3}
+      propertyPath: _labels.Array.data[0]
+      value: 
+      objectReference: {fileID: 642555368}
+    - target: {fileID: 1473397205103167515, guid: e09e34ffd5b4c04408f3b7160d0a1ae8, type: 3}
+      propertyPath: _labels.Array.data[1]
+      value: 
+      objectReference: {fileID: 1598729790}
+    - target: {fileID: 1473397205103167515, guid: e09e34ffd5b4c04408f3b7160d0a1ae8, type: 3}
+      propertyPath: _labels.Array.data[2]
+      value: 
+      objectReference: {fileID: 1803585281}
     - target: {fileID: 3190420073446597849, guid: e09e34ffd5b4c04408f3b7160d0a1ae8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -671,29 +692,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: SavedGamesMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 3486505891877595947, guid: e09e34ffd5b4c04408f3b7160d0a1ae8, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 55.094635
-      objectReference: {fileID: 0}
-    - target: {fileID: 3555311656064544819, guid: e09e34ffd5b4c04408f3b7160d0a1ae8, type: 3}
-      propertyPath: m_fontSize
-      value: 50.1
-      objectReference: {fileID: 0}
     - target: {fileID: 4480375355588404965, guid: e09e34ffd5b4c04408f3b7160d0a1ae8, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6155162752934116315, guid: e09e34ffd5b4c04408f3b7160d0a1ae8, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 55.094635
-      objectReference: {fileID: 0}
     - target: {fileID: 6611555355930228128, guid: e09e34ffd5b4c04408f3b7160d0a1ae8, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7517348164176440645, guid: e09e34ffd5b4c04408f3b7160d0a1ae8, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 31.15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
