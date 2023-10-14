@@ -1,0 +1,33 @@
+{
+    "Reference": "default",
+    "Name": "Default GameMode",
+    "Description": "You against the SpaceJunk",
+    "ShipSpawnDistance": 9,
+    "JunkSpawnInterval": 2,
+    "JunkSpawnInitialDistance": 20,
+    "JunkSpawnPosition": {
+        "Min": -7,
+        "Max": 7
+    },
+    "JunkSpawnForce": {
+        "Min": -6,
+        "Max": 6
+    },
+    "JunkSpawnTorque": {
+        "Min": -3,
+        "Max": 3
+    },
+    "Stars": [
+        {
+            "IsReferenced": true,
+            "Reference": "DaSun"
+        }
+    ],
+    "PlayerSpacecrafts": [
+        {
+            "IsReferenced": true,
+            "Reference": "Spacecraft1"
+        }
+    ],
+    "Spacecrafts": []
+}

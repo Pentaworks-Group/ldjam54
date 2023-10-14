@@ -33,6 +33,32 @@ namespace Assets.Scripts.Core
                 return this.availableGameModes.Values.ToList();
             }
         }
+
+        public IList<Definitions.Star> AvailableStars
+        {
+            get
+            {
+                if (this.availableGameModes.Count == 0)
+                {
+                    LoadGameSettings();
+                }
+
+                return this.availableStars.Values.ToList();
+            }
+        }
+
+        public IList<Definitions.Spacecraft> AvailableSpacecrafts
+        {
+            get
+            {
+                if (this.availableGameModes.Count == 0)
+                {
+                    LoadGameSettings();
+                }
+
+                return this.availableSpacecrafts.Values.ToList();
+            }
+        }
         public void PlayButtonSound()
         {
             GameFrame.Base.Audio.Effects.Play("Button");

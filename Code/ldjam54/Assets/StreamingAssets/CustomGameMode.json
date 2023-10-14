@@ -1,0 +1,22 @@
+{
+    "Reference": "tt",
+    "Name": "haba",
+    "Description": "You against the SpaceJunk",
+    "ShipSpawnDistance": 9,
+    "JunkSpawnInitialDistance": 20,
+    "JunkSpawnPosition": {
+        "Min": -8,
+        "Max": 8
+    },
+    "JunkSpawnTorque": {
+        "Min": -3,
+        "Max": 3
+    },
+    "Stars": [
+        {
+            "IsReferenced": true,
+            "Reference": "DaSun"
+        }
+    ],
+    "Spacecrafts": []
+}
