@@ -98,5 +98,13 @@ namespace Assets.Scripts
         {
             UpdateValidState();
         }
+
+        public void RemoveChild(JsonEditorSlotBaseBehaviour child)
+        {
+            behaviours.Remove(child);
+            UpdateSlotsGraphics();
+            editorBehaviour.UpdateGraphics();
+            UpdateValidState();
+        }
     }
 }

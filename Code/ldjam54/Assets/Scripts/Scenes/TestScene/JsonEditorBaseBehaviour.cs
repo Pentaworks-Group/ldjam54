@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 
 using Assets.Scripts.Core.Definitions;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 using UnityEngine;
@@ -16,13 +18,11 @@ namespace Assets.Scripts
 {
     public abstract class JsonEditorBaseBehaviour : MonoBehaviour, IJsonEditorSlotParent
     {
-        private String defaultJson;
-        private String rawJson;
-        private JObject defaultJsonObject;
-
         private Dictionary<String, GameObject> templatesDict;
 
         private Dictionary<String, JsonEditorSlotBaseBehaviour> slots;
+
+        private Dictionary<String, PropertyInfo> possibleProperties;
 
         protected Dictionary<String, Func<List<String>>> dropDownDataProvider;
 
@@ -33,10 +33,13 @@ namespace Assets.Scripts
         [SerializeField]
         private Button GenerateJsonButton;
 
+        [SerializeField]
+        private JsonEditorItemSelectorBehaviour selectorBehaviour;
+
         private void Awake()
         {
             slotsParent = transform.Find("SlotContainer/Slots");
-            defaultJson = GetFileContent("DefaultGameMode.json");
+            //defaultJson = GetFileContent("DefaultGameMode.json");
             FillTemplatesDict();
             FillDropdownDataProvider();
             PrepareEitor();
@@ -77,9 +80,9 @@ namespace Assets.Scripts
             }
         }
 
-        private void PrepareEitor()
+        private void PopulatePossibleProperties()
         {
-            slots = new Dictionary<String, JsonEditorSlotBaseBehaviour>();
+            possibleProperties = new Dictionary<string, PropertyInfo>();
             GameMode foo = new GameMode();
             foreach (var prop in foo.GetType().GetProperties())
             {
@@ -87,45 +90,62 @@ namespace Assets.Scripts
                 {
                     continue;
                 }
-                if (templatesDict.TryGetValue(prop.PropertyType.Name, out GameObject template))
+                possibleProperties.Add(prop.Name, prop);   
+            }
+
+        }
+
+        private void PrepareEitor()
+        {
+            slots = new Dictionary<String, JsonEditorSlotBaseBehaviour>();
+            PopulatePossibleProperties();
+            foreach (var prop in possibleProperties)
+            {
+                SpawnPropertyInfo(prop.Value);
+            }
+            UpdateGraphics();
+            selectorBehaviour.UpdateOptions();
+        }
+
+        private void SpawnPropertyInfo(PropertyInfo prop)
+        {
+            if (templatesDict.TryGetValue(prop.PropertyType.Name, out GameObject template))
+            {
+                SpawnSlot(prop.Name, template);
+            }
+            else
+            {
+                var nullType = Nullable.GetUnderlyingType(prop.PropertyType);
+                if (nullType != null)
                 {
-                    SpawnSlot(prop.Name, template);
-                }
-                else
-                {
-                    var nullType = Nullable.GetUnderlyingType(prop.PropertyType);
-                    if (nullType != null)
+                    if (templatesDict.TryGetValue(nullType.Name, out GameObject template1))
                     {
-                        if (templatesDict.TryGetValue(nullType.Name, out GameObject template1))
-                        {
-                            SpawnSlot(prop.Name, template1);
-                        }
-                        else
-                        {
-                            Debug.Log("Unknown Type " + prop.PropertyType.Name + " for " + prop.Name);
-                        }
-                    }
-                    else if ((prop.PropertyType.IsGenericType && (prop.PropertyType.GetGenericTypeDefinition() == typeof(List<>))))
-                    {
-                        templatesDict.TryGetValue("List", out GameObject listTemplate);
-                        Type itemType = prop.PropertyType.GetGenericArguments()[0];
-                        if (templatesDict.TryGetValue(itemType.Name, out GameObject slotTemplate))
-                        {
-                            var listBehaviour = (JsonEditorSlotListBehaviour)SpawnSlot(prop.Name, listTemplate);
-                            listBehaviour.InitList(slotTemplate);
-                        }
-                        else
-                        {
-                            Debug.Log("Unknown Type " + itemType.Name + " for " + prop.Name);
-                        }
+                        SpawnSlot(prop.Name, template1);
                     }
                     else
                     {
                         Debug.Log("Unknown Type " + prop.PropertyType.Name + " for " + prop.Name);
                     }
                 }
+                else if ((prop.PropertyType.IsGenericType && (prop.PropertyType.GetGenericTypeDefinition() == typeof(List<>))))
+                {
+                    templatesDict.TryGetValue("List", out GameObject listTemplate);
+                    Type itemType = prop.PropertyType.GetGenericArguments()[0];
+                    if (templatesDict.TryGetValue(itemType.Name, out GameObject slotTemplate))
+                    {
+                        var listBehaviour = (JsonEditorSlotListBehaviour)SpawnSlot(prop.Name, listTemplate);
+                        listBehaviour.InitList(slotTemplate);
+                    }
+                    else
+                    {
+                        Debug.Log("Unknown Type " + itemType.Name + " for " + prop.Name);
+                    }
+                }
+                else
+                {
+                    Debug.Log("Unknown Type " + prop.PropertyType.Name + " for " + prop.Name);
+                }
             }
-            UpdateGraphics();
         }
 
         public void UpdateGraphics()
@@ -186,9 +206,40 @@ namespace Assets.Scripts
             GenerateJsonButton.interactable = true;
         }
 
+        public List<String> GetNotUsedOptions()
+        {
+            var options = new List<String>();
+            foreach (var item in possibleProperties.Keys)
+            {
+                if (!slots.ContainsKey(item))
+                {
+                    options.Add(item);
+                }
+            }
+            return options;
+        }
+
+        public void SpawnOption(String name)
+        {
+            var property = possibleProperties[name];
+            if (!slots.ContainsKey(name))
+            {
+                SpawnPropertyInfo(property);
+                UpdateGraphics();
+            }
+        }
+
         public void UpdateByChild(String childName)
         {
             UpdateValidState();
+        }
+
+        public void RemoveChild(JsonEditorSlotBaseBehaviour child)
+        {
+            slots.Remove(child.name);
+            UpdateGraphics();
+            UpdateValidState();
+            selectorBehaviour.UpdateOptions();
         }
     }
 }

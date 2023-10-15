@@ -5,6 +5,7 @@ using System.Drawing;
 using Newtonsoft.Json.Linq;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -24,6 +25,8 @@ namespace Assets.Scripts
         private void Awake()
         {
             EnsureSlotPrefabBehaviour();
+            Button removeButton = transform.Find("InnerPart/Buttons/RemoveButton").GetComponent<Button>();
+            removeButton.onClick.AddListener(RemoveThisSlot);
         }
 
         public void InitSlotBehaviour(JsonEditorBaseBehaviour editorBehaviour, String name, IJsonEditorSlotParent parent, bool displayName = true)
@@ -70,6 +73,12 @@ namespace Assets.Scripts
         public List<String> UsedForPropertyTypes()
         {
             return UsedForPropertyes;
+        }
+
+        public void RemoveThisSlot()
+        {
+            parent.RemoveChild(this);
+            Destroy(gameObject);
         }
 
     }
