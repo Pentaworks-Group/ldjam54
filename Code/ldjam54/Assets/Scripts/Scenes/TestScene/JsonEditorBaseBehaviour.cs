@@ -195,6 +195,11 @@ namespace Assets.Scripts
 
         private void UpdateValidState()
         {
+            if (slots.Count == 0)
+            {
+                GenerateJsonButton.interactable = false;
+                return;
+            }
             foreach (var item in slots)
             {
                 if (!item.Value.HasValidValues())
@@ -237,6 +242,19 @@ namespace Assets.Scripts
         public void RemoveChild(JsonEditorSlotBaseBehaviour child)
         {
             slots.Remove(child.name);
+            UpdateGraphics();
+            UpdateValidState();
+            selectorBehaviour.UpdateOptions();
+        }
+
+        public void ClearSelected()
+        {
+
+            foreach(var item in slots)
+            {
+                Destroy(item.Value.gameObject);
+            }
+            slots.Clear();
             UpdateGraphics();
             UpdateValidState();
             selectorBehaviour.UpdateOptions();
