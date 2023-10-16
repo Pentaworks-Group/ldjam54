@@ -36,13 +36,14 @@ namespace Assets.Scripts
         [SerializeField]
         private JsonEditorItemSelectorBehaviour selectorBehaviour;
 
+
+        private System.Object DesiredObject;
+
         private void Awake()
         {
             slotsParent = transform.Find("SlotContainer/Slots");
-            //defaultJson = GetFileContent("DefaultGameMode.json");
             FillTemplatesDict();
             FillDropdownDataProvider();
-            PrepareEitor();
             GenerateJsonButton.interactable = false;
         }
 
@@ -83,29 +84,58 @@ namespace Assets.Scripts
         private void PopulatePossibleProperties()
         {
             possibleProperties = new Dictionary<string, PropertyInfo>();
-            GameMode foo = new GameMode();
-            foreach (var prop in foo.GetType().GetProperties())
+            foreach (var prop in DesiredObject.GetType().GetProperties())
             {
                 if (prop.Name == "IsReferenced")
                 {
                     continue;
                 }
-                possibleProperties.Add(prop.Name, prop);   
+                possibleProperties.Add(prop.Name, prop);
             }
 
         }
 
-        private void PrepareEitor()
-        {
+
+        public void PrepareEitor(System.Object desiredObject, String json = null)
+        {   
+            if (desiredObject == null)
+            {
+                throw new ArgumentNullException("DesiredObject required");
+            }
+            this.DesiredObject = desiredObject;
             slots = new Dictionary<String, JsonEditorSlotBaseBehaviour>();
             PopulatePossibleProperties();
-            foreach (var prop in possibleProperties)
+            if (string.IsNullOrEmpty(json))
             {
-                SpawnPropertyInfo(prop.Value);
+                SpawnPropertyTemplatesWithoutJson();
+            } else
+            {
+                SpawnPropertyTemplatesWithJson(json);
             }
             UpdateGraphics();
             selectorBehaviour.UpdateOptions();
         }
+
+        private void SpawnPropertyTemplatesWithJson(String json)
+        {
+            var jsonObject = new JObject(json);
+            foreach (var prop in possibleProperties)
+            {
+                if (!jsonObject.ContainsKey(prop.Key))
+                {
+                    SpawnPropertyInfo(prop.Value);
+                }
+            }
+        }
+
+        private void SpawnPropertyTemplatesWithoutJson()
+        {
+            foreach (var prop in possibleProperties)
+            {
+                SpawnPropertyInfo(prop.Value);
+            }
+        }
+
 
         private void SpawnPropertyInfo(PropertyInfo prop)
         {
@@ -250,7 +280,7 @@ namespace Assets.Scripts
         public void ClearSelected()
         {
 
-            foreach(var item in slots)
+            foreach (var item in slots)
             {
                 Destroy(item.Value.gameObject);
             }
