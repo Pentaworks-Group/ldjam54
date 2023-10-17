@@ -108,7 +108,7 @@ namespace Assets.Scripts.Scenes.Space
             if (t.x > 100 || t.x < -100 || t.z > 100 || t.z < -100)
             {
                 GameFrame.Base.Audio.Effects.Play("ShootingStars");
-                TriggerGameOver("Tried to think out of the box");
+                TriggerGameOver("Tried to think outside the box");
             }
         }
 
