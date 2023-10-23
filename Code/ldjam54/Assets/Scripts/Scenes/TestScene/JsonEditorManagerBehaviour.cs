@@ -14,7 +14,9 @@ namespace Assets.Scripts
 
         void Start()
         {
-            editorBaseBehaviour.PrepareEitor(new GameMode());
+            //editorBaseBehaviour.PrepareEitor(new GameMode());
+            //editorBaseBehaviour.PrepareEitor(new Star());
+            editorBaseBehaviour.PrepareEitor(new Spacecraft());
         }
 
 

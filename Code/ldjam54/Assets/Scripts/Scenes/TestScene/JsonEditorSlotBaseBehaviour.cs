@@ -22,6 +22,11 @@ namespace Assets.Scripts
         [SerializeField]
         private List<String> UsedForPropertyes;
 
+        public List<String> UsedForPropertyTypes()
+        {
+            return UsedForPropertyes;
+        }
+
         private void Awake()
         {
             EnsureSlotPrefabBehaviour();
@@ -70,10 +75,7 @@ namespace Assets.Scripts
 
         public abstract int Size();
 
-        public List<String> UsedForPropertyTypes()
-        {
-            return UsedForPropertyes;
-        }
+
 
         public void RemoveThisSlot()
         {
