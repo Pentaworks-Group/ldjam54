@@ -7,22 +7,22 @@ namespace Assets.Scripts
 {
     public class JsonEditorBehaviour : JsonEditorBaseBehaviour
     {
+
+        //TODO can we make this static/only once initialised?
         protected override void FillDropdownDataProvider()
         {
             dropDownDataProvider = new Dictionary<string, Func<List<string>>>();
             dropDownDataProvider["Stars"] = GetPossibleStarNames;
             dropDownDataProvider["Spacecrafts"] = GetSpacecraftNames;
             dropDownDataProvider["PlayerSpacecrafts"] = GetSpacecraftNames;
-            //dropDownDataProvider["Boolean"] = GetBooleans;
         }
 
-        private List<String> GetBooleans()
+        protected override void FillEditorObjectProvider()
         {
-            var nameList = new List<String>();
-            nameList.Add("True");
-            nameList.Add("False");  
-            return nameList;
-
+            dropDownEditorProvider = new Dictionary<string, object>();
+            dropDownEditorProvider["Stars"] = new Star();
+            dropDownEditorProvider["Spacecrafts"] = new Spacecraft();
+            dropDownEditorProvider["PlayerSpacecrafts"] = new Spacecraft();
         }
 
 

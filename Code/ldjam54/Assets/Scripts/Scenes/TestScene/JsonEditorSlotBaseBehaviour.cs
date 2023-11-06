@@ -42,7 +42,7 @@ namespace Assets.Scripts
             slotPrefabBehaviour.InitSlotBehaviour(name, displayName);
         }
 
-        
+
 
         private void EnsureSlotPrefabBehaviour()
         {
@@ -68,7 +68,7 @@ namespace Assets.Scripts
 
         public bool HasValidValues()
         {
-            return  validValues;
+            return validValues;
         }
 
         public abstract JToken GenerateToken();

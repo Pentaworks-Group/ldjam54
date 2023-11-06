@@ -26,6 +26,8 @@ namespace Assets.Scripts
 
         protected Dictionary<String, Func<List<String>>> dropDownDataProvider;
 
+        protected Dictionary<String, object> dropDownEditorProvider;
+
         private Transform slotsParent;
 
         private float slotSize = 0.05f;
@@ -39,12 +41,26 @@ namespace Assets.Scripts
 
         private System.Object DesiredObject;
 
-        private void Awake()
+
+        private bool initialised = false;
+
+
+        private void Start()
         {
-            slotsParent = transform.Find("SlotContainer/Slots");
-            FillTemplatesDict();
-            FillDropdownDataProvider();
-            GenerateJsonButton.interactable = false;
+            Initialise();
+        }
+
+        public void Initialise()
+        {
+            if (!initialised)
+            {
+                slotsParent = transform.Find("SlotContainer/Slots");
+                FillTemplatesDict();
+                FillDropdownDataProvider();
+                FillEditorObjectProvider();
+                GenerateJsonButton.interactable = false;
+                initialised = true;
+            }
         }
 
         public void GenereateModeJson()
@@ -66,7 +82,14 @@ namespace Assets.Scripts
             return dropDownDataProvider[name].Invoke();
         }
 
+
+        public object GetCustomObject(String name)
+        {
+            return dropDownEditorProvider[name];
+        }
+
         protected abstract void FillDropdownDataProvider();
+        protected abstract void FillEditorObjectProvider();
 
         private void FillTemplatesDict()
         {
@@ -97,7 +120,8 @@ namespace Assets.Scripts
 
 
         public void PrepareEitor(System.Object desiredObject, String json = null)
-        {   
+        {
+            Initialise();
             if (desiredObject == null)
             {
                 throw new ArgumentNullException("DesiredObject required");
@@ -108,7 +132,8 @@ namespace Assets.Scripts
             if (string.IsNullOrEmpty(json))
             {
                 SpawnPropertyTemplatesWithoutJson();
-            } else
+            }
+            else
             {
                 SpawnPropertyTemplatesWithJson(json);
             }
