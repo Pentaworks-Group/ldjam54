@@ -16,7 +16,7 @@ namespace Assets.Scripts
     {
 
         [SerializeField]
-        private TMP_Dropdown dropDown;
+        protected TMP_Dropdown dropDown;
 
         private String selectedOption;
         private List<String> possibleOptions;

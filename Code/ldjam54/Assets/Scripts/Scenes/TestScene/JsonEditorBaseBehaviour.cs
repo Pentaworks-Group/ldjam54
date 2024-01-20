@@ -41,6 +41,8 @@ namespace Assets.Scripts
 
         private System.Object DesiredObject;
 
+        private Action<JObject> createdObjectAction;
+
 
         private bool initialised = false;
 
@@ -63,7 +65,23 @@ namespace Assets.Scripts
             }
         }
 
-        public void GenereateModeJson()
+        public void SetCreatedObjectAction(Action<JObject> createdObjectAction)
+        {
+            this.createdObjectAction = createdObjectAction;
+        }
+
+
+        public void GenerateObjectJson()
+        {
+            var customJsonObject = GenerateObject();
+
+            String json = customJsonObject.ToString();
+            Debug.Log(json);
+            var tt = GameFrame.Core.Json.Handler.Deserialize<GameMode>(json);
+            Debug.Log(tt);
+        }
+
+        private JObject GenerateObject()
         {
             JObject customJsonObject = new JObject();
             foreach (var item in slots)
@@ -71,10 +89,7 @@ namespace Assets.Scripts
                 customJsonObject[item.Key] = item.Value.GenerateToken();
             }
 
-            String json = customJsonObject.ToString();
-            Debug.Log(json);
-            var tt = GameFrame.Core.Json.Handler.Deserialize<GameMode>(json);
-            Debug.Log(tt);
+            return customJsonObject;
         }
 
         public List<String> GetDropDownOptions(String name)
@@ -119,7 +134,7 @@ namespace Assets.Scripts
         }
 
 
-        public void PrepareEitor(System.Object desiredObject, String json = null)
+        public void PrepareEditor(System.Object desiredObject, JObject jsonObject = null)
         {
             Initialise();
             if (desiredObject == null)
@@ -129,21 +144,20 @@ namespace Assets.Scripts
             this.DesiredObject = desiredObject;
             slots = new Dictionary<String, JsonEditorSlotBaseBehaviour>();
             PopulatePossibleProperties();
-            if (string.IsNullOrEmpty(json))
+            if (jsonObject == null)
             {
                 SpawnPropertyTemplatesWithoutJson();
             }
             else
             {
-                SpawnPropertyTemplatesWithJson(json);
+                SpawnPropertyTemplatesWithJson(jsonObject);
             }
             UpdateGraphics();
             selectorBehaviour.UpdateOptions();
         }
 
-        private void SpawnPropertyTemplatesWithJson(String json)
+        private void SpawnPropertyTemplatesWithJson(JObject jsonObject)
         {
-            var jsonObject = new JObject(json);
             foreach (var prop in possibleProperties)
             {
                 if (!jsonObject.ContainsKey(prop.Key))
@@ -287,6 +301,7 @@ namespace Assets.Scripts
                 SpawnPropertyInfo(property);
                 UpdateGraphics();
             }
+            UpdateValidState();
         }
 
         public void UpdateByChild(String childName)
@@ -313,6 +328,14 @@ namespace Assets.Scripts
             UpdateGraphics();
             UpdateValidState();
             selectorBehaviour.UpdateOptions();
+        }
+
+        internal void CloseEditor()
+        {
+            if (createdObjectAction != null)
+            {
+                createdObjectAction.Invoke(GenerateObject());
+            }
         }
     }
 }

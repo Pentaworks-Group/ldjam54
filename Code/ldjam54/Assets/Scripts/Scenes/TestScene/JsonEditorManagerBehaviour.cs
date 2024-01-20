@@ -5,6 +5,8 @@ using System.Linq;
 
 using Assets.Scripts.Core.Definitions;
 
+using Newtonsoft.Json.Linq;
+
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -29,20 +31,20 @@ namespace Assets.Scripts
         }
 
 
-        public void OpenEditor(String objectName) {
-            var newEditor = CreateNewEditor();
+        public void OpenEditor(String objectName, Action<JObject> createdObjectAction = null, JObject jsonObject = null) {
+            var newEditor = CreateNewEditor(createdObjectAction);
             var objectToOpen = newEditor.GetCustomObject(objectName);
-            newEditor.PrepareEitor(objectToOpen);
+            newEditor.PrepareEditor(objectToOpen, jsonObject);
         }
 
 
-        public void OpenEditor(object objectToOpen)
+        public void OpenEditor(object objectToOpen, Action<JObject> createdObjectAction = null)
         {
-            var newEditor = CreateNewEditor();
-            newEditor.PrepareEitor(objectToOpen);
+            var newEditor = CreateNewEditor(createdObjectAction);
+            newEditor.PrepareEditor(objectToOpen);
         }
 
-        private JsonEditorBaseBehaviour CreateNewEditor()
+        private JsonEditorBaseBehaviour CreateNewEditor(Action<JObject> createdObjectAction)
         {
             if (openEditors.Count != 0)
             {
@@ -51,6 +53,7 @@ namespace Assets.Scripts
             }
             var newEditor = Instantiate(editorBaseBehaviour, this.transform);
             newEditor.Initialise(); //TODO can we remove this?
+            newEditor.SetCreatedObjectAction(createdObjectAction);
             newEditor.gameObject.SetActive(true);
             openEditors.Add(newEditor);
             return newEditor;
@@ -60,6 +63,7 @@ namespace Assets.Scripts
         {
             var lastIndex = openEditors.Count - 1;
             var last = openEditors[lastIndex];
+            last.CloseEditor();
             openEditors.RemoveAt(lastIndex);
             Destroy(last.gameObject);
             if (openEditors.Count != 0)
