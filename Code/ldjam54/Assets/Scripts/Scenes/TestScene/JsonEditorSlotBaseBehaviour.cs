@@ -19,6 +19,8 @@ namespace Assets.Scripts
 
         private bool validValues = false;
 
+        private bool awakend = false;
+
         [SerializeField]
         private List<String> UsedForPropertyes;
 
@@ -29,16 +31,26 @@ namespace Assets.Scripts
 
         private void Awake()
         {
-            EnsureSlotPrefabBehaviour();
-            Button removeButton = transform.Find("InnerPart/Buttons/RemoveButton").GetComponent<Button>();
-            removeButton.onClick.AddListener(RemoveThisSlot);
+            EnsureAwake();
+        }
+
+
+        private void EnsureAwake()
+        {
+            if (!awakend)
+            {
+                EnsureSlotPrefabBehaviour();
+                Button removeButton = transform.Find("InnerPart/Buttons/RemoveButton").GetComponent<Button>();
+                removeButton.onClick.AddListener(RemoveThisSlot);
+                awakend = true;
+            }
         }
 
         public void InitSlotBehaviour(JsonEditorBaseBehaviour editorBehaviour, String name, IJsonEditorSlotParent parent, bool displayName = true)
         {
             this.parent = parent;
             this.editorBehaviour = editorBehaviour;
-            EnsureSlotPrefabBehaviour();
+            EnsureAwake();
             slotPrefabBehaviour.InitSlotBehaviour(name, displayName);
         }
 
@@ -75,7 +87,7 @@ namespace Assets.Scripts
 
         public abstract int Size();
 
-
+        public abstract void SetValue(JToken value);
 
         public void RemoveThisSlot()
         {

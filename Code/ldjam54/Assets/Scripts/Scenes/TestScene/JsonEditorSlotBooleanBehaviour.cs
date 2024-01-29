@@ -41,5 +41,9 @@ namespace Assets.Scripts
         {
             return 1;
         }
+        public override void SetValue(JToken value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

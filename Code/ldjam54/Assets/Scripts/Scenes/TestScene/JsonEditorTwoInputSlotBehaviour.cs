@@ -77,5 +77,16 @@ namespace Assets.Scripts
         {
             return 2;
         }
+
+        public override void SetValue(JToken value)
+        {
+            val1 = value["Min"].ToString();
+            input1Field.text = val1;
+            value1Correct = true; 
+            val2 = value["Max"].ToString();
+            input2Field.text = val2;    
+            value2Correct = true;
+            SetValid();
+        }
     }
 }

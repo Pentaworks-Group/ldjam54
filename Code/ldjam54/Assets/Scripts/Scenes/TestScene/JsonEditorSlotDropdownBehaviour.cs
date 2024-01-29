@@ -23,10 +23,21 @@ namespace Assets.Scripts
 
         private int lastSelected = 0;
 
+        private bool initalized = false;
+
         private void Start()
         {
-            dropDown.onValueChanged.AddListener(OnEditEnd);
-            PopulateDropdown();
+            EnsureInitialization();
+        }
+
+        private void EnsureInitialization()
+        {
+            if (!initalized)
+            {
+                dropDown.onValueChanged.AddListener(OnEditEnd);
+                PopulateDropdown();
+                initalized = true;
+            }
         }
 
         public void OnEditEnd(int index)
@@ -54,7 +65,6 @@ namespace Assets.Scripts
 
         public override JToken GenerateToken()
         {
-
             var jsonString = $"{{'IsReferenced': true,'Reference': '{selectedOption}'}}";
             return JObject.Parse(jsonString);
         }
@@ -62,6 +72,15 @@ namespace Assets.Scripts
         public override Int32 Size()
         {
             return 1;
+        }
+
+        public override void SetValue(JToken value)
+        {
+            EnsureInitialization();
+            selectedOption = value["Reference"].ToString();
+            lastSelected = possibleOptions.IndexOf(selectedOption);
+            dropDown.value = lastSelected;
+            //SetValid();
         }
     }
 }

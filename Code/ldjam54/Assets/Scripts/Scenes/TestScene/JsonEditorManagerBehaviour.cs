@@ -3,9 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+using Assets.Scripts.Core;
 using Assets.Scripts.Core.Definitions;
 
+using GameFrame.Core.Json;
+
 using Newtonsoft.Json.Linq;
+
+using UnityEditor;
 
 using UnityEngine;
 
@@ -23,13 +28,26 @@ namespace Assets.Scripts
 
         private List<JsonEditorBaseBehaviour> openEditors = new List<JsonEditorBaseBehaviour>();
 
+        
         void Start()
         {
             //editorBaseBehaviour.PrepareEitor(new GameMode());
             //editorBaseBehaviour.PrepareEitor(new Star());
-            OpenEditor(new GameMode());
+            var gameMode = Base.Core.Game.AvailableGameModes[0];
+            var filePath = $"{Application.streamingAssetsPath}/GameModes.json";
+            //Handler.DeserializeObjectFromStreamingAssets(filePath, GetJObject);
+            var gameO = new GameObject();
+
+            var mono = gameO.AddComponent<EmptyLoadingBehaviour>();
+            _ = mono.StartCoroutine(GameFrame.Core.Json.Handler.DeserializeObjectFromStreamingAssets<JArray>(filePath, GetJObject));
         }
 
+        public JArray GetJObject(JArray input)
+        {
+            var newEditor = CreateNewEditor(null);
+            newEditor.PrepareEditor(new GameMode(), (JObject)input[0]);
+            return input;
+        }
 
         public void OpenEditor(String objectName, Action<JObject> createdObjectAction = null, JObject jsonObject = null) {
             var newEditor = CreateNewEditor(createdObjectAction);

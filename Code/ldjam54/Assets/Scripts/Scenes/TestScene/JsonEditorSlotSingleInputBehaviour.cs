@@ -37,5 +37,11 @@ namespace Assets.Scripts
         {
             return 1;
         }
+        public override void SetValue(JToken value)
+        {
+            this.value = value.ToString();
+            inputField.text = this.value;
+            SetValid();
+        }
     }
 }

@@ -26,17 +26,35 @@ namespace Assets.Scripts
         private List<JsonEditorSlotBaseBehaviour> behaviours = new List<JsonEditorSlotBaseBehaviour>();
 
 
-        public void InitList(GameObject slotTemplate)
+        public void InitList(GameObject slotTemplate, JToken value = null)
         {
             this.slotTemplate = slotTemplate;
+            if (value != null )
+            {
+                JArray list = value as JArray;
+                foreach (var entry in list)
+                {
+                    GenerateNewListItemWithValue(entry);
+                }
+                UpdateValidState();
+            }
         }
 
         public void GenerateNewListItem()
+        {
+            GenerateNewListItemWithValue();
+        }
+
+        public void GenerateNewListItemWithValue(JToken value = null)
         {
             var slot = Instantiate(slotTemplate, slotsParent.transform);
             var templateBehaviour = slot.GetComponent<JsonEditorSlotBaseBehaviour>();
             behaviours.Add(templateBehaviour);
             templateBehaviour.InitSlotBehaviour(editorBehaviour, name, this, false);
+            if (value != null )
+            {
+                templateBehaviour.SetValue(value);
+            }
             slot.SetActive(true);
             UpdateSlotsGraphics();
             editorBehaviour.UpdateGraphics();
@@ -105,6 +123,11 @@ namespace Assets.Scripts
             UpdateSlotsGraphics();
             editorBehaviour.UpdateGraphics();
             UpdateValidState();
+        }
+
+        public override void SetValue(JToken value)
+        {
+            
         }
     }
 }

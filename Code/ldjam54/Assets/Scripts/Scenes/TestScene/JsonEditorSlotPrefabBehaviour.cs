@@ -21,17 +21,30 @@ namespace Assets.Scripts
 
         private Color invalidBackGroundColor;
 
+        private bool awakend = false;
+
 
         private void Awake()
         {
-            BackGround = GetComponent<Image>();
-            var foreground = transform.Find("InnerPart").GetComponent<Image>();
-            foreground.color = ForeGroundColor;
-            invalidBackGroundColor = BackGround.color;
+            EnsureAwake();
+        }
+
+
+        private void EnsureAwake()
+        {
+            if (!awakend)
+            {
+                BackGround = GetComponent<Image>();
+                var foreground = transform.Find("InnerPart").GetComponent<Image>();
+                foreground.color = ForeGroundColor;
+                invalidBackGroundColor = BackGround.color;
+                awakend = true;
+            }
         }
 
         public void InitSlotBehaviour(string name, bool displayName = true)
         {
+            EnsureAwake();
             this.name = name;
             nameText.text = name;
             this.gameObject.name = name;

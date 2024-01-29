@@ -160,9 +160,9 @@ namespace Assets.Scripts
         {
             foreach (var prop in possibleProperties)
             {
-                if (!jsonObject.ContainsKey(prop.Key))
+                if (jsonObject.ContainsKey(prop.Key))
                 {
-                    SpawnPropertyInfo(prop.Value);
+                    SpawnPropertyInfo(prop.Value, jsonObject[prop.Key]);
                 }
             }
         }
@@ -176,11 +176,11 @@ namespace Assets.Scripts
         }
 
 
-        private void SpawnPropertyInfo(PropertyInfo prop)
+        private void SpawnPropertyInfo(PropertyInfo prop, JToken slotValue = null)
         {
             if (templatesDict.TryGetValue(prop.PropertyType.Name, out GameObject template))
             {
-                SpawnSlot(prop.Name, template);
+                SpawnSlot(prop.Name, template, slotValue);
             }
             else
             {
@@ -189,7 +189,7 @@ namespace Assets.Scripts
                 {
                     if (templatesDict.TryGetValue(nullType.Name, out GameObject template1))
                     {
-                        SpawnSlot(prop.Name, template1);
+                        SpawnSlot(prop.Name, template1, slotValue);
                     }
                     else
                     {
@@ -202,8 +202,8 @@ namespace Assets.Scripts
                     Type itemType = prop.PropertyType.GetGenericArguments()[0];
                     if (templatesDict.TryGetValue(itemType.Name, out GameObject slotTemplate))
                     {
-                        var listBehaviour = (JsonEditorSlotListBehaviour)SpawnSlot(prop.Name, listTemplate);
-                        listBehaviour.InitList(slotTemplate);
+                        var listBehaviour = (JsonEditorSlotListBehaviour)SpawnSlot(prop.Name, listTemplate, slotValue);
+                        listBehaviour.InitList(slotTemplate, slotValue);
                     }
                     else
                     {
@@ -232,12 +232,15 @@ namespace Assets.Scripts
         }
 
 
-        private JsonEditorSlotBaseBehaviour SpawnSlot(string name, GameObject template)
+        private JsonEditorSlotBaseBehaviour SpawnSlot(string name, GameObject template, JToken slotValue)
         {
             var slot = Instantiate(template, slotsParent);
             var templateBehaviour = slot.GetComponent<JsonEditorSlotBaseBehaviour>();
             slots[name] = templateBehaviour;
             templateBehaviour.InitSlotBehaviour(this, name, this);
+            if (slotValue != null) {
+                templateBehaviour.SetValue(slotValue);
+            }
             slot.SetActive(true);
             return templateBehaviour;
         }
