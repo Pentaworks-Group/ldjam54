@@ -33,15 +33,14 @@ namespace Assets.Scripts
         private float slotSize = 0.05f;
 
         [SerializeField]
-        private Button GenerateJsonButton;
-
-        [SerializeField]
         private JsonEditorItemSelectorBehaviour selectorBehaviour;
 
 
         private System.Object DesiredObject;
 
         private Action<JObject> createdObjectAction;
+
+        private Action<bool> updateSaveActionInteractability;
 
 
         private bool initialised = false;
@@ -60,7 +59,6 @@ namespace Assets.Scripts
                 FillTemplatesDict();
                 FillDropdownDataProvider();
                 FillEditorObjectProvider();
-                GenerateJsonButton.interactable = false;
                 initialised = true;
             }
         }
@@ -68,6 +66,12 @@ namespace Assets.Scripts
         public void SetCreatedObjectAction(Action<JObject> createdObjectAction)
         {
             this.createdObjectAction = createdObjectAction;
+        }
+
+        public void SetUpdateSaveButtonInteractability(Action<bool> updateSaveButtonInteractability)
+        {
+            this.updateSaveActionInteractability = updateSaveButtonInteractability;
+            this.updateSaveActionInteractability(false);
         }
 
 
@@ -238,7 +242,8 @@ namespace Assets.Scripts
             var templateBehaviour = slot.GetComponent<JsonEditorSlotBaseBehaviour>();
             slots[name] = templateBehaviour;
             templateBehaviour.InitSlotBehaviour(this, name, this);
-            if (slotValue != null) {
+            if (slotValue != null)
+            {
                 templateBehaviour.SetValue(slotValue);
             }
             slot.SetActive(true);
@@ -269,18 +274,18 @@ namespace Assets.Scripts
         {
             if (slots.Count == 0)
             {
-                GenerateJsonButton.interactable = false;
+                updateSaveActionInteractability(false);
                 return;
             }
             foreach (var item in slots)
             {
                 if (!item.Value.HasValidValues())
                 {
-                    GenerateJsonButton.interactable = false;
+                    updateSaveActionInteractability(false);
                     return;
                 }
             }
-            GenerateJsonButton.interactable = true;
+            updateSaveActionInteractability(true);
         }
 
         public List<String> GetNotUsedOptions()
@@ -333,9 +338,9 @@ namespace Assets.Scripts
             selectorBehaviour.UpdateOptions();
         }
 
-        internal void CloseEditor()
+        internal void CloseEditor(bool saveObject)
         {
-            if (createdObjectAction != null)
+            if (createdObjectAction != null && saveObject)
             {
                 createdObjectAction.Invoke(GenerateObject());
             }

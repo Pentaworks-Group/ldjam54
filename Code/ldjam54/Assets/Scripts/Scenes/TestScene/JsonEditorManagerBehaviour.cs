@@ -13,22 +13,26 @@ using Newtonsoft.Json.Linq;
 using UnityEditor;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
     public class JsonEditorManagerBehaviour : MonoBehaviour
     {
         [SerializeField]
-        private JsonEditorBaseBehaviour editorBaseBehaviour;
+        private JsonEditorBaseBehaviour editorTemplate;
 
 
         [SerializeField]
         private GameObject closeButton;
+        [SerializeField]
+        private Button saveAndCloseButton;
 
 
         private List<JsonEditorBaseBehaviour> openEditors = new List<JsonEditorBaseBehaviour>();
 
-        
+
+
         void Start()
         {
             //editorBaseBehaviour.PrepareEitor(new GameMode());
@@ -68,20 +72,22 @@ namespace Assets.Scripts
             {
                 openEditors.Last().gameObject.SetActive(false);
                 closeButton.SetActive(true);
+                saveAndCloseButton.gameObject.SetActive(true);
             }
-            var newEditor = Instantiate(editorBaseBehaviour, this.transform);
+            var newEditor = Instantiate(editorTemplate, this.transform);
             newEditor.Initialise(); //TODO can we remove this?
             newEditor.SetCreatedObjectAction(createdObjectAction);
+            newEditor.SetUpdateSaveButtonInteractability(UpdateSaveButtonInteractability);
             newEditor.gameObject.SetActive(true);
             openEditors.Add(newEditor);
             return newEditor;
         }
 
-        public void CloseEditor()
+        public void CloseEditor(bool save)
         {
             var lastIndex = openEditors.Count - 1;
             var last = openEditors[lastIndex];
-            last.CloseEditor();
+            last.CloseEditor(save);
             openEditors.RemoveAt(lastIndex);
             Destroy(last.gameObject);
             if (openEditors.Count != 0)
@@ -91,8 +97,13 @@ namespace Assets.Scripts
             if (openEditors.Count <= 1)
             {
                 closeButton.SetActive(false);
+                saveAndCloseButton.gameObject.SetActive(false);
             }
+        }
 
+        public void UpdateSaveButtonInteractability(bool savePossible)
+        {
+            saveAndCloseButton.interactable = savePossible;
         }
 
     }
