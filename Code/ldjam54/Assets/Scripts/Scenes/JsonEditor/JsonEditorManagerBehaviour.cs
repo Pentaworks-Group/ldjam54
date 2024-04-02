@@ -1,16 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-using Assets.Scripts.Core;
-using Assets.Scripts.Core.Definitions;
-
-using GameFrame.Core.Json;
-
 using Newtonsoft.Json.Linq;
-
-using UnityEditor;
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,50 +21,47 @@ namespace Assets.Scripts
         private Button saveAndCloseButton;
 
 
+        [SerializeField]
+        private List<GameObject> hideWhenOpeningEditor;
+
         private List<JsonEditorBaseBehaviour> openEditors = new List<JsonEditorBaseBehaviour>();
+        private List<Action> onEditorClosed = new List<Action>();
+        private List<Action<JObject>> onEditorSave = new List<Action<JObject>>();
 
 
 
-        void Start()
+
+
+        public void OpenEditor(object objectToOpen, JObject jsonObject = null, Action<JObject> createdObjectAction = null)
         {
-            //editorBaseBehaviour.PrepareEitor(new GameMode());
-            //editorBaseBehaviour.PrepareEitor(new Star());
-            var gameMode = Base.Core.Game.AvailableGameModes[0];
-            var filePath = $"{Application.streamingAssetsPath}/GameModes.json";
-            //Handler.DeserializeObjectFromStreamingAssets(filePath, GetJObject);
-            var gameO = new GameObject();
-
-            var mono = gameO.AddComponent<EmptyLoadingBehaviour>();
-            _ = mono.StartCoroutine(GameFrame.Core.Json.Handler.DeserializeObjectFromStreamingAssets<JArray>(filePath, GetJObject));
+            var newEditor = CreateNewEditor(createdObjectAction);
+            newEditor.PrepareEditor(objectToOpen, jsonObject);
         }
 
-        public JArray GetJObject(JArray input)
+        public void OpenEditorForThisObject(object objectToOpen, Action<JObject> createdObjectAction = null)
         {
-            var newEditor = CreateNewEditor(null);
-            newEditor.PrepareEditor(new GameMode(), (JObject)input[0]);
-            return input;
+            var jsonObject = JObject.FromObject(objectToOpen);
+            var newEditor = CreateNewEditor(createdObjectAction);
+            newEditor.PrepareEditor(objectToOpen, jsonObject);
         }
 
-        public void OpenEditor(String objectName, Action<JObject> createdObjectAction = null, JObject jsonObject = null) {
+        public void OpenEditorByObjectName(String objectName, Action<JObject> createdObjectAction = null, JObject jsonObject = null)
+        {
             var newEditor = CreateNewEditor(createdObjectAction);
             var objectToOpen = newEditor.GetCustomObject(objectName);
             newEditor.PrepareEditor(objectToOpen, jsonObject);
         }
 
-
-        public void OpenEditor(object objectToOpen, Action<JObject> createdObjectAction = null)
-        {
-            var newEditor = CreateNewEditor(createdObjectAction);
-            newEditor.PrepareEditor(objectToOpen);
-        }
-
         private JsonEditorBaseBehaviour CreateNewEditor(Action<JObject> createdObjectAction)
         {
+            foreach (var obj in this.hideWhenOpeningEditor) {
+                obj.SetActive(false);
+            }
+            closeButton.SetActive(true);
+            saveAndCloseButton.gameObject.SetActive(true);
             if (openEditors.Count != 0)
             {
                 openEditors.Last().gameObject.SetActive(false);
-                closeButton.SetActive(true);
-                saveAndCloseButton.gameObject.SetActive(true);
             }
             var newEditor = Instantiate(editorTemplate, this.transform);
             newEditor.Initialise(); //TODO can we remove this?
@@ -89,16 +78,44 @@ namespace Assets.Scripts
             var last = openEditors[lastIndex];
             last.CloseEditor(save);
             openEditors.RemoveAt(lastIndex);
-            Destroy(last.gameObject);
             if (openEditors.Count != 0)
             {
                 openEditors.Last().gameObject.SetActive(true);
-            } 
-            if (openEditors.Count <= 1)
+            }
+            else
             {
                 closeButton.SetActive(false);
                 saveAndCloseButton.gameObject.SetActive(false);
+                foreach (var obj in this.hideWhenOpeningEditor)
+                {
+                    obj.SetActive(true);
+                }
             }
+            //if (openEditors.Count <= 1)
+            //{
+            //    foreach (var onEditorClose in onEditorClosed)
+            //    {
+            //        onEditorClose.Invoke();
+            //    }
+            //}
+            Destroy(last.gameObject);
+        }
+
+        public void OnEditorSave(JObject jsonObject)
+        {
+            foreach (var onEditorSave in onEditorSave)
+            {
+                onEditorSave.Invoke(jsonObject);
+            }
+        }
+
+        public void RegisterOnEditorClosed(Action closeAction)
+        {
+            onEditorClosed.Add(closeAction);
+        }
+        public void RegisterOnEditorSave(Action<JObject> saveAction)
+        {
+            onEditorSave.Add(saveAction);
         }
 
         public void UpdateSaveButtonInteractability(bool savePossible)

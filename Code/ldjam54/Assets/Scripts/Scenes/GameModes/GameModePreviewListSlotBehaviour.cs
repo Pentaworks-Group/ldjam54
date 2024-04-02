@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Scenes.GameModes
 {
-    public class GameModeListSlotBehaviour : ListSlotBehaviour<GameModeListItem>
+    public class GameModePreviewListSlotBehaviour : ListSlotBehaviour<GameModePreviewListItem>
     {
         private TMP_Text nameText;
         private TMP_Text descriptionText;
@@ -17,7 +17,7 @@ namespace Assets.Scripts.Scenes.GameModes
         private GameModesBehaviour gameModeBehaviour;
 
 
-        public GameModeListItem GameModeItem
+        public GameModePreviewListItem GameModeItem
         {
             get
             {
@@ -40,13 +40,12 @@ namespace Assets.Scripts.Scenes.GameModes
 
         public void SelectThisGameMode()
         {
-            Game.SelectedGameMode = content.GameMode;
-            gameModeBehaviour.UpdateSelectedMode();
+            gameModeBehaviour.SelectCustomGameMode(content.GetKey());
         }
 
         public void EditThisGameMode()
         {
-            gameModeBehaviour.EditGameMode(content.GameMode);
+            gameModeBehaviour.EditCustomGameMode(content.GetKey());
         }
     }
 }

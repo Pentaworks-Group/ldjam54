@@ -48,7 +48,7 @@ namespace Assets.Scripts.Core.Definitions.Loaders
             return loadedGameModes;
         }
 
-        private void CheckItems<TItem>(List<TItem> loadedItems, List<TItem> targetItems, Dictionary<String, TItem> referenceCache) where TItem : BaseDefinition, new()
+        private void CheckItems<TItem>(List<TItem> loadedItems, List<TItem> targetItems, Dictionary<String, TItem> referenceCache) where TItem : GameFrame.Core.Definitions.BaseDefinition, new()
         {
             if (loadedItems?.Count > 0)
             {

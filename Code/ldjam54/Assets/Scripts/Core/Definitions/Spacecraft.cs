@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Assets.Scripts.Core.Definitions
 {
-    public class Spacecraft : BaseDefinition
+    public class Spacecraft : GameFrame.Core.Definitions.BaseDefinition
     {
         public Double? EnergyCapacity { get; set; }
         public Double? EnergyRechargeRate { get; set; }

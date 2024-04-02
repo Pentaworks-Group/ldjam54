@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Assets.Scripts.Core.Definitions
 {
-    public class Star : BaseDefinition
+    public class Star : GameFrame.Core.Definitions.BaseDefinition
     {
         public Double? Gravity { get; set; }
         public Double? Mass { get; set; }

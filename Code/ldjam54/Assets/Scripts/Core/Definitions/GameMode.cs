@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace Assets.Scripts.Core.Definitions
 {
-    public class GameMode : BaseDefinition
+    public class GameMode : GameFrame.Core.Definitions.GameMode
     {
-        public String Name { get; set; }
-        public String Description { get; set; }
         public Double? ShipSpawnDistance { get; set; }
         public Double? JunkSpawnInterval { get; set; }
         public Double? JunkSpawnInitialDistance { get; set; }

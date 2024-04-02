@@ -98,12 +98,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _AtmosphereThickness: 1
-    - _Brightness: 1.8995823
-    - _BrightnessMod: 1.5704072
+    - _Brightness: 1.059927
+    - _BrightnessMod: 3.4299548
     - _BumpScale: 1
     - _Cutoff: 0.5
-    - _Density: 1.4409035
-    - _DensityMod: 2.6600919
+    - _Density: 1.6959307
+    - _DensityMod: 2.169094
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnableBackgroundNoise: 1
@@ -113,18 +113,18 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _ImageType: 0
-    - _Layers: 4.3707995
+    - _Layers: 3.754501
     - _Layout: 0
     - _Mapping: 1
     - _Metallic: 0
     - _MirrorOnBack: 0
     - _Mode: 0
     - _MoonSize: 0.095
-    - _NoiseDensity: 25.52937
+    - _NoiseDensity: 14.377233
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Rotation: 0
-    - _Seed: 805
+    - _Seed: 240
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -134,7 +134,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.8344159, g: 0.80309826, b: 0.68763745, a: 1}
+    - _Color: {r: 0.75242436, g: 0.71416956, b: 0.87784076, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GroundColor: {r: 0.369, g: 0.349, b: 0.341, a: 1}
     - _MoonBloomParams: {r: 10, g: -1, b: 0.3, a: 5.3}
@@ -142,9 +142,9 @@ Material:
     - _NoiseMaskParams: {r: 0.33, g: 6, b: 0.628, a: 2.11}
     - _NoiseMaskParams2: {r: 0.07, g: -0.001, b: 0.51, a: 2.5}
     - _NoiseParams: {r: 0.75, g: 6, b: 0.795, a: 2.08}
-    - _SkyColor: {r: 0.045462172, g: 0.07739109, b: 0.08902107, a: 1}
-    - _SkyFogColor: {r: 0.117388204, g: 0.30926806, b: 0.7335334, a: 1}
+    - _SkyColor: {r: 0.03759498, g: 0.07314687, b: 0.08539178, a: 1}
+    - _SkyFogColor: {r: 0.10956096, g: 0.2587179, b: 0.7727586, a: 1}
     - _SkyTint: {r: 0.31764707, g: 0.31764707, b: 0.31764707, a: 1}
-    - _StarSizeRange: {r: 1.6550672, g: 1.4716823, b: 0, a: 0}
+    - _StarSizeRange: {r: 2.5089858, g: 2.0087864, b: 0, a: 0}
     - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
   m_BuildTextureStacks: []

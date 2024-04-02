@@ -16,10 +16,10 @@ namespace Assets.Scripts
         {
             if (createdObject == null)
             {
-                manager.OpenEditor(this.name, SetCustomObject);
+                manager.OpenEditorByObjectName(this.name, SetCustomObject);
             } else {
 
-                manager.OpenEditor(this.name, SetCustomObject, createdObject);
+                manager.OpenEditorByObjectName(this.name, SetCustomObject, createdObject);
             }
         }
 

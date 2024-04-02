@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Core.Definitions.Loaders
 {
-    public class ResourceLoader<TDefinition> where TDefinition : BaseDefinition
+    public class ResourceLoader<TDefinition> where TDefinition : GameFrame.Core.Definitions.BaseDefinition
     {
         protected readonly Dictionary<String, TDefinition> targetCache;
 
@@ -56,7 +56,7 @@ namespace Assets.Scripts.Core.Definitions.Loaders
                     }
                     else
                     {
-                        throw new ArgumentNullException(nameof(BaseDefinition.Reference), "Reference of Definition may not be Null, Empty or WhiteSpace!");
+                        throw new ArgumentNullException(nameof(GameFrame.Core.Definitions.BaseDefinition.Reference), "Reference of Definition may not be Null, Empty or WhiteSpace!");
                     }
                 }
             }
