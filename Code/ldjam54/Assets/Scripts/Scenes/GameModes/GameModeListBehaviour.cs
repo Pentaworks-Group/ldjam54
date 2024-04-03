@@ -29,8 +29,6 @@ namespace Assets.Scripts.Scenes.GameModes
             {
                 foreach (var rawItem in list)
                 {
-                    var listItem = new GameModeListItem(rawItem);
-                    items[listItem.GetKey()] = listItem;
                 }
             }
 

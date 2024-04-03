@@ -18,7 +18,7 @@ namespace Assets.Scripts.Scenes.GameModes
     public class GameModesBehaviour : BaseMenuBehaviour
     {
         private GameModeController<GameModePreview, GameMode> GameModeController { get; set; }
-        private IList<GameMode> selectedGameModes;
+        private Dictionary<string, GameModePreview> buildInGameModes;
 
 
         [SerializeField]
@@ -35,9 +35,7 @@ namespace Assets.Scripts.Scenes.GameModes
         [SerializeField]
         private TextMeshProUGUI currentGameModeSelectionText;
         [SerializeField]
-        private GameModeListBehaviour BuildInGameModes;
-        [SerializeField]
-        private GameModePreviewListBehaviour CustomGameModes;
+        private GameModePreviewListBehaviour GameModeList;
 
         private bool BuildInSelected = true;
         private const string BuildInGameModeLabel = "BuildIn";
@@ -54,23 +52,35 @@ namespace Assets.Scripts.Scenes.GameModes
             UpdateSelectedMode();
         }
 
-        public void SelectBuildInGameModes()
+        public Dictionary<string, GameModePreview> GetBuildInGameModes()
         {
-            selectedGameModes = Base.Core.Game.AvailableGameModes;
-        }
-
-        public IList<GameMode> GetSelectedGameModes()
-        {
-            if (selectedGameModes == default)
+            if (buildInGameModes == null)
             {
-                SelectBuildInGameModes();
+
+                buildInGameModes = new Dictionary<string, GameModePreview>();
+                foreach (var gameMode in Base.Core.Game.AvailableGameModes)
+                {
+                    var gameModePreview = new GameModePreview();
+                    gameModePreview.Name = gameMode.Name;
+                    gameModePreview.Description = gameMode.Description;
+                    gameModePreview.Reference = gameMode.Reference;
+                    gameModePreview.GameMode = gameMode;
+                    buildInGameModes.Add(gameMode.Reference, gameModePreview);
+
+                }
             }
-            return selectedGameModes;
+            return buildInGameModes;
         }
 
-        public IDictionary<string, GameModePreview> GetGameModePreviews()
+        public Dictionary<string, GameModePreview> GetSelectedGameModes()
         {
-            return GameModeController.GameModePreviews;
+            if (BuildInSelected)
+            {
+                return GetBuildInGameModes();
+            } else
+            {
+                return GameModeController.GameModePreviews;
+            }
         }
 
         public void ToggleGameModeSelection()
@@ -78,22 +88,27 @@ namespace Assets.Scripts.Scenes.GameModes
             if (BuildInSelected)
             {
                 BuildInSelected = false;
-                BuildInGameModes.gameObject.SetActive(false);
-                CustomGameModes.gameObject.SetActive(true);
                 currentGameModeSelectionText.text = CustomGameModeLabel;
             }
             else
             {
                 BuildInSelected = true;
-                BuildInGameModes.gameObject.SetActive(true);
-                CustomGameModes.gameObject.SetActive(false);
                 currentGameModeSelectionText.text = BuildInGameModeLabel;
             }
+            GameModeList.UpdateList();
         }
 
-        public void SelectCustomGameMode(string gameModeReference)
+        public void SelectCustomGameMode(GameModePreview gameModePreview)
         {
-            var gameMode = GameModeController.LoadGameMode(gameModeReference);
+            GameMode gameMode;
+            if (gameModePreview.GameMode == default)
+            {
+                gameMode = GameModeController.LoadGameMode(gameModePreview.Reference);
+            }
+            else
+            {
+                gameMode = gameModePreview.GameMode;
+            }
             Core.Game.SelectedGameMode = gameMode;
             UpdateSelectedMode();
         }
@@ -120,17 +135,20 @@ namespace Assets.Scripts.Scenes.GameModes
             }
         }
 
-        public void EditCustomGameMode(string gameModeReference)
+        public void EditGameModePreview(GameModePreview gameModePreview)
         {
-            var gameMode = GameModeController.LoadGameMode(gameModeReference);
-            EditGameMode(gameMode);
-        }
-
-        public void EditGameMode(GameMode gameMode)
-        {
+            GameMode gameMode;
+            if (gameModePreview.GameMode == default)
+            {
+                gameMode = GameModeController.LoadGameMode(gameModePreview.Reference);
+            } else
+            {
+                gameMode = gameModePreview.GameMode;
+            }
             editGameMode = gameMode;
             jsonEditorManagerBehaviour.OpenEditorForThisObject(editGameMode, SaveGameMode);
         }
+
 
         public void SaveGameMode(JObject gameModeObject)
         {
@@ -146,7 +164,7 @@ namespace Assets.Scripts.Scenes.GameModes
             }
             PersistGameMode(gameMode);
 
-            CustomGameModes.UpdateList();
+            GameModeList.UpdateList();
 
         }
 

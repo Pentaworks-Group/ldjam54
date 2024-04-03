@@ -40,12 +40,12 @@ namespace Assets.Scripts.Scenes.GameModes
 
         public void SelectThisGameMode()
         {
-            gameModeBehaviour.SelectCustomGameMode(content.GetKey());
+            gameModeBehaviour.SelectCustomGameMode(content.GameModePreview);
         }
 
         public void EditThisGameMode()
         {
-            gameModeBehaviour.EditCustomGameMode(content.GetKey());
+            gameModeBehaviour.EditGameModePreview(content.GameModePreview);
         }
     }
 }

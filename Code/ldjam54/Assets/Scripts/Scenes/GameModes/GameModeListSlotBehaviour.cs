@@ -46,7 +46,6 @@ namespace Assets.Scripts.Scenes.GameModes
 
         public void EditThisGameMode()
         {
-            gameModeBehaviour.EditGameMode(content.GameMode);
         }
     }
 }

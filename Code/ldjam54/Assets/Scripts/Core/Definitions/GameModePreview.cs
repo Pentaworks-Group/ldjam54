@@ -6,5 +6,6 @@ namespace Assets.Scripts.Core.Definitions
 {
     public class GameModePreview : GameModePreview<GameMode>
     {
+        public GameMode GameMode { get; set; }
     }
 }

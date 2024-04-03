@@ -20,18 +20,18 @@ namespace Assets.Scripts.Scenes.GameModes
 
         public void UpdateList()
         {
-            var items = new Dictionary<String, GameModePreviewListItem>();
-            var list = gameModeBehaviour.GetGameModePreviews();
+            var items = new List<GameModePreviewListItem>();
+            var list = gameModeBehaviour.GetSelectedGameModes();
             if (list.Count > 0)
             {
                 foreach (var rawItem in list)
                 {
                     var listItem = new GameModePreviewListItem(rawItem.Value);
-                    items[rawItem.Key] = listItem;
+                    items.Add(listItem);
                 }
             }
 
-            SetContentList(items.Values.ToList());
+            SetContentList(items);
         }
     }
 }
