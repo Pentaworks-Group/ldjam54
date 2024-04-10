@@ -1,14 +1,11 @@
 using System;
 using System.Collections.Generic;
 
-using Assets.Scripts.Core.Definitions;
-
 using Newtonsoft.Json.Linq;
 
 using TMPro;
 
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -74,11 +71,22 @@ namespace Assets.Scripts
             return 1;
         }
 
+        protected bool IsValidOption(string option)
+        {
+            EnsureInitialization();
+            var index = possibleOptions.IndexOf(option);
+            return index != -1;
+        }
+
         public override void SetValue(JToken value)
         {
             EnsureInitialization();
             selectedOption = value["Reference"].ToString();
             lastSelected = possibleOptions.IndexOf(selectedOption);
+            if (lastSelected == -1)
+            {
+                Debug.Log("Tried to get invalid dropdown option: " + selectedOption);
+            }
             dropDown.value = lastSelected;
             //SetValid();
         }

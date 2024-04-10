@@ -54,7 +54,8 @@ namespace Assets.Scripts
 
         private JsonEditorBaseBehaviour CreateNewEditor(Action<JObject> createdObjectAction)
         {
-            foreach (var obj in this.hideWhenOpeningEditor) {
+            foreach (var obj in this.hideWhenOpeningEditor)
+            {
                 obj.SetActive(false);
             }
             closeButton.SetActive(true);

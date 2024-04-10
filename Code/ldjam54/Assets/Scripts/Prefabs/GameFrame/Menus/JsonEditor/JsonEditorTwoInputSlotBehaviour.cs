@@ -1,13 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 
 using Newtonsoft.Json.Linq;
 
 using TMPro;
 
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Assets.Scripts
 {

@@ -9,17 +9,15 @@ namespace Assets.Scripts
     {
         private Image BackGround;
 
+
         [SerializeField]
         private TextMeshProUGUI nameText;
 
-        [SerializeField]
-        private Color ValidBackGroundColor = new Color();
-
 
         [SerializeField]
-        private Color ForeGroundColor = new Color();
-
-        private Color invalidBackGroundColor;
+        private Material ValidBackGroundColor;
+        [SerializeField]
+        private Material InvalidBackGroundColor;
 
         private bool awakend = false;
 
@@ -30,17 +28,17 @@ namespace Assets.Scripts
         }
 
 
+
         private void EnsureAwake()
         {
             if (!awakend)
             {
+                //InitColors();
                 BackGround = GetComponent<Image>();
-                var foreground = transform.Find("InnerPart").GetComponent<Image>();
-                foreground.color = ForeGroundColor;
-                invalidBackGroundColor = BackGround.color;
                 awakend = true;
             }
         }
+
 
         public void InitSlotBehaviour(string name, bool displayName = true)
         {
@@ -61,12 +59,12 @@ namespace Assets.Scripts
 
         public void SetValidColor()
         {
-            BackGround.color = ValidBackGroundColor;
+            BackGround.material = ValidBackGroundColor;
         }
 
         public void SetInValidColor()
         {
-            BackGround.color = invalidBackGroundColor;
+            BackGround.material = InvalidBackGroundColor;
         }
     }
 }

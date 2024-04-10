@@ -3,16 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
-using Assets.Scripts.Core.Definitions;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -74,16 +69,6 @@ namespace Assets.Scripts
             this.updateSaveActionInteractability(false);
         }
 
-
-        public void GenerateObjectJson()
-        {
-            var customJsonObject = GenerateObject();
-
-            String json = customJsonObject.ToString();
-            Debug.Log(json);
-            var tt = GameFrame.Core.Json.Handler.Deserialize<GameMode>(json);
-            Debug.Log(tt);
-        }
 
         private JObject GenerateObject()
         {

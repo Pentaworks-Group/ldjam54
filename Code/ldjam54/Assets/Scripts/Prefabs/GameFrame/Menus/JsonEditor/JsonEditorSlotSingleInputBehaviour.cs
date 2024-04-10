@@ -1,32 +1,27 @@
 using System;
-using System.Collections.Generic;
-
-using Assets.Scripts.Core.Definitions;
 
 using Newtonsoft.Json.Linq;
 
 using TMPro;
 
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
-    public class JsonEditorSlotBooleanBehaviour : JsonEditorSlotBaseBehaviour
+    public class JsonEditorSlotSingleInputBehaviour : JsonEditorSlotBaseBehaviour
     {
 
         [SerializeField]
-        private Toggle toggle;
+        private TMP_InputField inputField;
 
-        private bool value;
-
+        private string value;
 
         private void Start()
         {
-            toggle.onValueChanged.AddListener(OnValueChanged);
+            inputField.onEndEdit.AddListener(OnEditEnd);
         }
 
-        public void OnValueChanged(bool value)
+        public void OnEditEnd(string value)
         {
             this.value = value;
             SetValid();
@@ -43,7 +38,9 @@ namespace Assets.Scripts
         }
         public override void SetValue(JToken value)
         {
-            throw new NotImplementedException();
+            this.value = value.ToString();
+            inputField.text = this.value;
+            SetValid();
         }
     }
 }

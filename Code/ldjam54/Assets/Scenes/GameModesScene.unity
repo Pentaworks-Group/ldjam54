@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.03814791, g: 0.07387143, b: 0.12585899, a: 1}
+  m_IndirectSpecularColor: {r: 0.042520866, g: 0.05192966, b: 0.06441731, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -806,6 +806,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7422370967052948566}
     m_Modifications:
+    - target: {fileID: 402099697803044607, guid: bad43c6420011c04088beeaf4b1ee024, type: 3}
+      propertyPath: colorObject
+      value: 
+      objectReference: {fileID: 11400000, guid: c1b955dad78801646a41aecda2a86b75, type: 2}
+    - target: {fileID: 642236828545817328, guid: bad43c6420011c04088beeaf4b1ee024, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -0.42581967
+      objectReference: {fileID: 0}
     - target: {fileID: 1229749336708366433, guid: bad43c6420011c04088beeaf4b1ee024, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -886,9 +894,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3631615274966652871, guid: bad43c6420011c04088beeaf4b1ee024, type: 3}
+      propertyPath: m_fontSize
+      value: 19.95
+      objectReference: {fileID: 0}
     - target: {fileID: 4339262168782576570, guid: bad43c6420011c04088beeaf4b1ee024, type: 3}
       propertyPath: m_Name
       value: JsonEditorManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5546426784851298436, guid: bad43c6420011c04088beeaf4b1ee024, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7222906312413409907, guid: bad43c6420011c04088beeaf4b1ee024, type: 3}
       propertyPath: hideWhenOpeningEditor.Array.size
@@ -898,6 +914,22 @@ PrefabInstance:
       propertyPath: hideWhenOpeningEditor.Array.data[0]
       value: 
       objectReference: {fileID: 1785806545}
+    - target: {fileID: 7964436925945997671, guid: bad43c6420011c04088beeaf4b1ee024, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8180536288048973891, guid: bad43c6420011c04088beeaf4b1ee024, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8499418590434472520, guid: bad43c6420011c04088beeaf4b1ee024, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -11.951351
+      objectReference: {fileID: 0}
+    - target: {fileID: 8831132900993279134, guid: bad43c6420011c04088beeaf4b1ee024, type: 3}
+      propertyPath: m_fontSize
+      value: 9.85
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
