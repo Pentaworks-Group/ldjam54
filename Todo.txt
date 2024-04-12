@@ -49,6 +49,7 @@ Nice to have:
  - drag & drop scroll bar in lists
  - improve touch control, maybe change button layout for 2 hand?
  - keybinidings for menu interaction
+ - rename player
  
 Ideas:
 ----------------------------------
